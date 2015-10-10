@@ -1,0 +1,164 @@
+<section class="bg-04">
+	<div class="container">
+    	<div class="text-center">
+            <h2 class="title">ABOUT US</h2>
+            <div class="row">
+            	<div class="col-md-10 col-md-offset-1">
+            		<div class="lead-lg">CONNECTING USERS WITH <br>QUALIFIED REAL ESTATE AGENTS</div>
+                </div>
+            </div>
+            <br>
+            <div><%= image_tag "img-11.png" %></div>
+            <br>
+            <div class="row">
+            	<div class="col-md-8 col-md-offset-2">
+                	<div class="lead color-333">Based out of the Greater Toronto area, Zumin is an innovative real estate platform that is designed to connect users with qualified real estate agents to fit their needs. </div>
+                </div>
+            </div>
+            <div><span class="icon-down-orange"></span></div>
+            <br>
+        </div>
+        <div class="step">
+            <div class="row">
+                <div class="col-sm-6 text-right">
+                    <div class="step-item">
+                        <div class="circle-icon"><%= image_tag "icon-man.png" %></div>
+                        Our agents are handpicked and chosen as per their respective specialties in the market and services areas.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-6">
+                    <div class="step-item right">
+                        <div class="circle-icon"><%= image_tag "icon-documents.png" %></div>
+                        No matter what you need in the real estate field, we guarantee that through our matchmaking database, you will find a grand number of diverse potential agents to choose from!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step grey">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="step-item">
+                    	<div class="circle-icon-grey"><%= image_tag "icon-envelope.png" %></div>
+                        Our state-of-the-art database analyzes your unique situation and needs, you will be notified once a perfect match is found. Shortly after, communication will be set-up between you and your matched agent.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bg-03">
+    <div class="container">
+        <div class="text-center mt60"><%= image_tag "img-10.png" %></div>
+        <br>
+        <div class="text-center">
+        	<div class="row">
+                <div class="col-md-10 col-md-offset-1">
+            		<div class="fz12-orange">TODAY’S REAL ESTATE BUSINESS IS KNOWN TO BE EXTREMELY STRESSFUL AND TIRING.
+ERRATIC WEEKEND HOURS, CONSTANT MEETINGS, AND HIDDEN FEES ARE ONLY THE START OF WORRIES. </div>
+		</div>
+	</div>
+            <br>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <p class="fz15">Our licensed and professional agents are focused on helping you through the tedious processes that come in the field of real estate. </p>
+			<p class="fz15">From gaining you the highest possible market value on your property, assisting with investment properties, maximizing your budget in purchasing the home of your dreams, or providing you with information about your area, Zumin can assist with all facets of the demanding real estate market.</p>
+                </div>
+            </div>
+            <br>
+            <p><a href="#" data-toggle="modal" data-target="#contact-us-modal" class="btn btn-border-primary btn-w250">LET’S START NOW</a></p>
+        </div>
+    </div>
+</div>
+
+<section>
+	<div class="container">
+    	<div class="text-center">
+        	<div><%= image_tag "img-12.png" %></div>
+            <br>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+            		<p class="fz17">In addition, Zumin offers several different features and plans that help to make the process much smoother. Whether purchasing or selling your house, Zumin’s cash back reward, renovation credit, and <a href="#">Renovate Now, Pay Later</a> plans are all designed to help you transition as simply as possible. Zumin makes real estate easy. We absorb the stress, so you don’t have to.  </p>
+            	</div>
+            </div>
+            <br>
+            <p><a href="#" class="btn btn-border-primary btn-w250">DISCOVER MORE</a></p>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetuer.</p>
+            <br>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="contact-us-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content modal-lg">
+					<div class="modal-header icon-user">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">LET'S START NOW</h4>
+					</div>
+					<div class="modal-body">
+						<div class="subscribe">
+							<div class="subscribe-inner" ng-controller="ListingsCtrl">
+								<center id="create_lead_spinner" class="hide"><i class="fa fa-spinner fa-spin fa-3x"></i></center>
+								<div class="alert alert-success hide" id="create_lead_success">
+									Thank you for your interest!
+								</div>
+								<div class="alert alert-danger hide" id="create_lead_error">
+									Something went wrong. Please reload the page and try again.
+								</div>
+								<form name="lead_form" novalidate ng-submit="lead_form.$valid && submit_new_lead_form()" id="create_lead_form">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group" ng-class="{ 'has-error': request_submitted && lead_form.first_name.$invalid }">
+												<input name="first_name" ng-model="lead.first_name" type="text" class="form-control" placeholder="First Name" required ng-init="lead.first_name='<%= current_user.try(:first_name) %>'">
+												<span ng-show="request_submitted && lead_form.first_name.$invalid">can't be blank</span>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group" ng-class="{ 'has-error': request_submitted && lead_form.last_name.$invalid }">
+												<input name="last_name" ng-model="lead.last_name" type="text" class="form-control" placeholder="Last Name" required ng-init="lead.last_name='<%= current_user.try(:last_name) %>'">
+												<span ng-show="request_submitted && lead_form.last_name.$invalid">can't be blank</span>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group" ng-class="{ 'has-error': request_submitted && lead_form.email.$invalid }">
+												<input name="email" ng-model="lead.email" type="email" class="form-control" placeholder="Email Address" required ng-init="lead.email='<%= current_user.try(:email) %>'">
+												<span ng-show="request_submitted && lead_form.email.$invalid">invalid email address</span>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input ng-model="lead.phone_number" type="text" class="form-control" placeholder="Phone Number" ng-init="lead.phone_number='<%= current_user.try(:phone_number) %>'">
+											</div>
+										</div>
+									</div>
+									<div class="line3"></div>
+									<div class="row">
+										<div class="col-sm-2">
+											<label class="aslabel">Are you?</label>
+										</div>
+										<div class="col-sm-7">
+											<div class="btn-group radio_buttons" ng-init="lead.lead_is='Bying'">
+												<input type="text" ng-model="lead.lead_is" id="lead_is" class="hide">
+												<a href="#" class="btn btn-primary radio_buttons_item active" data-target="#lead_is" data-value="Buying">BUYING</a>
+												<a href="#" class="btn btn-primary radio_buttons_item" data-target="#lead_is" data-value="Selling">SELLING</a>
+												<a href="#" class="btn btn-primary radio_buttons_item" data-target="#lead_is" data-value="Both">BOTH</a>
+											</div>
+										</div>
+										<div class="col-md-2 col-md-offset-1 col-sm-3">
+											<input type="submit" class="btn btn-primary btn-block" ng-click="request_submitted = true;" value="SUBMIT"/>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+</div>

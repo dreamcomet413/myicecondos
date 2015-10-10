@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <%= form_for @prospect_match, html: { id: "prospect_match_detail_fields" } do |f| %>
+      <% if @prospect_match.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+            <% @prospect_match.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.text_field :title, class: "form-control", placeholder: "Enter a name for this search" %>
+      </div>
+      <span class="group_title">PROPERTY DETAILS</span>
+      <div class="form-group">
+        <%= text_field_tag :city, params[:city], class: "form-control prospect-match-autocomplete-field", placeholder: "Enter a city" %>
+      </div>
+      <input name="locality" type="hidden" value="<%= params[:locality] %>">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="checkbox">
+            <label style="font-size:16px;">
+              <input type="checkbox" name="property_types[]" value="Detached" <% if params[:property_types].include?("Detached") %>checked<% end %>>
+              Detached Homes
+            </label>
+          </div>
+          <div class="checkbox">
+            <label style="font-size:16px;">
+              <input type="checkbox" name="property_types[]" value="Semi-Detached" <% if params[:property_types].include?("Semi-Detached") %>checked<% end %>>
+              Semi-detached Homes
+            </label>
+          </div>
+          <div class="checkbox">
+            <label style="font-size:16px;">
+              <input type="checkbox" name="property_types[]" value="Multiplex" <% if params[:property_types].include?("Multiplex") %>checked<% end %>>
+              Multiplexes
+            </label>
+          </div>
+          <div class="checkbox">
+            <label style="font-size:16px;">
+              <input type="checkbox" name="property_types[]" value="Att/Row/Twnhouse" <% if params[:property_types].include?("Att/Row/Twnhouse") %>checked<% end %>>
+              Townhouses
+            </label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="checkbox">
+            <label style="font-size:16px;">
+              <input type="checkbox" name="property_types[]" value="Cottage" <% if params[:property_types].include?("Cottage") %>checked<% end %>>
+              Cottages
+            </label>
+          </div>
+          <div class="checkbox">
+            <label style="font-size:16px;">
+              <input type="checkbox" name="property_types[]" value="Condo Apt" <% if params[:property_types].include?("Condo Apt") %>checked<% end %>>
+              Condos
+            </label>
+          </div>
+          <div class="checkbox">
+            <label style="font-size:16px;">
+              <input type="checkbox" name="property_types[]" value="Farm" <% if params[:property_types].include?("Farm") %>checked<% end %>>
+              Farms
+            </label>
+          </div>
+        </div>
+      </div>
+      <span class="group_title">ADDITIONAL CRITERIA</span>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.select :min_price, options_for_select(price_options, @prospect_match.min_price), {include_blank: "No Min Price"}, {class: "form-control"} %>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.select :max_price, options_for_select(price_options, @prospect_match.max_price), {include_blank: "No Max Price"}, {class: "form-control"} %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.select :beds, options_for_select(beds_options, @prospect_match.beds), {},  {class: "form-control", id: "search_beds_select"} %>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.select :baths, options_for_select(baths_options, @prospect_match.baths), {}, {class: "form-control", id: "search_baths_select"} %>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-search pull-right">SAVE</button>
+      <div class="clearfix"></div>
+    <% end %>
+  </div>
+</div>

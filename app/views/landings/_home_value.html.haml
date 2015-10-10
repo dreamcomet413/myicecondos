@@ -1,0 +1,91 @@
+.wrapper{style:"background:url(#{@landing.bg_image.url}) no-repeat center;color:#fff;background-size:cover;"}
+  .container
+    .header
+      = link_to "/", class: "logo" do
+        = image_tag "logo-lg.png"
+    .landing-search
+      %h1
+        = @landing.main_heading
+      .home_value_search
+        .landing-style1
+          = @landing.sub_heading
+        .row
+          .col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+            .input-group
+              %span{class:"fa fa-map-marker"}
+              %input{id: "autocomplete-home-value-field", type:"text", class:"form-control auto-field", placeholder:"Type your address"}
+              %span{class:"input-group-btn"}
+                %button{class:"btn btn-danger landing-submit", type:"submit", id:"home-value-submit-btn"} SUBMIT
+      .row.home_value_no_results{style: "display:none;"}
+        .col-md-10.col-md-offset-1
+          .box
+            .box-top
+              %h2.fz24 No results found.
+            .box-bottom.text-left.p40
+              .row
+                .col-sm-6.col-sm-offset-3.text-center
+                  %h4
+                    %a.refresh_page Go back to search
+      .row.home_value_step1{style: "display:none;"}
+        .col-md-10.col-md-offset-1
+          .box
+            #step2{style: "display:none;"}
+              .box-top
+                %div
+                  = image_tag "img-check.png"
+                %h2 Thank you very much!
+                %div Great, a home evaluation will be prepared shortly.
+              .box-bottom
+                %div Would you like to see all the propierties for sale in that area now?
+                %br
+                %a.btn.btn-danger.btn-w340#explore_properties{href: "#"} EXPLORE PROPERTIES
+            #step1
+              .box-top
+                %h2.fz24 Property Found
+              .box-bottom.text-left.p40
+                .row
+                  .col-sm-6#map_container
+                  .col-sm-6
+                    %h4 Who do we send the evaluation to?
+                    = form_tag home_value_path(@landing), remote: true, id: "home_value_lead_form" do
+                      #home_value_search_form.input-group.autocomplete_form
+                        %input{name: "autocomplete_form", type:"hidden", value:"true"}
+                        %input{name: "route", type:"hidden", value:""}
+                        %input{name: "locality", type:"hidden", value:""}
+                        %input{name: "administrative_area_level_1", type:"hidden", value:""}
+                        %input{name: "lat", type:"hidden", value:""}
+                        %input{name: "lng", type:"hidden", value:""}
+                        %input{name: "street_number", type:"hidden", value:""}
+                        %input{name: "postal_code", type:"hidden", value:""}
+                        %input{name: "country", type:"hidden", value:""}
+                      .form-group
+                        %label First and Last name
+                        %input.form-control{placeholder: "Enter First and Last name", type: "text", name: "full_name", required: ""}
+                      .form-group
+                        %label Phone
+                        %input.form-control{placeholder: "Enter Phone number", name: "phone", type: "text"}
+                      .form-group
+                        %label Email
+                        %input.form-control{placeholder: "Enter Email address", name: "email", type: "email"}
+                      .form-group
+                        %label I am?
+                        %select.form-control{name: "i_am"}
+                          %option{value:"Just curious"} Just curious
+                          %option{value:"Selling in 1-3 months"} Selling in 1-3 months
+                          %option{value:"Selling in 3-6 months"} Selling in 3-6 months
+                          %option{value:"Selling in 6-12 months"} Selling in 6-12 months
+                          %option{value:"Refinancing"} Refinancing
+                      %button.btn.btn-danger.btn-block{type: "submit", id: "submit_home_value_btn"} GET HOME VALUE
+  .clearfix
+  %br
+  %br
+  .push
+.footer-dark
+  .container
+    We respect your privacy, we will never sell or share your information with anyone.
+    %br
+    Garry Rai Sales Representative, Century 21 Peoples Choice Realty Inc., Office: 9053668100, Direct: 4168066626
+    %br
+    = link_to "Privacy Policy", "#"
+    |
+    = link_to "Terms of Service", "#"

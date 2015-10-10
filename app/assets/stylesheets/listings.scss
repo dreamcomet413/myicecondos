@@ -1,0 +1,430 @@
+// Place all the styles related to the listings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.gallery-thumbnails {
+  text-align: left;
+  img {
+    height:40px;
+    margin-bottom: 10px;
+  }
+}
+
+.media {
+  width:100%;
+  img {
+    width:100%;
+    max-height:300px;
+  }
+}
+
+#house-scroll {
+  overflow: scroll;
+}
+
+.house-item {
+  img {
+    width: 280px;
+    height: 190px;
+  }
+}
+
+.grey-bg {
+  background: #eee;
+}
+
+.no-bottom-margin {
+  margin-bottom: 0px;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #f1f1f1 !important;
+}
+.leaflet-popup-tip {
+  border-top: 10px solid #f1f1f1 !important;
+}
+
+.custom-infobox {
+  width:400px;
+  background: #fff;
+  border-bottom:1px solid #ccc;
+  padding:15px;
+  font-size: 13px;
+  .media-left{padding-right:20px;position:relative;}
+  h4{font-size: 16px;margin-top:0;font-family: 'proxima_nova_rgbold';}
+  h4 a{color:#333;}
+  .media {margin-top:0;}
+  .media, .house-media .media-body{overflow:visible;}
+  .infobox-close { position: absolute; top:3px; right:3px;}
+}
+
+.media-body{
+  background:#fff;
+  padding:5px;
+  font-size:16px;
+  border-bottom:1px solid #d8d8d8;
+  font-family: "proxima_novalight_italic";
+}
+
+.top-margin-20 {
+  margin-top: 20px;
+}
+.admin_table {
+  td {
+    vertical-align: middle !important;
+    img {
+      width: 70%;
+    }
+  }
+}
+.datetime.form-control {
+  width:30%;
+  display:inline;
+}
+label.datetime.optional.control-label {
+  display: block;
+}
+.has-error {
+  color: #a94442;
+}
+.MapPushpinBase {
+  img {
+    width:100%;
+    height:100%;
+  }
+  div {
+    font-size:8pt !important;
+  }
+}
+.progress-overlay {
+  position:absolute;
+  z-index:100;
+  bottom:35px;
+  left:0;
+  .progress-container {
+    background: asset-url("black-transparent-bg.png");
+    width:90%;
+    margin-left:5%;
+    padding:10px 50px;
+    text-align:center;
+    color:#fff;
+    font-size:28px;
+  }
+}
+.grayscale {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.blur {
+  -webkit-filter: blur(10px); /* Chrome, Opera, etc. */
+  filter: blur(10px);
+}
+.house-media .overlay, .custom-infobox .overlay, .leaflet-popup-content .overlay {
+  position: absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  text-align:center;
+  font-size:24px;
+  padding-top:100px;
+  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+}
+
+.marker-cluster-small {
+  background-color: rgba(253, 156, 115, 0.6) !important;
+	}
+.marker-cluster-small div {
+	background-color: rgba(241, 128, 23, 0.6) !important;
+	}
+
+.marker-cluster-medium {
+	background-color: rgba(253, 156, 115, 0.6) !important;
+	}
+.marker-cluster-medium div {
+	background-color: rgba(241, 128, 23, 0.6) !important;
+	}
+
+.marker-cluster-large {
+	background-color: rgba(253, 156, 115, 0.6) !important;
+	}
+.marker-cluster-large div {
+	background-color: rgba(241, 128, 23, 0.6) !important;
+	}
+
+	/* IE 6-8 fallback colors */
+.leaflet-oldie .marker-cluster-small {
+	background-color: rgb(253, 156, 115) !important;
+	}
+.leaflet-oldie .marker-cluster-small div {
+	background-color: rgb(241, 128, 23) !important;
+	}
+
+.leaflet-oldie .marker-cluster-medium {
+	background-color: rgb(253, 156, 115) !important;
+	}
+.leaflet-oldie .marker-cluster-medium div {
+	background-color: rgb(241, 128, 23) !important;
+	}
+
+.leaflet-oldie .marker-cluster-large {
+	background-color: rgb(253, 156, 115) !important;
+	}
+.leaflet-oldie .marker-cluster-large div {
+	background-color: rgb(241, 128, 23) !important;
+}
+.leaflet-popup-content {
+  width:250px !important;
+  padding: 0 !important;
+  .media {
+    padding: 15px;
+  }
+}
+a.leaflet-popup-close-button {
+  z-index:999;
+}
+.nearby-result {
+  .nearby-type {
+    width:49%;
+    font-size:14px;
+    font-weight:700;
+    float:left;
+  }
+  .nearby-info {
+    width:49%;
+    text-align:right;
+    float:right;
+  }
+  width:100%;
+  border-bottom: 1px solid #ddd;
+  margin-bottom:5px;
+}
+.no-top-mrgn {
+  margin-top: 0 !important;
+}
+.bigger_gallery img{
+  height:450px !important;
+  width:auto !important;
+  margin-left:auto;
+  margin-right:auto;
+}
+.smaller_gallery img{
+  height:370px !important;
+  width:auto !important;
+  margin-left:auto;
+  margin-right:auto;
+}
+.property-item {
+  figure {
+    height: 260px;
+    .img-container {
+      height: 250px;
+      position:relative;
+      overflow: hidden;
+      img {
+        position:absolute;
+        bottom:0;
+        left:0;
+        min-height:100%;
+        min-width:100%;
+      }
+    }
+  }
+  &:hover {
+    cursor:pointer;
+    .property-caption {
+      border-color: #ff6f20;
+      .map {
+        border-bottom: 3px solid #ff6f20;
+      }
+    }
+  }
+}
+
+.homepage_listings {
+  .property-item {
+    figure {
+      height: 120px;
+      .img-container {
+        height: 110px;
+      }
+      font-size:14px;
+    }
+    .price, .mls {
+      float: none;
+      text-align: center;
+    }
+    .map {
+      padding-top:10px;
+      min-height:80px;
+      address { font-size:20px !important; }
+    }
+    .number {
+      font-size:14px !important;
+    }
+  }
+}
+
+.mb0 {
+  margin-bottom:0;
+}
+.navbar-nav {
+  a:hover {
+    cursor:pointer;
+  }
+}
+#search_results, #favourites {
+  .property-item {
+    figure {
+      height:185px;
+      .img-container {
+        height: 175px !important;
+      }
+    }
+    .map {
+      min-height:125px;
+      padding-top:15px;
+    }
+  }
+}
+.center-text {
+  text-align:center;
+}
+.geolocation_link.active{
+  border-bottom: 2px solid #ff6f20;
+  font-family: 'proxima_novasemibold';
+  background-color: transparent !important;
+  color: #ff6f20 !important;
+}
+
+.faq_item {
+  padding: 10px;
+  text-align: center;
+  margin-bottom:20px;
+  .number {
+    width:40px;
+    height:40px;
+    margin: 10px auto;
+    border-radius: 20px;
+    font-size:20px;
+    line-height:40px;
+    font-family: 'Arial';
+    font-weight: 700;
+    color:#fff;
+    background-color: #ccc;
+  }
+  .question {
+    padding:10px;
+    font-size:18px;
+    color: #909090;
+    border-bottom:3px solid #909090;
+    margin-bottom:10px;
+    width:70%;
+    margin-left:15%;
+  }
+  .answer {
+    color: #909090;
+  }
+  &:hover {
+    .number {
+      background-color: #ff6f20;
+    }
+    .question {
+      color: #ff6f20;
+      border-color:#ff6f20;
+    }
+  }
+}
+
+.no_prospect_matches_box {
+  padding: 25px;
+  border: 3px solid #ccc;
+  text-align:center;
+  margin:25px 0;
+  color: #999;
+  font-size:12px;
+  h2 {
+    font-size: 20px;
+    font-family: 'proxima_nova_light';
+  }
+  hr {
+    border-top: 2px solid #666;
+  }
+  i {
+    font-size: 120px;
+    margin:25px 0 50px 0;
+    color: #ccc;
+  }
+  .btn {
+    margin-top:50px;
+  }
+}
+
+.new_prospect_match_box {
+  padding: 25px;
+  border: 3px solid #ccc;
+  margin:25px 0;
+  color: #999;
+  font-size:12px;
+  h2 {
+    font-size: 20px;
+    font-family: 'proxima_nova_light';
+    text-align:center;
+  }
+  hr {
+    border-top: 2px solid #666;
+  }
+  i {
+    font-size: 120px;
+    margin:25px 0 50px 0;
+    color: #ccc;
+  }
+  .btn {
+    margin-top:10px;
+  }
+  .group_title {
+    color: #ff6f20;
+    font-size:16px;
+    display:block;
+    margin:20px 0 10px 0;
+  }
+}
+
+.prospect_match_box {
+  border: 3px solid #ff6f20;
+  margin:25px 0;
+  color: #999;
+  height:90%;
+  h4 {
+    font-size: 20px;
+    font-family: 'proxima_nova_light';
+    text-align:center;
+    letter-spacing: 5px;
+    color: #333;
+  }
+  h5 {
+    text-align:center;
+    letter-spacing: 5px;
+    margin-bottom:30px;
+  }
+  ul {
+    margin:0;
+    padding-left:25px;
+  }
+  i {
+    color: #ccc;
+    margin:10px;
+  }
+  strong {
+    color: #333;
+  }
+  .prospect_match_edit_link {
+    display: block;
+    text-align:center;
+  }
+  .btn {
+    padding:5px 10px;
+    font-size:20px;
+    line-height: 20px;
+  }
+}

@@ -1,0 +1,61 @@
+<header>
+  <div class="header-top">
+    <div class="container">
+      <div class="links">
+        <ul>
+          <% if user_signed_in? %>
+            <li><%= link_to "My Account", my_account_path %></li>
+            <li><%= link_to('Log Out', destroy_user_session_path, :method => :delete) %></li>
+          <% else %>
+            <li><a href="#modal-login" data-toggle="modal">Login</a></li>
+            <li><a href="#modal-signup" data-toggle="modal">Register</a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="navbar-custom">
+    <div class="container">
+      <nav class="navbar" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarTop">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <a class="navbar-brand" href="/"><%= image_tag "logo.png" %></a>
+        <div class="collapse navbar-collapse" id="navbarTop">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="about.html">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Sellers</a></li>
+            <li><a href="#">Buyers</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<% if logged_in? && (params[:controller] == 'users' || (params[:controller] == 'home' && params[:action] == 'terms') || params[:controller] == "prospect_matches" || params[:controller] == "favourites" || (params[:controller] == 'devise/registrations' && params[:action] == 'edit')) %>
+  <nav class="navbar navbar-default">
+  	<div class="container">
+      	<ul class="nav navbar-nav">
+        	<li class="<% if params[:action] == 'my_profile' %>active<% end %>"><%= link_to "My Profile", my_account_path, target: "_self" %></li>
+        	<li class="<% if params[:controller] == 'favourites' && params[:action] == 'index' %>active<% end %>"><%= link_to "My Favourites", favourites_path, target: "_self" %></li>
+          <li class="<% if params[:controller] == 'prospect_matches'%>active<% end %>"><%= link_to "Home Alerts", prospect_matches_path, target: "_self" %></li>
+          <li class="<% if params[:controller] == 'devise/registrations' && params[:action] == 'edit' %>active<% end %>"><%= link_to "Change Password", edit_user_registration_path %></li>
+          <li class="<% if params[:controller] == 'users' && params[:action] == 'subscriptions' %>active<% end %>"><%= link_to "Subscriptions", subscriptions_path %></li>
+          <li class="<% if params[:controller] == 'home' && params[:action] == 'terms' %>active<% end %>"><%= link_to "Terms of Use", terms_path %></li>
+          <li><%= link_to('Log Out', destroy_user_session_path, :method => :delete) %></li>
+      	</ul>
+  	</div>
+  </nav>
+<% end %>

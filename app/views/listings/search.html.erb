@@ -1,0 +1,95 @@
+<nav class="navbar navbar-default mb0">
+  	<div class="container">
+    	<div class="row">
+        	<div class="col-sm-6">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Featured</a></li>
+                    <li><a href="#">Newest</a></li>
+                    <li><a href="#">Cheapest</a></li>
+                    <li><a href="#">More</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-6">
+            	<div class="navbar-right">
+                	<p class="navbar-text">2,818,341 results. 181,296 unmapped.</p>
+                    <a href="#" class="navbar-btn btn-link btn navbar-left">Map View</a>
+                    <ul class="pagination navbar-pagination hidden-sm">
+                        <li><a href="#">1</a></li>
+                        <li>
+                          <a href="#" aria-label="Prev">
+                            <span aria-hidden="true">&lsaquo;</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&rsaquo;</span>
+                          </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+  	</div>
+</nav>
+
+<div class="bg-grey">
+  <div class="container">
+      <div class="row" ng-repeat="group in listings">
+      	<div class="col-md-3 col-sm-6" ng-repeat="listing in group">
+              <div class="house-item">
+                  <figure><img ng-src="{{listing.images[0]}}"></figure>
+                  <div class="house-caption">
+                      <div class="box-header">
+                          <h4>Hamilton House</h4>
+                          <div class="location">89 Mount Albion Rd.</div>
+                      </div>
+                      <div class="box-body">
+                          <table class="table table-house">
+                          <tbody>
+                              <tr>
+                                  <th>Price</th>
+                                  <td>$1,349,900.00</td>
+                              </tr>
+                              <tr>
+                                  <th>Built by</th>
+                                  <td><span class="style1">Aspen Ridge Homes Ltd.</span></td>
+                              </tr>
+                              <tr>
+                                  <th>Located at</th>
+                                  <td>Hamilton <br>89 Mount Albion Rd.</td>
+                              </tr>
+                              <tr>
+                                  <th>MLS®</th>
+                                  <td>X2789250</td>
+                              </tr>
+                              <tr>
+                                  <th>Prop. Type</th>
+                                  <td>Investment</td>
+                              </tr>
+                          </tbody>
+                          </table>
+                      </div>
+                      <div class="box-footer">
+                          <a href="#" class="btn btn-danger btn-block btn-sm">MORE INFORMATION</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <nav class="text-right">
+        <ul class="pagination">
+          <li><a href="#">1</a></li>
+          <li>
+            <a href="#" aria-label="Prev">
+              <span aria-hidden="true">&lsaquo;</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="Next">
+              <span aria-hidden="true">&rsaquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+  </div>
+</div>

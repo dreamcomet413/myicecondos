@@ -1,0 +1,295 @@
+<footer>
+	<div class="footer-top">
+		<div class="social">
+			<div class="container">
+				<div class="title">
+					GET CONNECTED WITH NICHOLAS
+				</div>
+				<ul>
+					<li><a href="<%= APP_CONFIG[:facebook_url] %>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="<%= APP_CONFIG[:twitter_url] %>" target="_blank"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="#">Blog</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="links">
+			<div class="container">
+				<ul>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Services</a></li>
+					<li><a href="#">Sellers</a></li>
+					<li><a href="#">Buyers</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Resources</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="logo">
+			<div class="container">
+				<a href="/"><%= image_tag "logo-footer.png" %></a>
+			</div>
+		</div>
+		<div class="copyright">
+			<div class="container">
+				<p>&copy; 2015 Nicholas Alli Real State Services.</p>
+				<p>Nicholas Alli Real Estate Services, Inc. is a Licensed Broker in Toronto, Ontario</p>
+			</div>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<div class="container">
+			<div class="powered-by">
+				<span>Powered By</span>&nbsp;<a href="http://variationmedia.com/" target="_blank"><%= image_tag "logo-vm.png" %></a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<div class="modal fade" id="modal-advanced-search" tabindex="-1" role="dialog">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header icon-user">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">ADVANCED SEARCH</h4>
+      		</div>
+      		<div class="modal-body">
+            <%= form_tag listings_path, method: :get, id: "advanced_search_detail_fields" do %>
+              <div class="box-grey">
+                Enter Address, Neighborhood, City, Zip or Keyword
+                <div class="form-group no-margin">
+                  <%= text_field_tag :query, params[:query], class: "form-control advanced-search-autocomplete-field", placeholder: "Search Properties" %>
+                  <small>Examples: "Phoenix, AZ" "Lincoln Park, Chicage, IL" "90210"</samll>
+                </div>
+                <input name="autocomplete_form" type="hidden" value="true">
+                <input name="route" type="hidden" value="">
+                <input name="locality" type="hidden" value="">
+                <input name="administrative_area_level_1" type="hidden" value="">
+              </div>
+              <div class="box-grey">
+                <div class="row">
+                	<div class="col-sm-3">
+                  	<div class="form-group">
+                      <%= select_tag 'custom_search[search_beds]', options_for_select(beds_options), class: "form-control", id: "search_beds_select" %>
+                    </div>
+                  </div>
+                	<div class="col-sm-3">
+                  	<div class="form-group">
+                      <%= select_tag 'custom_search[search_bath]', options_for_select(baths_options), class: "form-control", id: "search_baths_select" %>
+                    </div>
+                  </div>
+                	<div class="col-sm-6">
+                  	<%= select_tag 'custom_search[type_own1_out]', options_for_select([["Detached Homes", "Detached"], ["Semi-detached Homes", "Semi-Detached"], ["Multiplexes", "Multiplex"], ["Townhouses", "Att/Row/Twnhouse"], ["Cottages", "Cottage"], ["Condos", "Condo Apt"], ["Farms", "Farm"]]), class: "form-control", include_blank: "All Property Types" %>
+                  </div>
+                </div>
+                <div class="row">
+                	<div class="col-sm-6">
+                  	<div class="form-group no-margin">
+                      <%= select_tag "custom_search[min_price]", options_for_select(price_options), include_blank: "No Min Price", class: "form-control" %>
+                    </div>
+                  </div>
+                	<div class="col-sm-6">
+                  	<div class="form-group no-margin">
+                      <%= select_tag "custom_search[max_price]", options_for_select(price_options), include_blank: "No Max Price", class: "form-control" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box-grey">
+                <div class="row">
+                	<div class="col-sm-4">
+                    <div class="radio no-margin">
+                      <label style="font-size:16px;">
+                        <input type="radio" name="custom_search[listing_type]" id="optionsRadios1" value="Residential" checked>
+                        All Homes
+                      </label>
+                    </div>
+                  </div>
+                	<div class="col-sm-4">
+                    <div class="radio no-margin">
+                      <label style="font-size:16px;">
+                        <input type="radio" name="custom_search[listing_type]" id="optionsRadios2" value="Condo">
+                        Condominiums
+                      </label>
+                    </div>
+                  </div>
+                	<div class="col-sm-4">
+                    <div class="radio no-margin">
+                      <label style="font-size:16px;">
+                        <input type="radio" name="custom_search[listing_type]" id="optionsRadios3" value="PreConstruction">
+                        Pre Construction
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box-grey">
+                <div class="row">
+                	<div class="col-sm-4">
+                    <div class="checkbox no-margin">
+                      <label style="font-size:16px;">
+                        <input type="checkbox" name="custom_search[a_c]" value="true">
+                        A/C
+                      </label>
+                    </div>
+                  </div>
+                	<div class="col-sm-4">
+                    <div class="checkbox no-margin">
+                      <label style="font-size:16px;">
+                        <input type="checkbox" name="custom_search[pool]" value="true">
+                        Pool
+                      </label>
+                    </div>
+                  </div>
+                	<div class="col-sm-4">
+                    <div class="checkbox no-margin">
+                      <label style="font-size:16px;">
+                        <input type="checkbox" name="custom_search[fpl_num]" value="true">
+                        Fireplace
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                	<div class="col-sm-4">
+                    <div class="checkbox no-margin">
+                      <label style="font-size:16px;">
+                        <input type="checkbox" name="custom_search[gar_type]" value="true">
+                        Garage
+                      </label>
+                    </div>
+                  </div>
+                	<div class="col-sm-4">
+                    <div class="checkbox no-margin">
+                      <label style="font-size:16px;">
+                        <input type="checkbox" name="custom_search[waterfront]" value="true">
+                        Waterfront
+                      </label>
+                    </div>
+                  </div>
+                	<div class="col-sm-4">
+                    <div class="checkbox no-margin">
+                      <label style="font-size:16px;">
+                        <input type="checkbox" name="custom_search[acres]" value="true">
+                        Acreage
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-search pull-right">SEARCH</button>
+              <div class="clearfix"></div>
+            <% end %>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<% unless user_signed_in? %>
+  <div class="modal fade" id="modal-login" tabindex="-1" role="dialog">
+    	<div class="modal-dialog">
+      	<div class="modal-content">
+        		<div class="modal-header icon-user">
+          		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          		<h4 class="modal-title">SIGN IN</h4>
+        		</div>
+        		<div class="modal-body">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="box-grey">
+                  <div class="form-group">
+                    <%= f.email_field :email, placeholder: "Email Address", class: "form-control" %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
+                  </div>
+
+                  <% if devise_mapping.rememberable? -%>
+                    <div class="form-group pull-left">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me %>
+                    </div>
+                  <% end -%>
+                  <div class="pull-right">
+                    <%- if devise_mapping.omniauthable? %>
+                      <%- resource_class.omniauth_providers.each do |provider| %>
+                        <%= link_to "Sign in with #{provider.to_s == 'google_oauth2' ? 'Google' : provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
+                      <% end -%>
+                    <% end -%>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="row">
+                	<div class="col-sm-3">
+                    <%= f.submit "SIGN IN", class: "btn btn-primary btn-block" %>
+                  </div>
+                  <div class="col-sm-9 text-right-center">
+                  	<a href="#" class="btn btn-link" data-toggle="signup">NEED AN ACCOUNT? <span class="fa fa-arrow-right"></span></a>
+                  </div>
+                </div>
+              <% end %>
+        		</div>
+      	</div>
+    	</div>
+  </div>
+
+  <div class="modal fade" id="modal-signup" tabindex="-1" role="dialog">
+    	<div class="modal-dialog">
+      	<div class="modal-content">
+        		<div class="modal-header icon-user">
+          		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          		<h4 class="modal-title">SIGN UP</h4>
+        		</div>
+        		<div class="modal-body">
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                	<div class="box-grey">
+                    <div class="form-group">
+                      <%= f.email_field :email, placeholder: "Email Address", class: "form-control" %>
+                    </div>
+                    <div class="row">
+                    	<div class="col-sm-6">
+                      	<div class="form-group">
+                          <%= f.text_field :first_name, autofocus: true, placeholder: "First Name", class: "form-control" %>
+                        </div>
+                      </div>
+                    	<div class="col-sm-6">
+                      	<div class="form-group">
+                          <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-sm-6">
+                      	<div class="form-group">
+                          <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
+                        </div>
+                      </div>
+                    	<div class="col-sm-6">
+                      	<div class="form-group">
+                        	<div class="fz10">A password must be eight characters including one uppercase letter, one special character and alphanumeric characters. </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-sm-6">
+                    		<%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: "form-control" %>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="fz11">By registering you agree to Terms of Service and Privacy Policy</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-9">
+                    	<a href="#" class="btn btn-link" data-toggle="login"><span class="fa fa-arrow-left"></span> BACK TO SIGN IN?</a>
+                    </div>
+                  	<div class="col-sm-3">
+                      <%= f.submit "SING UP", class: "btn btn-primary btn-block" %>
+                    </div>
+                  </div>
+                <% end %>
+        		</div>
+      	</div>
+    	</div>
+  </div>
+<% end %>

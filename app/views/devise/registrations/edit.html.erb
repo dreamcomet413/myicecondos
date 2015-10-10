@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="static_content_title">CHANGE PASSWORD</h1>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="form-group">
+          <%= f.email_field :email, placeholder: "Email Address", class: "form-control", disabled: true %>
+        </div>
+
+        <div class="form-group">
+          <%= f.password_field :current_password, autocomplete: "off", placeholder: "Current Password", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: "form-control" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Change", class: "btn btn-primary btn-lg" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+  <div class="clearfix"></div><br/>
+</div>

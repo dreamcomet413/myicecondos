@@ -1,0 +1,53 @@
+<div class="modal fade" id="email-friend-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header icon-user">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">EMAIL LISTING TO A FRIEND</h4>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-center"><%= @listing.title || "Address not available" %></h2>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="subscribe">
+              <div class="subscribe-inner">
+                <center id="email_friend_spinner" class="hide"><i class="fa fa-spinner fa-spin fa-3x"></i></center>
+                <div class="alert alert-success hide mb0" id="email_friend_success">
+                  Your message has been sent successfully!
+                </div>
+                <div class="alert alert-danger hide mb0" id="email_friend_error">
+                  Something went wrong. Please reload the page and try again.
+                </div>
+                <form name="email_friend_form" novalidate ng-submit="email_friend_form.$valid && submit_email_friend()" id="email_friend_form">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group" ng-class="{ 'has-error': request_submitted && email_friend_form.email.$invalid }">
+                        <input name="email" ng-model="email_friend.email" type="email" class="form-control" placeholder="Your Email Address" required ng-init="email_friend.email='<%= current_user.try(:email) %>'">
+                        <span ng-show="request_submitted && email_friend_form.email.$invalid">invalid email address</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group" ng-class="{ 'has-error': request_submitted && email_friend_form.friend.$invalid }">
+                        <input name="friend" ng-model="email_friend.friend" type="email" class="form-control" placeholder="Friend's Email Address" required>
+                        <span ng-show="request_submitted && email_friend_form.friend.$invalid">invalid friend's email address</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <textarea name="message" ng-model="email_friend.message" rows="4" class="form-control" placeholder="Message to a friend..."></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="submit" class="btn btn-primary btn-block pull-right" ng-click="request_submitted = true;" value="SEND"/>
+                  <div class="clearfix"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

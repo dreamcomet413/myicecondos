@@ -1,0 +1,15 @@
+development:
+  #RETS_SERVER_USERNAME:     'D14rta'
+  #RETS_SERVER_PASSWORD:     'Vm$5543'
+  #RESTS_SERVER_URL:         http://rets.torontomls.net:6103/rets-treb3pv/server/login
+  #RESTS_SERVER_VERSION:     'RETS/1.7'
+  RETS_SERVER_USERNAME:     'Joe'
+  RETS_SERVER_PASSWORD:     'Schmoe'
+  RESTS_SERVER_URL:         'http://www.dis.com:6103/rets/login'
+  RESTS_SERVER_VERSION:     'RETS/1.5'
+
+staging:
+
+production:
+  STRIPE_SECRET_KEY:        sk_test_GqJlnlh8YuDqYfqNL0Ae7dn6
+  STRIPE_PUBLISHABLE_KEY:   pk_test_QlZJf8Q68FnoUADajBPxGDHU

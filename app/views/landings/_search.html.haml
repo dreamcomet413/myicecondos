@@ -1,0 +1,32 @@
+.wrapper{style:"background:url(#{@landing.bg_image.url}) no-repeat center;color:#fff;background-size:cover;"}
+  .container
+    .header
+      = link_to "/", class: "logo" do
+        = image_tag "logo-lg.png"
+    .landing-search
+      %h1
+        = @landing.main_heading
+      .landing-style1
+        = @landing.sub_heading
+      .row
+        .col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+          = form_tag listings_path, method: :get, class: "autocomplete_form", id: "landing_search_form" do
+            .input-group
+              %span{class:"fa fa-map-marker"}
+              %input{id: "gmaps-search-field", type:"text", class:"form-control auto-field", placeholder:"Start typing location..."}
+              %input{name: "autocomplete_form", type:"hidden", value:"true"}
+              %input{name: "route", type:"hidden", value:""}
+              %input{name: "locality", type:"hidden", value:""}
+              %input{name: "administrative_area_level_1", type:"hidden", value:""}
+              %span{class:"input-group-btn"}
+                %a{href: "#", class:"btn btn-danger landing-submit", type:"submit"} SUBMIT
+  .push
+.footer-dark
+  .container
+    We respect your privacy, we will never sell or share your information with anyone.
+    %br
+    Garry Rai Sales Representative, Century 21 Peoples Choice Realty Inc., Office: 9053668100, Direct: 4168066626
+    %br
+    = link_to "Privacy Policy", "#"
+    |
+    = link_to "Terms of Service", "#"

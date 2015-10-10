@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h1 class="static_content_title">PERSONAL INFORMATION <small>(<%= current_user.email %>)</small></h1>
+      <%= form_for current_user do |f| %>
+      	<div class="row">
+        	<div class="col-sm-6">
+            	<div class="form-group">
+                <%= f.text_field :first_name, autofocus: true, placeholder: "First Name", class: "form-control" %>
+              </div>
+            </div>
+        	<div class="col-sm-6">
+            	<div class="form-group">
+                <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.text_field :address, placeholder: "Address", class: "form-control" %>
+        </div>
+
+      	<div class="row">
+        	<div class="col-sm-6">
+            	<div class="form-group">
+                <%= f.text_field :city, placeholder: "City", class: "form-control" %>
+              </div>
+            </div>
+        	<div class="col-sm-6">
+            	<div class="form-group">
+                <%= f.text_field :province, placeholder: "Province", class: "form-control" %>
+                </div>
+            </div>
+        </div>
+
+      	<div class="row">
+        	<div class="col-sm-6">
+            	<div class="form-group">
+                <%= f.text_field :country, placeholder: "Country", class: "form-control" %>
+              </div>
+            </div>
+        	<div class="col-sm-6">
+            	<div class="form-group">
+                <%= f.text_field :postal_code, placeholder: "Postal Code", class: "form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.text_field :phone_number, placeholder: "Phone Number", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          Avatar:
+          <%= f.file_field :avatar, class: "form-control" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Save", class: "btn btn-primary btn-lg" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4 center-text">
+      <%= image_tag current_user.avatar.url, class: "img-circle" %>
+    </div>
+  </div>
+  <div class="clearfix"></div><br/>
+</div>

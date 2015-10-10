@@ -1,0 +1,36 @@
+<div class="container top-margin-20">
+  <h1 class="static_content_title">MANAGE SUBSCRIPTIONS</h1>
+  <%= form_for current_user, url: update_subscriptions_path do |f| %>
+    <div class="checkbox">
+        <label>
+          <%= f.check_box :unsubscribe_all %> Unsubscribe me from all notifications
+        </label>
+    </div><br/>
+    <div class="text-bold">Email Settings</div>
+    <hr class="mt5">
+    <div>Newsletter</div>
+    <div class="radio">
+      <label>
+        <%= f.radio_button :newsletter_subscribed, true %>
+        Subscribe
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= f.radio_button :newsletter_subscribed, false %>
+        Unsubscribe
+      </label>
+    </div>
+    <br>
+    <div class="row">
+    	<div class="col-md-5 col-sm-7">
+            <div class="row">
+                <div class="col-md-3 col-sm-4">
+                  <%= f.submit "UPDATE", class: "btn btn-primary btn-block btn-lg" %>
+                </div>
+            </div>
+    	</div>
+    </div>
+  <% end %>
+  <div class="clearfix"></div><br/>
+</div>

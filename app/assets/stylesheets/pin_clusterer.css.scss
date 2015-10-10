@@ -1,0 +1,13 @@
+.pin_clusterer {
+  cursor:pointer !important;
+  width:28px;
+  height:40px;
+  background: image-url('icon-location-group.png') no-repeat 0 0;
+}
+.pin_clusterer.pin { cursor:auto;
+  width:28px;
+  height:40px;
+  background: image-url('icon-location.png') no-repeat 0 -80px;
+}
+.pin_clusterer div { color:#f0f0f0 !important; font-size:12px !important; font-weight:normal !important; text-shadow:0 0 3px #999; margin-top:4px;}
+.pin_clusterer img { display:none; }

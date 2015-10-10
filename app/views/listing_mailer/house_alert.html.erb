@@ -1,0 +1,17 @@
+<h2>Home Alerts</h2>
+<h4>Here's the list of newly added properties based on your settings</h4>
+<hr/><br/>
+<% @listings.each do |l| %>
+  <div class="property-item">
+    <center><img src="http://nicholasalli.s3.amazonaws.com/listing_photos/listing_<%= l.id %>_0.jpg"></center>
+    <center><%= link_to l.title, l %></center><br/><br/>
+    <strong>MLS&reg;</strong><span class="pull-right"><%= l.ml_num %></span>
+    <div class="clearfix"></div>
+    <strong>Price</strong><span class="pull-right"><%= number_to_currency(l.lp_dol) %></span>
+    <div class="clearfix"></div>
+    <strong>Bedrooms</strong><span class="pull-right"><%= l.br %></span>
+    <div class="clearfix"></div>
+    <strong>Bathrooms</strong><span class="pull-right"><%= l.bath_tot %></span>
+    <div class="clearfix"></div>
+  </div>
+<% end %>

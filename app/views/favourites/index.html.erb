@@ -1,0 +1,41 @@
+<div class="container" ng-controller="ListingsCtrl" ng-init="load_favourites()" id="favourites">
+  <h1 class="static_content_title">FAVOURITES</h1>
+  <h3 ng-show="listings.length == 0">You have not favourited any listings yet</h3>
+  <div class="row" ng-repeat="group in listings">
+    <div class="col-md-3 col-sm-6" ng-repeat="o_listing in group">
+      <div class="property-box">
+        <div class="imagebox">
+          <img ng-src="http://nicholasalli.s3.amazonaws.com/listing_photos/listing_{{o_listing.id}}_0.jpg" onerror="this.onerror=null;this.src='/missing-image.png';">
+        </div>
+        <div class="place">
+          {{(o_listing.municipality | uppercase) || "NOT AVAILABLE"}}
+        </div>
+        <div class="address">
+          {{o_listing.addr || "Address not available"}}
+        </div>
+        <div class="property-carousel">
+          <div class="owl-carousel">
+            <div class="item">
+              <%= image_tag "icon-bed.png" %>
+              <span class="title">Beds</span>
+              <span class="numbers">{{o_listing.br || '--'}}</span>
+            </div>
+            <div class="item">
+              <%= image_tag "icon-baths.png" %>
+              <span class="title">Baths</span>
+              <span class="numbers">{{o_listing.bath_tot || '--'}}</span>
+            </div>
+            <div class="item">
+              <%= image_tag "icon-square-feets.png" %>
+              <span class="title">Sq. Ft.</span>
+              <span class="numbers">{{o_listing.sqft || '--'}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="btn-container">
+          <a ng-click="go_to_listing(o_listing.id)" class="btn">View Property</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

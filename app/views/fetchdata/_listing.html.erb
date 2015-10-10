@@ -1,0 +1,30 @@
+<% unless smart_listing.empty? %>
+  <table  class="table table-striped"> 
+    <tbody>
+      <% smart_listing.collection.each do |residential| %>
+        <% residential.attributes.each do |attr_name, attr_value| %>
+            <th class="col-md-3">
+                <%= attr_name %>
+             </th>
+          <% end %>
+      <%end %>
+
+      <% smart_listing.collection.each do |residential| %>
+        <tr>
+          <%#= residential.inspect %>
+          <% residential.attributes.each do |attr_name, attr_value| %>
+            <td class="col-md-3">
+                <%= attr_value %>
+             </td>
+          <% end %>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= smart_listing.paginate  %>
+  <%=  smart_listing.pagination_per_page_links %>
+
+<% else %>
+  <p class="warning">No records!</p>
+<% end %>

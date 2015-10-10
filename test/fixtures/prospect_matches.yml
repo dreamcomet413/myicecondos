@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  city: MyString
+  property_types: MyString
+  min_price: 1
+  max_price: 1
+  beds: 1
+  baths: 1
+
+two:
+  title: MyString
+  city: MyString
+  property_types: MyString
+  min_price: 1
+  max_price: 1
+  beds: 1
+  baths: 1

@@ -1,0 +1,31 @@
+<section class="bg-04">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="title">WE'RE HERE TO HELP</h2>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="lead-lg">FREQUENTLY ASKED QUESTIONS</div>
+				</div>
+			</div>
+			<br>
+			<div><%= image_tag "img-11.png" %></div>
+			<br>
+			<% @faqs.each_with_index do |q, i| %>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="faq_item">
+							<div class="number"><%= i+1 %></div>
+							<div class="question">
+								<%= q[0].try(:upcase) %>
+							</div>
+							<div class="answer">
+								<%= q[1].try(:html_safe) %>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+			<br>
+		</div>
+	</div>
+</section>

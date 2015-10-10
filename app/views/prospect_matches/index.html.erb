@@ -1,0 +1,92 @@
+<div class="container" id="prospect_matches">
+  <h1 class="static_content_title">HOME ALERTS</h1>
+  <% if @prospect_matches.empty? %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="no_prospect_matches_box">
+          <h2>PROSPECT MATCHES</h2>
+          <hr />
+          <i class="fa fa-bell-o fa-5x"></i><br/>
+          Sorry, but you have not created a Prospect Match<br/>
+          <%= link_to "CREATE NEW PROSPECT MATCH", new_prospect_match_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <% @prospect_matches.in_groups_of(4, false).each do |group| %>
+      <div class="row">
+        <% group.each do |m| %>
+          <div class="col-md-3 even-height">
+            <div class="prospect_match_box">
+              <i class="fa fa-bell-o fa-2x"></i>
+              <%= link_to "&times;".html_safe, m, method: :delete, class: "btn btn-primary pull-right", data: {confirm: "Are you sure?"} %>
+              <div class="clearfix"></div>
+              <div style="padding:25px;">
+                <h4><%= m.city.try(:upcase) %></h4>
+                <h5><%= m.title.try(:upcase) %></h5>
+                <% if m.property_types.present? %>
+                  <ul>
+                    <% m.property_types.split(",").each do |pt| %>
+                      <li><%= pt %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+                <br/>
+                <% if m.min_price.present? %><strong>Min. Price:</strong>&nbsp;<span class="pull-right"><%= number_to_currency(m.min_price) %></span><div class="clearfix"></div><% end %>
+                <% if m.max_price.present? %><strong>Max. Price:</strong>&nbsp;<span class="pull-right"><%= number_to_currency(m.max_price) %></span><div class="clearfix"></div><% end %>
+                <% if m.beds.present? %><strong>Bedrooms:</strong>&nbsp;<span class="pull-right"><%= m.beds %></span><div class="clearfix"></div><% end %>
+                <% if m.baths.present? %><strong>Bathrooms:</strong>&nbsp;<span class="pull-right"><%= m.baths %></span><div class="clearfix"></div><% end %>
+                <br/>
+                <%= link_to "EDIT", edit_prospect_match_path(m), class: "prospect_match_edit_link" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <%= link_to "CREATE NEW PROSPECT MATCH", new_prospect_match_path, class: "btn btn-primary pull-right" %>
+    <br/>
+  <% end %>
+  <br/><br/>
+  <% if false %>
+  <h3 ng-show="listings.length == 0">You have not favourited any listings yet</h3>
+  <div class="row" ng-repeat="group in listings">
+    <div class="col-md-3 col-sm-6" ng-repeat="o_listing in group">
+      <div class="property-item" ng-click="go_to_listing(o_listing.id)">
+        <figure><div class="img-container"><img ng-src="http://nicholasalli.s3.amazonaws.com/listing_photos/listing_{{o_listing.id}}_0.jpg" onerror="this.onerror=null;this.src='/missing-image.png';"></div></figure>
+        <div class="property-attr">
+          <div class="row">
+            <div class="col-xs-6">
+              <div class="mls">MLS&reg; #{{o_listing.ml_num || "--"}}</div>
+            </div>
+            <div class="col-xs-6">
+              <div class="price">{{o_listing.lp_dol ? (o_listing.lp_dol | currency).slice(0, -3) : "--"}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-caption">
+          <h3>{{(o_listing.municipality | uppercase) || "NOT AVAILABLE"}}</h3>
+          <div class="map map-01">
+            <address>{{o_listing.addr || "Address not available"}}</address>
+            <div>( {{o_listing.zip || "--"}} )</div>
+          </div>
+          <div class="row text-center">
+            <div class="col-xs-4">
+              <div class="number">{{o_listing.br || '--'}}</div>
+              <div class="text">BEDS</div>
+            </div>
+            <div class="col-xs-4">
+              <div class="number">{{o_listing.bath_tot || '--'}}</div>
+              <div class="text">BATHS</div>
+            </div>
+            <div class="col-xs-4">
+              <div class="number">{{o_listing.sqft || '--'}}</div>
+              <div class="text">SQ. FT.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

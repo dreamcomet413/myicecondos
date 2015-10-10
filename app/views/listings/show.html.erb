@@ -1,0 +1,528 @@
+<div class="page-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1">
+        <div class="imagebox">
+          <%= image_tag "icon-home.png" %>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="info">
+          <span>Quick Search</span>
+          <p>Let Nicholas to find you a new home</p>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="searchbox">
+          <%= form_tag listings_path, method: :get, id: "home_detail_fields"  do %>
+            <div class="input-group">
+              <%= text_field_tag :query, params[:query], class: "form-control home-autocomplete-field", placeholder: "Search by Address, City, Postal Code, Neighborhood or MLS" %>
+              <input name="autocomplete_form" type="hidden" value="true">
+              <input name="route" type="hidden" value="">
+              <input name="locality" type="hidden" value="">
+              <input name="administrative_area_level_1" type="hidden" value="">
+              <span class="input-group-btn">
+                <button type="submit" class="btn">Search</button>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-container" ng-controller="ListingsCtrl">
+  <div class="property-details-container" ng-init="loadListing(<%= params[:id] %>)">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="page-title">
+            <div class="row">
+              <div class="col-sm-8">
+              </div>
+              <div class="col-sm-4">
+                <div class="right-controls">
+                  <% if current_user && current_user.favourited?(@listing.id) %>
+                    <a href="" class="btn btn-alter" disabled="disabled">SAVED</a>
+                  <% else %>
+                    <a href="" ng-click="add_favourite(<%= params[:id] %>)" class="btn btn-alter" id="favourite">Save</a>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="property-info">
+            <div class="address">{{listing.address || "Address not available"}}</div>
+            <div class="zipcode">({{listing.postal_code || "--"}})</div>
+            <div class="price-wrapper">
+              <ul>
+                <li>
+                  <div class="item">
+                    <div class="price">
+                      {{listing.lp_dol ? (listing.lp_dol | currency).slice(0, -3) : "--"}}
+                    </div>
+                    <div class="caption">
+                      Estimated
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item">
+                    <div class="price">
+                      {{(mortgage.full_payment | currency).slice(0, -3)}}
+                    </div>
+                    <div class="caption">
+                      Monthly
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item">
+                    <div class="price">
+                      {{(cash_back | currency).slice(0, -3)}}
+                    </div>
+                    <div class="caption">
+                      Cashback
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="property-details">
+              <p>{{listing.description}}</p>
+              <p class="added">Added to our website {{listing.created_at|timeago}}</p>
+              <p class="viewed">Viewed <ng-pluralize count="listing.view_count" when="{'1': '1 time', 'other': '{} times'}"></ng-pluralize></p>
+            </div>
+            <div class="code">
+              MLS. {{listing.mls}}
+            </div>
+            <div class="button-container">
+              <a class="btn request-info-link" data-modal-title="Get Assist" data-modal-btn="Get Assist" data-modal-source="Request Info" data-modal-details="Requested Info" data-toggle="modal" data-target="#request-info-modal">Get Assist</a>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div class="property-slider">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div ng-class="{active : $first, item : true}" ng-repeat="img in listing.images">
+                  <img ng-src="{{img}}" alt="" onerror="this.onerror=null;this.src='/missing-image.png';">
+                </div>
+              </div>
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active : $first, item : true}" ng-repeat="img in listing.images"></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-6">
+          <div class="property-map">
+            <%= image_tag "https://api.tiles.mapbox.com/v4/#{APP_CONFIG[:mapbox_map]}/pin-l+ff6f20(#{@listing.longitude},#{@listing.latitude})/#{@listing.longitude},#{@listing.latitude},17/600x600.png?access_token=#{APP_CONFIG[:mapbox_token]}", class: "img-responsive w100", onerror: "this.onerror=null;this.src='/missing-location.png';" %>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="property-map-image">
+            <%= image_tag "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=#{@listing.latitude},#{@listing.longitude}&heading=0&pitch=10", class: "img-responsive w100" %>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="details-tab">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#quickfacts" aria-controls="quickfacts" role="tab" data-toggle="tab">Quick Facts</a>
+              </li>
+              <li role="presentation">
+                <a href="#roomdetails" aria-controls="roomdetails" role="tab" data-toggle="tab">Room Details</a>
+              </li>
+              <li role="presentation">
+                <a href="#utilities" aria-controls="utilities" role="tab" data-toggle="tab">Utilities</a>
+              </li>
+              <% if @listing.fields_to_show.present? %>
+                <li role="presentation">
+                  <a href="#additional" aria-controls="additional" role="tab" data-toggle="tab">Additional Info</a>
+                </li>
+              <% end %>
+              <li role="presentation">
+                <a href="#nearestplaces" aria-controls="nearestplaces" role="tab" data-toggle="tab">Nearest Places</a>
+              </li>
+              <li role="presentation">
+                <a href="#mortgage" aria-controls="mortgage" role="tab" data-toggle="tab">Mortgage</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="quickfacts">
+                <div class="row">
+                  <div class="col-sm-5">
+                    <div class="property-details">
+                      <p>{{listing.description}}</p>
+                      <p class="added">Added to our website {{listing.created_at|timeago}}</p>
+                      <p class="viewed">Viewed <ng-pluralize count="listing.view_count" when="{'1': '1 time', 'other': '{} times'}"></ng-pluralize></p>
+                      <p class="code">MLS. {{listing.mls}}</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-7">
+                    <div class="property-features">
+                      <ul>
+                        <li>
+                          <div class="item">
+                            <div class="imagebox">
+                              <%= image_tag "icon-bed.png" %>
+                            </div>
+                            <span class="title">Beds</span>
+                            <span class="numbers">{{listing.bedrooms || '--'}}</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item">
+                            <div class="imagebox">
+                              <%= image_tag "icon-baths.png" %>
+                            </div>
+                            <span class="title">Baths</span>
+                            <span class="numbers">{{listing.bathrooms || '--'}}</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item">
+                            <div class="imagebox">
+                              <%= image_tag "icon-square-feets.png" %>
+                            </div>
+                            <span class="title">Sq. Ft.</span>
+                            <span class="numbers">{{listing.sqft || '--'}}</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item">
+                            <div class="imagebox">
+                              <%= image_tag "icon-fireplace.png" %>
+                            </div>
+                            <span class="title">Fireplace</span>
+                            <span class="numbers">{{listing.fpl_num == "Y" ? "Yes" : "No"}}</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item">
+                            <div class="imagebox">
+                              <%= image_tag "icon-couch.png" %>
+                            </div>
+                            <span class="title">Furnished</span>
+                            <span class="numbers">{{listing.furnished == "Y" ? "Yes" : "No"}}</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="roomdetails">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="box-grey">
+                      <table class="table table-nob table-sm">
+                        <tbody>
+                          <tr ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12]" ng-show="listing['rm'+i+'_out']">
+                            <th>{{listing['rm'+i+'_out']}}</th>
+                            <td>{{listing['rm'+i+'_dc1_out'] ? listing['rm'+i+'_dc1_out']+";" : ""}} {{listing['rm'+i+'_dc2_out'] ? listing['rm'+i+'_dc2_out']+";" : ""}} {{listing['rm'+i+'_dc3_out'] ? listing['rm'+i+'_dc3_out']+";" : ""}}</td>
+                            <td class="text-right text-primary">{{listing['rm'+i+'_len'] || "--"}}' x {{listing['rm'+i+'_wth'] || "--"}}'</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="utilities">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="box-grey">
+                      <table class="table table-nob table-sm">
+                        <tbody>
+                          <tr>
+                            <th>Gas</th>
+                            <td class="text-right text-primary">{{listing.gas == "Y" ? "Yes" : "No"}}</td>
+                          </tr>
+                          <tr>
+                            <th>Hydro</th>
+                            <td class="text-right text-primary">{{listing.elec == "Y" ? "Yes" : "No"}}</td>
+                          </tr>
+                          <tr>
+                            <th>Green Info</th>
+                            <td class="text-right text-primary">{{listing.green_pis == "Y" ? "Yes" : "No"}}</td>
+                          </tr>
+                          <tr>
+                            <th>Sewers</th>
+                            <td class="text-right">{{listing.sewers || "--"}}</td>
+                          </tr>
+                          <tr>
+                            <th>Water Supply</th>
+                            <td class="text-right">{{listing.water || "--"}}</td>
+                          </tr>
+                          <tr>
+                            <th>Heat Type</th>
+                            <td class="text-right">{{listing.heating || "--"}}</td>
+                          </tr>
+                          <tr>
+                            <th>Heat Source</th>
+                            <td class="text-right">{{listing.fuel || "--"}}</td>
+                          </tr>
+                          <tr>
+                            <th>Energy Certified</th>
+                            <td class="text-right">{{listing.energy_cert || "--"}}</td>
+                          </tr>
+                          <tr>
+                            <th>Cert. Level</th>
+                            <td class="text-right">{{listing.cert_lvl || "--"}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% if @listing.fields_to_show.present? %>
+                <div role="tabpanel" class="tab-pane" id="additional">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="box-grey">
+                        <table class="table table-nob table-sm">
+                          <tbody>
+                            <% JSON.parse(@listing.fields_to_show).each do |f| %>
+                              <tr>
+                                <th><%= RETS_FIELDS[f] %>:</th>
+                                <td class="text-right"><%= @listing.send(f) %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              <div role="tabpanel" class="tab-pane" id="nearestplaces">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="box-grey mb10">
+                          <div class="media">
+                            <div class="media-left">
+                              <%= image_tag "icon-walk.png", class: "icon-walk"%>
+                            </div>
+                            <div class="media-body" style="padding-left:50px;">
+                              <div class="walk-score" style="font-size:24px;"><a href="{{walkscore_howto || '/'}}" target="_blank">{{current_walkscore || "N/A"}}</a></div>
+                              <strong><a href="{{walkscore_howto || '/'}}" target="_blank">WALK SCORE®</a></strong>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-xs request-info-link btn-alter" data-modal-title="MORE ABOUT THE NEIGHBOURHOOD" data-modal-btn="REQUEST INFORMATION" data-modal-source="Request Info" data-modal-details="Requested Info about Neighbourhood" data-toggle="modal" data-target="#request-info-modal">MORE ABOUT THE NEIGHBOURHOOD</a>
+                      </div>
+                      <div class="col-sm-6">
+                        <table class="table table-nob">
+                          <tbody>
+                            <tr>
+                              <th>Schools</th>
+                              <td class="text-right"><a href="#schools" data-toggle="tab" ng-click="load_nearby(listing, ['school'], '#schools')">VIEW</a></td>
+                            </tr>
+                            <tr>
+                              <th>Transit</th>
+                              <td class="text-right"><a href="#transit" data-toggle="tab" ng-click="load_nearby(listing, ['bus_station', 'subway_station', 'train_station'], '#transit')">VIEW</a></td>
+                            </tr>
+                            <tr>
+                              <th>Grocery Stores</th>
+                              <td class="text-right"><a href="#grocery" data-toggle="tab" ng-click="load_nearby(listing, ['shopping_mall', 'grocery_or_supermarket'], '#grocery')">VIEW</a></td>
+                            </tr>
+                            <tr>
+                              <th>Religious Institutions</th>
+                              <td class="text-right"><a href="#religious" data-toggle="tab" ng-click="load_nearby(listing, ['church', 'hindu_temple', 'place_of_worship', 'synagogue'], '#religious')">VIEW</a></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="tab-content" style="padding-top:0;">
+                      <div role="tabpanel" class="tab-pane" id="schools">
+                        <center><h3 class="no-top-mrgn">Schools</h3></center><br>
+                        <div class="info"><center>Loading...</center></div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="transit">
+                        <center><h3 class="no-top-mrgn">Transit</h3></center><br>
+                        <div class="info"><center>Loading...</center></div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="grocery">
+                        <center><h3 class="no-top-mrgn">Grocery Stores</h3></center><br>
+                        <div class="info"><center>Loading...</center></div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="religious">
+                        <center><h3 class="no-top-mrgn">Religious Institutions</h3></center><br>
+                        <div class="info"><center>Loading...</center></div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="nearby-places"></div>
+                      <div role="tabpanel" class="tab-pane active" id="overall">
+                        <p>Walk Score measures the walkability of any address using a patented system. For each address, Walk Score analyzes hundreds of walking routes to nearby amenities. Points are awarded based on the distance to amenities in each category. Amenities within a 5 minute walk (.25 miles) are given maximum points. A decay function is used to give points to more distant amenities, with no points given after a 30 minute walk.</p>
+                        <p>Walk Score also measures pedestrian friendliness by analyzing population density and road metrics such as block length and intersection density. Data sources include Google, Education.com, Open Street Map, the U.S. Census, Localeze, and places added by the Walk Score user community.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane mortgage-calculator-container" id="mortgage">
+                <div class="info">
+                  <h1>Mortgage calculator</h1>
+                  <p>Use this calculator to estimate your monthly mortgage payment, including taxes and insurance. Simply enter the price of the home, your down payment, and details about the home loan to calculate your payment breakdown, schedule, and more.</p>
+                </div>
+                <div class="calculator">
+                  <div class="home-price-caption">
+                    Home Price
+                  </div>
+                  <div class="down-payment-caption">
+                    Down Payment
+                  </div>
+                  <div class="rate-caption">
+                    Rate, %
+                  </div>
+                  <div class="clearfix"></div>
+                  <form name="mortgage_form" novalidate ng-submit="mortgage_form.$valid && submit_mortgage_form()" id="mortgage_form" ng-init="basic_mortgage()">
+                    <div class="home-price">
+                      <input name="home_price" ng-model="mortgage.home_price" required type="text" class="form-control" format="number" id="" placeholder="$600,000">
+                    </div>
+                    <div class="down-payment">
+                      <input name="down_payment" ng-model="mortgage.down_payment" type="text" class="form-control price" id="" placeholder="20" format="number">
+                        &nbsp;&nbsp;
+                      <div class="btn-group">
+                        <a class="btn btn-default mortgage_btn" ng-click="change_down_payment('dol')"> $ </a>
+                        <a class="btn btn-default active mortgage_btn" ng-click="change_down_payment('percent')"> %</a>
+                      </div>
+                    </div>
+                    <div class="rate">
+                      <input type="text" class="form-control" name="rate" required ng-model="mortgage.rate" placeholder="2.5">
+                    </div>
+                    <div class="calculate">
+                      <a class="btn" ng-click="recalculate_mortgage()">Calculate</a>
+                    </div>
+                    <div class="clearfix"></div><br>
+                    <div ng-show="mortgage_form.home_price.$invalid">Home price can't be blank</div>
+                    <div ng-show="mortgage_form.rate.$invalid">Rate can't be blank</div>
+                    <div class="clearfix"></div><br>
+                    <div>
+                      <strong>Down Payment:</strong> &nbsp;
+                      {{(mortgage.down_payment_calculated | currency).slice(0, -3)}}
+                    </div>
+                    <div>
+                      <strong>Mortgage Payment:</strong> &nbsp;
+                      {{(mortgage.payment | currency).slice(0, -3)}}
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="request-info-modal" tabindex="-1" role="dialog">
+  	<div class="modal-dialog modal-lg">
+    	<div class="modal-content">
+    		<div class="modal-header icon-user">
+      		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      		<h4 class="modal-title">BOOK A VIEWING</h4>
+    		</div>
+    		<div class="modal-body">
+          <h2 class="text-center"><%= @listing.address || "Address not available" %></h2>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="subscribe">
+                <div class="subscribe-inner">
+                  <center id="request_info_spinner" class="hide"><i class="fa fa-spinner fa-spin fa-3x"></i></center>
+                  <div class="alert alert-success hide mb0" id="request_info_success">
+                    Thank you for your interest! We'll get back to you shortly.
+                  </div>
+                  <div class="alert alert-danger hide mb0" id="request_info_error">
+                    Something went wrong. Please reload the page and try again.
+                  </div>
+                  <form name="lead_form" novalidate ng-submit="lead_form.$valid && submit_request_form()" id="request_info_form">
+                    <input name="details" type="hidden" id="listing_modal_details" value="">
+                    <input name="source" type="hidden" id="listing_modal_source" value="">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group" ng-class="{ 'has-error': request_submitted && lead_form.first_name.$invalid }">
+                          <input name="first_name" ng-model="request_info.first_name" type="text" class="form-control" placeholder="First Name" required ng-init="request_info.first_name='<%= current_user.try(:first_name) %>'">
+                          <span ng-show="request_submitted && lead_form.first_name.$invalid">can't be blank</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group" ng-class="{ 'has-error': request_submitted && lead_form.last_name.$invalid }">
+                          <input name="last_name" ng-model="request_info.last_name" type="text" class="form-control" placeholder="Last Name" required ng-init="request_info.last_name='<%= current_user.try(:last_name) %>'">
+                          <span ng-show="request_submitted && lead_form.last_name.$invalid">can't be blank</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group" ng-class="{ 'has-error': request_submitted && lead_form.email.$invalid }">
+                          <input name="email" ng-model="request_info.email" type="email" class="form-control" placeholder="Email Address" required ng-init="request_info.email='<%= current_user.try(:email) %>'">
+                          <span ng-show="request_submitted && lead_form.email.$invalid">invalid email address</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <input ng-model="request_info.phone_number" type="text" class="form-control" placeholder="Phone Number" ng-init="request_info.phone_number='<%= current_user.try(:phone_number) %>'">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="line3"></div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <textarea name="comments" ng-model="request_info.comments" rows="4" class="form-control" placeholder="Comments? Questions? Concerns?"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <select name="lead_is" ng-model="request_info.lead_is" class="form-control">
+                            <option value="">When do you plan to move?</option>
+                            <option value="Buying in 0-3 months">0-3 months</option>
+                            <option value="Buying in 3-6 months">3-6 months</option>
+                            <option value="Buying in 6-9 months">6-9 months</option>
+                            <option value="Buying in 9-12 months">9-12 months</option>
+                            <option value="Buying in 12+ months">12+ months</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <input type="submit" class="btn btn-alter pull-right" ng-click="request_submitted = true;" value="BOOK A VIEWING"/>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+    		</div>
+    	</div>
+  	</div>
+  </div>
+</div>
+
+
+<% if logged_in? %>
+  <script>
+  $(window).unload(function() {
+    $.ajax({
+      type: "POST",
+      url: "/listings/<%= @listing.id %>/leave_page",
+      data: "class_name=<%= @listing.class_name %>",
+      async : false
+    });
+  });
+  </script>
+<% end %>

@@ -1,0 +1,6 @@
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= %w(notice success).include?(name) ? "success" : "danger" %>">
+    <a class="close" data-dismiss="alert">×</a>
+    <%= msg.html_safe %>
+  </div>
+<% end %>

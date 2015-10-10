@@ -1,0 +1,5 @@
+<h2>Nicholas Alli listing has been shared with you</h2>
+<strong>Sender: </strong><%= @details.fetch(:email) %><br/>
+<strong>Message: </strong><%= @details.fetch(:message) %><br/><br/>
+
+You can view the listing by visiting the following link: <%= link_to @listing.title, listing_url(@listing) %>

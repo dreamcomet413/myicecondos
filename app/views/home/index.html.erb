@@ -1,0 +1,207 @@
+<div class="main-container" ng-controller="ListingsCtrl">
+  <div class="search-container">
+    <div class="container">
+      <div class="title">
+        <h1>Let Nicholas to find you a new home</h1>
+      </div>
+      <div class="info">
+        Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas Alli prides himself on his ability to provide customers with the latest information about their market, customer service and the correct advice to maximize their investment.
+      </div>
+      <div class="searchbox">
+        <%= form_tag listings_path, method: :get, id: "home_detail_fields"  do %>
+          <div class="input-group">
+            <%= text_field_tag :query, params[:query], class: "form-control home-autocomplete-field", placeholder: "Search by Address, City, Postal Code, Neighborhood or MLS" %>
+            <input name="autocomplete_form" type="hidden" value="true">
+            <input name="route" type="hidden" value="">
+            <input name="locality" type="hidden" value="">
+            <input name="administrative_area_level_1" type="hidden" value="">
+            <span class="input-group-btn">
+              <button type="submit" class="btn">Search</button>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="properties" ng-init="load_listing_items('featured')">
+    <div class="row" ng-if="search_results_loading">
+      <div class="col-sm-12">
+        <p style="text-align:center;margin-top:20px;">Loading...</p>
+      </div>
+    </div>
+    <div class="row" ng-if="listings.length < 1 && !search_results_loading">
+      <div class="col-sm-12 text-center">
+        <br>
+        Currently there are no featured listings
+        <br><br>
+      </div>
+    </div>
+    <ul ng-if="listings.length > 0 && !search_results_loading">
+      <li ng-repeat="o_listing in listings" class="homepage_item">
+        <img ng-src="http://nicholasalli.s3.amazonaws.com/listing_photos/listing_{{o_listing.id}}_0.jpg" onerror="this.onerror=null;this.src='/missing-image.png';">
+        <div class="items">
+          <div class="place">
+            {{(o_listing.municipality | uppercase) || "NOT AVAILABLE"}}
+          </div>
+          <div class="address">
+            {{o_listing.addr || "Address not available"}}
+          </div>
+          <div class="properties-carousel">
+            <div class="owl-carousel">
+              <div class="item">
+                <%= image_tag "icon-bed.png" %>
+                <span class="title">Beds</span>
+                <span class="numbers">{{o_listing.br || '--'}}</span>
+              </div>
+              <div class="item">
+                <%= image_tag "icon-baths.png" %>
+                <span class="title">Baths</span>
+                <span class="numbers">{{o_listing.bath_tot || '--'}}</span>
+              </div>
+              <div class="item">
+                <%= image_tag "icon-square-feets.png" %>
+                <span class="title">Sq. Ft.</span>
+                <span class="numbers">{{o_listing.sqft || '--'}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="btn-container">
+            <a href="#" class="btn" ng-click="go_to_listing(o_listing.id)">View Property</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="feedback-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="feedback">
+            Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market.
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="feedback-details">
+            Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas Alli prides himself on his ability to provide customers with the latest information about their market, customer service and the correct advice to maximize their investment.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="welcome-container">
+    <div class="container">
+      <div class="welcome">
+        <div class="info">
+          <h1>Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market.</h1>
+          <p>Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas.</p>
+          <a href="#" class="btn">Contact Nicholas</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="features">
+    <div class="container">
+      <ul>
+        <li>
+          <div class="item">
+            <div class="imagebox">
+              <%= image_tag "icon-feature01.png" %>
+            </div>
+            <span>LOREM IPSUM DOLOR SIT</span>
+            <p>Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas.</p>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="imagebox">
+              <%= image_tag "icon-feature02.png" %>
+            </div>
+            <span>LOREM IPSUM DOLOR SIT</span>
+            <p>Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas.</p>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="imagebox">
+              <%= image_tag "icon-feature03.png" %>
+            </div>
+            <span>LOREM IPSUM DOLOR SIT</span>
+            <p>Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas.</p>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="imagebox">
+              <%= image_tag "icon-feature04.png" %>
+            </div>
+            <span>LOREM IPSUM DOLOR SIT</span>
+            <p>Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas.</p>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="imagebox">
+              <%= image_tag "icon-feature05.png" %>
+            </div>
+            <span>LOREM IPSUM DOLOR SIT</span>
+            <p>Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="mortgage-calculator-container">
+    <div class="container">
+      <div class="info">
+        <h1>Mortgage calculator</h1>
+        <p>Use this calculator to estimate your monthly mortgage payment, including taxes and insurance. Simply enter the price of the home, your down payment, and details about the home loan to calculate your payment breakdown, schedule, and more.</p>
+      </div>
+      <div class="calculator">
+        <div class="home-price-caption">
+          Home Price
+        </div>
+        <div class="down-payment-caption">
+          Down Payment
+        </div>
+        <div class="rate-caption">
+          Rate, %
+        </div>
+        <div class="clearfix"></div>
+        <form name="mortgage_form" novalidate ng-submit="mortgage_form.$valid && submit_mortgage_form()" id="mortgage_form" ng-init="basic_mortgage()">
+          <div class="home-price">
+            <input name="home_price" ng-model="mortgage.home_price" required type="text" class="form-control" format="number" id="" placeholder="$600,000">
+          </div>
+          <div class="down-payment">
+            <input name="down_payment" ng-model="mortgage.down_payment" type="text" class="form-control price" id="" placeholder="20" format="number">
+              &nbsp;&nbsp;
+            <div class="btn-group">
+              <a class="btn btn-default mortgage_btn" ng-click="change_down_payment('dol')"> $ </a>
+              <a class="btn btn-default active mortgage_btn" ng-click="change_down_payment('percent')"> %</a>
+            </div>
+          </div>
+          <div class="rate">
+            <input type="text" class="form-control" name="rate" required ng-model="mortgage.rate" placeholder="2.5">
+          </div>
+          <div class="calculate">
+            <a class="btn" ng-click="recalculate_mortgage()">Calculate</a>
+          </div>
+          <div class="clearfix"></div><br>
+          <div ng-show="mortgage_form.home_price.$invalid">Home price can't be blank</div>
+          <div ng-show="mortgage_form.rate.$invalid">Rate can't be blank</div>
+          <div class="clearfix"></div><br>
+          <div>
+            <strong>Down Payment:</strong> &nbsp;
+            {{(mortgage.down_payment_calculated | currency).slice(0, -3)}}
+          </div>
+          <div>
+            <strong>Mortgage Payment:</strong> &nbsp;
+            {{(mortgage.payment | currency).slice(0, -3)}}
+          </div>
+        </form>
+      </div>
+      <div class="imagebox">
+        <%= image_tag "bg-mortgage-calculator.png" %>
+      </div>
+    </div>
+  </div>
+</div>
