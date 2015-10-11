@@ -25,3 +25,17 @@ staging:
   crm_call_token: MiB2nB24GTyWsyuPVRwMaZOk
   facebook_url: http://facebook.com
   twitter_url: http://twitter.com
+
+production:
+  facebook_app_id: 996769883683642
+  facebook_app_secret: 59c6656bb3342509e53f08285b7dc2ed
+  google_app_id: 551744300503-ivgml300qa557ptghs7ddutk9h9q3h5u.apps.googleusercontent.com
+  google_app_secret: 8lghZVyl99k2KInhzKkIW-wR
+  crm_api_url: http://crm.alli.ca
+  crm_api_token: ZuB2nB24GTyWsyuPVRwMaZmi
+  mapbox_token: pk.eyJ1IjoidHp1YnlhayIsImEiOiIxNmI5OTMzYzM0NTdhZjc3MDJiNGQ5YjI0NWQ2MTg0YSJ9.xA_OjQLoZREbHhOX-XW0jQ
+  mapbox_map: tzubyak.m8nb9c8d
+  walkscore_token: a7a1448f92dfeef1926e20d173da4326
+  crm_call_token: MiB2nB24GTyWsyuPVRwMaZOk
+  facebook_url: http://facebook.com
+  twitter_url: http://twitter.com
