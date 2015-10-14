@@ -79,16 +79,6 @@
                     </div>
                   </div>
                 </li>
-                <li>
-                  <div class="item">
-                    <div class="price">
-                      {{(cash_back | currency).slice(0, -3)}}
-                    </div>
-                    <div class="caption">
-                      Cashback
-                    </div>
-                  </div>
-                </li>
               </ul>
             </div>
             <div class="property-details">
@@ -198,6 +188,15 @@
                         <li>
                           <div class="item">
                             <div class="imagebox">
+                              <%= image_tag "icon-feature01.png" %>
+                            </div>
+                            <span class="title">Acreage</span>
+                            <span class="numbers">{{listing.acres || '--'}}</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item">
+                            <div class="imagebox">
                               <%= image_tag "icon-fireplace.png" %>
                             </div>
                             <span class="title">Fireplace</span>
@@ -211,6 +210,24 @@
                             </div>
                             <span class="title">Furnished</span>
                             <span class="numbers">{{listing.furnished == "Y" ? "Yes" : "No"}}</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item">
+                            <div class="imagebox">
+                              <%= image_tag "icon-feature04.png" %>
+                            </div>
+                            <span class="title">Waterfront</span>
+                            <span class="numbers">{{(listing.waterfront == "None" || !listing.waterfront) ? "No" : "Yes"}}</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item">
+                            <div class="imagebox">
+                              <%= image_tag "icon-feature03.png" %>
+                            </div>
+                            <span class="title">Park. Spaces</span>
+                            <span class="numbers">{{listing.park_spcs || "--"}}</span>
                           </div>
                         </li>
                       </ul>

@@ -43,6 +43,7 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'mailboxer', git: 'https://github.com/div/mailboxer.git', branch: 'rails42-foreigner'
 gem 'simple_form', '~> 3.1.0'
 gem 'thin'
+gem 'mail_form'
 
 gem 'angularjs-rails'
 gem 'angular_rails_csrf'
@@ -63,6 +64,7 @@ gem 'rest-client'
 gem "nested_form"
 gem 'social-share-button'
 gem 'mails_viewer'
+gem 'bootstrap-wysihtml5-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

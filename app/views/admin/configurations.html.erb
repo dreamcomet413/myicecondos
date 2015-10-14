@@ -3,46 +3,89 @@
   <div class="row">
     <div class="col-md-12">
       <%= nested_form_for @site_configuration, url: admin_update_configurations_path do |f| %>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <%= f.label :rebate_percent %>
-              <%= f.text_field :rebate_percent, class: "form-control" %>
-            </div>
-            <br/>
-            <div class="form-group">
-              <h4>Homepage slides</h4>
-              <%= f.fields_for :homepage_sliders do |slider_form| %>
-                <span class="pull-left"><%= slider_form.object.try(:image_file_name) %></span><br/>
-                <%= slider_form.file_field :image, class: "pull-left" %>
-                <%= slider_form.link_to_remove "Remove this slide" %>
-                <hr/>
-              <% end %>
-              <p><%= f.link_to_add "Add a slide", :homepage_sliders %></p>
-            </div>
-          </div>
-        </div>
-        <hr/>
         <h2>Static Pages Content</h2>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <%= f.label :privacy_content, "Privacy Policy Content" %>
-              <%= f.text_area :privacy_content, class: "form-control", rows: 10 %>
+              <%= f.label :about_content, "About Us Content" %>
+              <%= f.text_area :about_content, class: "form-control wysihtml5", rows: 10 %>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <%= f.label :cookies_content, "Cookies Policy Content" %>
-              <%= f.text_area :cookies_content, class: "form-control", rows: 10 %>
+              <%= f.label :resources_content, "Resources Page Content" %>
+              <%= f.text_area :resources_content, class: "form-control wysihtml5", rows: 10 %>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
+              <%= f.label :buyers_content, "Buyers Page Content" %>
+              <%= f.text_area :buyers_content, class: "form-control wysihtml5", rows: 10 %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :sellers_content, "Sellers Page Content" %>
+              <%= f.text_area :sellers_content, class: "form-control wysihtml5", rows: 10 %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :contact_content, "Contact Us Page Content" %>
+              <%= f.text_area :contact_content, class: "form-control wysihtml5", rows: 10 %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :privacy_content, "Privacy Policy Content" %>
+              <%= f.text_area :privacy_content, class: "form-control wysihtml5", rows: 10 %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :cookies_content, "Cookies Policy Content" %>
+              <%= f.text_area :cookies_content, class: "form-control wysihtml5", rows: 10 %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
               <%= f.label :terms_content, "Terms of Use Content" %>
-              <%= f.text_area :terms_content, class: "form-control", rows: 10 %>
+              <%= f.text_area :terms_content, class: "form-control wysihtml5", rows: 10 %>
+            </div>
+          </div>
+        </div>
+        <h2>Social Links</h2>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= f.label :facebook_url, "Facebook Page URL" %>
+              <%= f.text_field :facebook_url, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= f.label :twitter_url, "Twitter Page URL" %>
+              <%= f.text_field :twitter_url, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= f.label :blog_url, "Blog URL" %>
+              <%= f.text_field :blog_url, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= f.label :contact_us_email, "Contact Us - Email To" %>
+              <%= f.text_field :contact_us_email, class: "form-control" %>
             </div>
           </div>
         </div>

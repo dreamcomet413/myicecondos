@@ -27,4 +27,6 @@
 //= require nearby-search
 //= require jquery_nested_form
 //= require social-share-button
+//= require bootstrap-wysihtml5
+//= require admin
 //= require_tree ./angular

@@ -50,4 +50,9 @@ Rails.application.routes.draw do
   get '/privacy' => 'home#privacy', as: 'privacy'
   get '/cookies_policy' => 'home#cookies_policy', as: 'cookies_policy'
   get '/about' => 'home#about', as: 'about'
+  get '/sellers' => 'home#sellers', as: 'sellers'
+  get '/buyers' => 'home#buyers', as: 'buyers'
+  get '/resources' => 'home#resources', as: 'resources'  
+  match '/contact',     to: 'contacts#new',             via: 'get'
+  resources "contacts", only: [:new, :create]
 end

@@ -133,6 +133,7 @@ $ ->
   return
 
 $ ->
+
   $('.selectpicker').selectpicker
     width: 150
   $('.selectpicker100').selectpicker
