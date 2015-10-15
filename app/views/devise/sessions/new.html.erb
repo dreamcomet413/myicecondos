@@ -1,31 +1,94 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h2>Sign in</h2>
+<div class="main-container">
+	<div class="about-us">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="page-title">
+						<h1><center>Please, login or register to continue</center></h1>
+					</div>
+				</div>
+				<div class="col-sm-4 col-sm-offset-1 login-form">
+          <h5>EXISTING ACCOUNT</h5>
+          <hr>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
+            <div class="form-group">
+              <%= f.email_field :email, placeholder: "Email Address", class: "form-control" %>
+            </div>
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%= link_to "Forgot your password?", new_password_path(resource_name), style: "font-size:14px;", class: "pull-right" %><br />
+            <% end -%>
+            <div class="form-group">
+              <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
+            </div>
 
-      <div class="form-group">
-        <%= f.email_field :email, placeholder: "Email Address", class: "form-control" %>
-      </div>
+            <% if devise_mapping.rememberable? -%>
+              <div class="form-group">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me, "Remember my Account", style: "font-weight:100;" %>
+              </div>
+            <% end -%>
 
-      <div class="form-group">
-        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
-      </div>
+            <div class="actions">
+              <%= f.submit "Log in", class: "btn btn-alter btn-lg pull-right" %>
+            </div>
+          <% end %>
 
-      <% if devise_mapping.rememberable? -%>
-        <div class="form-group">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-        </div>
-      <% end -%>
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <%= link_to "Sign in with #{provider.to_s == 'google_oauth2' ? 'Google' : provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
+            <% end -%>
+          <% end -%>
+				</div>
+        <div class="col-sm-4 col-sm-offset-2 login-form">
+          <h5>REGISTER FOR FREE</h5>
+          <hr>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
 
-      <div class="actions">
-        <%= f.submit "Log in", class: "btn btn-danger btn-lg pull-right" %>
-      </div>
-    <% end %>
+          	<div class="row">
+            	<div class="col-sm-6">
+                	<div class="form-group">
+                    <%= f.text_field :first_name, autofocus: true, placeholder: "First Name", class: "form-control" %>
+                  </div>
+                </div>
+            	<div class="col-sm-6">
+                	<div class="form-group">
+                    <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
+                    </div>
+                </div>
+            </div>
 
-    <%= render "devise/shared/links" %>
-  </div>
+            <div class="form-group">
+              <%= f.email_field :email, placeholder: "Email Address", class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: "form-control" %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Sign up", class: "btn btn-alter btn-lg pull-right" %>
+            </div>
+          <% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="welcome-container">
+		<div class="container">
+			<div class="welcome">
+				<div class="info">
+					<h1>Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market.</h1>
+					<p>Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas.</p>
+					<a href="/contact" class="btn">Contact Nicholas</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<div class="clearfix"></div><br/>

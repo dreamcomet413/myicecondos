@@ -7,8 +7,7 @@
             <li><%= link_to "My Account", my_account_path %></li>
             <li><%= link_to('Log Out', destroy_user_session_path, :method => :delete) %></li>
           <% else %>
-            <li><a href="#modal-login" data-toggle="modal">Login</a></li>
-            <li><a href="#modal-signup" data-toggle="modal">Register</a></li>
+            <li><%= link_to "Login / Register", new_user_session_path %></li>
           <% end %>
         </ul>
       </div>

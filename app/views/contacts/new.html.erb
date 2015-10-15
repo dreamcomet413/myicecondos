@@ -41,13 +41,32 @@
 						<h1><%= @title %></h1>
 					</div>
 				</div>
-				<div class="col-sm-8">
-					<div class="info">
-						<%= @content.try(:html_safe) %>
-						<br>
-						<br>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="row">
 						<div class="col-md-11">
-							<%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
+							<%= image_tag "contact_us.png", class: "img-responsive" %>
+							<br>
+							<div class="row">
+								<div class="col-md-10 col-md-offset-1 login-form">
+									<h3 class="text-center" style="line-height:40px !important;">Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market.
+										<br><br>
+										<a href="<%= SiteConfiguration.first.try(:facebook_url) %>" target="_blank"><i class="fa fa-facebook"></i></a>
+										&nbsp;
+										<a href="<%= SiteConfiguration.first.try(:twitter_url) %>" target="_blank"><i class="fa fa-twitter"></i></a>
+									</h3>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="row">
+						<div class="col-md-11 col-md-offset-1">
+							<%= @content.try(:html_safe) %>
+							<br><br>
+							<%= simple_form_for @contact do |f| %>
 						    <%= f.input :name, :required => true %>
 						    <%= f.input :email, :required => true %>
 						    <%= f.input :message, :as => :text, :required => true, input_html: { rows: 10 } %>
@@ -60,27 +79,6 @@
 						  <% end %>
 						</div>
 					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="explore-more">
-						<div class="title">
-							More to Explore
-						</div>
-						<div class="links">
-							<ul>
-								<li><a href="/about">About Us</a></li>
-								<li><a href="/sellers">Sellers</a></li>
-								<li><a href="/buyers">Buyers</a></li>
-								<li><a href="/resources">Resources</a></li>
-								<li><a href="/contact">Contact</a></li>
-								<li><a href="/terms">Terms of Service</a></li>
-								<li><a href="/cookies_policy">Cookies Policy</a></li>
-								<li><a href="/privacy">Privacy Policy</a></li>
-
-							</ul>
-						</div>
-					</div>
-					<%= render "layouts/subscribe_form" %>
 				</div>
 			</div>
 		</div>

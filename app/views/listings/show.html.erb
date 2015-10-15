@@ -89,8 +89,11 @@
             <div class="code">
               MLS. {{listing.mls}}
             </div>
+            <div class="code">
+              {{listing.rltr}}
+            </div>
             <div class="button-container">
-              <a class="btn request-info-link" data-modal-title="Get Assist" data-modal-btn="Get Assist" data-modal-source="Request Info" data-modal-details="Requested Info" data-toggle="modal" data-target="#request-info-modal">Get Assist</a>
+              <a class="btn request-info-link" data-modal-title="Inquire Now" data-modal-btn="Inquire Now" data-modal-source="Request Info" data-modal-details="Requested Info" data-toggle="modal" data-target="#request-info-modal">Inquire Now</a>
             </div>
             <div class="clearfix"></div>
           </div>
@@ -153,6 +156,7 @@
                       <p class="added">Added to our website {{listing.created_at|timeago}}</p>
                       <p class="viewed">Viewed <ng-pluralize count="listing.view_count" when="{'1': '1 time', 'other': '{} times'}"></ng-pluralize></p>
                       <p class="code">MLS. {{listing.mls}}</p>
+                      <p class="code">{{listing.rltr}}</p>
                     </div>
                   </div>
                   <div class="col-sm-7">

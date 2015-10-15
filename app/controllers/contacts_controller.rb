@@ -1,12 +1,12 @@
 class ContactsController < ApplicationController
   def new
-    @title = "Contact Us"
+    @title = "Let's get in touch"
     @content = SiteConfiguration.first.try(:contact_content)
     @contact = Contact.new
   end
 
   def create
-    @title = "Contact Us"
+    @title = "Let's get in touch"
     @content = SiteConfiguration.first.try(:contact_content)
     @contact = Contact.new(params[:contact])
     @contact.request = request
