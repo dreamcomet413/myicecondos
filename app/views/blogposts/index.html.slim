@@ -10,7 +10,7 @@
             tr
               td width="25%"
                 = link_to show_post_path(post) do
-                  = image_tag post.featured_image, class: "img-responsive"
+                  = image_tag post.featured_image(:medium), class: "img-responsive"
               td width="75%"
                 h2 style="margin-bottom:10px;"
                   = link_to show_post_path(post) do
