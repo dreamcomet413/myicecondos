@@ -1,0 +1,27 @@
+= form_for @blogpost, url: form_path do |f|
+  - if f.object.errors.full_messages.present?
+    .alert.alert-danger
+      - f.object.errors.full_messages.each do |message|
+        = message
+        %br
+  = f.hidden_field :author_id, value: current_user.id
+  .form-group
+    = f.label :title
+    = f.text_field :title, :class => "form-control"
+  .form-group
+    = f.label :status
+    = f.select :status, options_for_select(["Draft", "Published"], @blogpost.status), :class => "form-control"
+  .form-group
+    = f.label :featured_image
+    = f.file_field :featured_image
+    %br
+    - if @blogpost.featured_image.present?
+      = image_tag @blogpost.featured_image, style: "width:200px;"
+  .form-group
+    = f.label :short_description
+    = f.text_field :short_description, :class => "form-control"
+  .form-group
+    = f.label :body, "Blogpost Body"
+    = f.text_area :body, class: "wysihtml5 form-control", style: "height:400px;"
+
+  = f.submit :class => 'btn btn-success pull-right', data: {disable_with: (@blogpost.new_record? ? "Creating Blogpost..." : "Updating Blogpost...")}

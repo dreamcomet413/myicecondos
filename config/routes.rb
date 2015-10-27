@@ -13,6 +13,13 @@ Rails.application.routes.draw do
   post 'admin/add_admin' => 'admin#add_admin', as: 'admin_add_admin'
   post 'admin/remove_admin/:id' => 'admin#remove_admin', as: 'admin_remove_admin'
 
+  get 'admin/blog' => 'admin#blog_index'
+  get 'admin/blog/new' => 'admin#blog_new'
+  get 'admin/blog/:id' => 'admin#blog_show', as: "admin_view_blog"
+  post 'admin/blog' => 'admin#blog_create', as: "admin_create_blog"
+  patch 'admin/blog/:id' => 'admin#blog_update', as: "admin_update_blog"
+  delete 'admin/blog/:id' => 'admin#blog_destroy', as: "admin_delete_blog"
+
   root to: 'home#index'
   get 'fetch_res_data', to: 'fetchdata#fetch_res_data'
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
@@ -52,7 +59,9 @@ Rails.application.routes.draw do
   get '/about' => 'home#about', as: 'about'
   get '/sellers' => 'home#sellers', as: 'sellers'
   get '/buyers' => 'home#buyers', as: 'buyers'
-  get '/resources' => 'home#resources', as: 'resources'  
+  get '/resources' => 'home#resources', as: 'resources'
   match '/contact',     to: 'contacts#new',             via: 'get'
   resources "contacts", only: [:new, :create]
+  get '/blog' => 'blogposts#index'
+  get '/blog/:id' => 'blogposts#show', as: "show_post"
 end

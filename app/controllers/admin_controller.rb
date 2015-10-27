@@ -80,7 +80,52 @@ class AdminController < ApplicationController
     redirect_to admin_user_management_path, notice: "Admin access has been removed!"
   end
 
+  def blog_index
+    @blogposts = Blogpost.all
+  end
+
+  def blog_new
+    @blogpost = Blogpost.new
+  end
+
+  def blog_show
+    @blogpost = Blogpost.find params[:id]
+  end
+
+  def blog_create
+    @blogpost = Blogpost.new(blog_params)
+    @blogpost.published_at = DateTime.now if @blogpost.status == "Published"
+    if @blogpost.save
+      redirect_to admin_view_blog_path(@blogpost), :flash => {:notice => "Blogpost has been created successfully"}
+    else
+      render :action => "blog_new"
+    end
+  end
+
+  def blog_update
+    @blogpost = Blogpost.find params[:id]
+    old_status = @blogpost.status
+    @blogpost.assign_attributes(blog_params)
+    @blogpost.published_at = DateTime.now if @blogpost.status != old_status && @blogpost.status == "Published" && !@blogpost.published_at.present?
+    if @blogpost.update(blog_params)
+
+      redirect_to admin_view_blog_path(@blogpost), :flash => {:notice => "Blogpost has been updated successfully"}
+    else
+      render :action => "edit"
+    end
+  end
+
+  def blog_destroy
+    @blogpost = Blogpost.find params[:id]
+    @blogpost.destroy
+    redirect_to admin_blog_path, :flash => {:notice => "Blogpost has been deleted successfully"}
+  end
+
   private
+
+  def blog_params
+    params[:blogpost].permit(:title, :short_description, :body, :status, :author_id, :published_at, :featured_image)
+  end
 
   def verify_admin
     redirect_to root_path, alert: "You're not an admin." and return unless current_user.admin?

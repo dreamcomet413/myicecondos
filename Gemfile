@@ -65,6 +65,10 @@ gem "nested_form"
 gem 'social-share-button'
 gem 'mails_viewer'
 gem 'bootstrap-wysihtml5-rails'
+gem "blogit"
+gem "acts-as-taggable-on"
+gem 'slim'
+gem "slim-rails"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

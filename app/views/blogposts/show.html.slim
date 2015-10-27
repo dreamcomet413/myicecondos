@@ -1,0 +1,20 @@
+.container
+  .row
+    .col-md-12
+      br
+      h1 
+        = @blogpost.title
+      br
+      .row
+        .col-md-3
+          = image_tag @blogpost.featured_image, class: "img-responsive"
+        .col-md-9
+          h4
+            = @blogpost.published_at.strftime("%b %d, %Y")
+          h5
+            = @blogpost.author.name
+          br
+          p
+            = @blogpost.body.html_safe
+  br
+  br
