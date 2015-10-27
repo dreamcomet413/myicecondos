@@ -48,6 +48,8 @@
 						<div class="col-md-11">
 							<%= image_tag "contact_us.png", class: "img-responsive" %>
 							<br>
+							<%= @content.try(:html_safe) %>
+							<br><br>
 							<div class="row">
 								<div class="col-md-10 col-md-offset-1 login-form">
 									<h3 class="text-center" style="line-height:40px !important;">Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market.
@@ -64,8 +66,6 @@
 				<div class="col-sm-6">
 					<div class="row">
 						<div class="col-md-11 col-md-offset-1">
-							<%= @content.try(:html_safe) %>
-							<br><br>
 							<%= simple_form_for @contact do |f| %>
 						    <%= f.input :name, :required => true %>
 						    <%= f.input :email, :required => true %>
