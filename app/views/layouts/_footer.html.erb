@@ -60,9 +60,9 @@
     	<div class="modal-content">
       		<div class="modal-header icon-user">
         		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        		<h4 class="modal-title">ADVANCED SEARCH</h4>
+        		<h4 class="modal-title">SEARCH</h4>
       		</div>
-      		<div class="modal-body">
+      		<div class="modal-body" style="padding:25px;">
             <%= form_tag listings_path, method: :get, id: "advanced_search_detail_fields" do %>
               <div class="box-grey">
                 Enter Address, Neighborhood, City, Zip or Keyword
@@ -75,6 +75,7 @@
                 <input name="locality" type="hidden" value="">
                 <input name="administrative_area_level_1" type="hidden" value="">
               </div>
+							<hr>
               <div class="box-grey">
                 <div class="row">
                 	<div class="col-sm-3">
@@ -104,6 +105,7 @@
                   </div>
                 </div>
               </div>
+							<hr>
               <div class="box-grey">
                 <div class="row">
                 	<div class="col-sm-4">
@@ -132,6 +134,7 @@
                   </div>
                 </div>
               </div>
+							<hr>
               <div class="box-grey">
                 <div class="row">
                 	<div class="col-sm-4">
@@ -186,6 +189,7 @@
                   </div>
                 </div>
               </div>
+							<hr>
               <button type="submit" class="btn btn-primary btn-search pull-right">SEARCH</button>
               <div class="clearfix"></div>
             <% end %>
