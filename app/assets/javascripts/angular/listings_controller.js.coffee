@@ -380,14 +380,28 @@ app.controller 'ListingsCtrl', ['$scope', '$http', 'Listing', 'Favourite', ($sco
     search["notrack"] = 1
     search["sample"] = 4
     search["paginate"] = 0
-    search["custom_search"] = {}
-    search["custom_search"]["featured"] = true
 
-    $scope.results = Listing.query(search, ->
-      $scope.results.pop()
-      $scope.listings = $scope.results
-      $scope.search_results_loading = false
+    navigator.geolocation.getCurrentPosition ( (data) ->
+      search["geolocation"] = true
+      search["latitude"] = data.coords.latitude
+      search["longitude"] = data.coords.longitude
+      $scope.results = Listing.query(search, ->
+        $scope.results.pop()
+        $scope.listings = $scope.results
+        $scope.search_results_loading = false
+      )
     )
+    setTimeout (->
+      if !search["latitude"]
+        search["custom_search"] = {}
+        search["custom_search"]["featured"] = true
+
+        $scope.results = Listing.query(search, ->
+          $scope.results.pop()
+          $scope.listings = $scope.results
+          $scope.search_results_loading = false
+        )
+    ), 3000
 
   $scope.refine_search_results = ->
     if $scope.map_displayed

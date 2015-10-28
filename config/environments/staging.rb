@@ -86,13 +86,13 @@ Rails.application.configure do
     }
   }
 
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      :address   => "smtp.mandrillapp.com",
-      :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
-      :enable_starttls_auto => true, # detects and uses STARTTLS
-      :user_name => "webmaster@kitchenandbath.ca",
-      :password  => "Cjsy9CNAhEspT8OnlAjexA", # SMTP password is any valid API key
-      :authentication => 'login', # Mandrill supports 'plain' or 'login'
-      :domain => 'beta.zumin.ca', # your domain to identify your server when connecting
-    }
+    :user_name => '417773c1daf3710ca',
+    :password => '2d716b9a0d1592',
+    :address => 'mailtrap.io',
+    :domain => 'mailtrap.io',
+    :port => '2525',
+    :authentication => :cram_md5
+  }
 end
