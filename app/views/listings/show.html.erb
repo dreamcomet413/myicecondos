@@ -55,7 +55,7 @@
         </div>
         <div class="col-sm-5">
           <div class="property-info">
-            <div class="address">{{listing.address || "Address not available"}}</div>
+            <div class="address">{{listing.address || "Loading Details"}}</div>
             <div class="zipcode">({{listing.postal_code || "--"}})</div>
             <div class="price-wrapper">
               <ul>
@@ -102,14 +102,14 @@
         <div class="col-sm-7">
           <div class="property-slider">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active : $first}" ng-repeat="img in listing.images"></li>
+              </ol>
               <div class="carousel-inner">
                 <div ng-class="{active : $first, item : true}" ng-repeat="img in listing.images">
-                  <img ng-src="{{img}}" alt="" onerror="this.onerror=null;this.src='/missing-image.png';">
+                  <img ng-src="{{img}}" alt="" onerror="this.onerror=null;this.src='/missing-image.png';"/>
                 </div>
               </div>
-              <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active : $first, item : true}" ng-repeat="img in listing.images"></li>
-              </ol>
             </div>
           </div>
         </div>
