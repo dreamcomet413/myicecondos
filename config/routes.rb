@@ -64,4 +64,7 @@ Rails.application.routes.draw do
   resources "contacts", only: [:new, :create]
   get '/blog' => 'blogposts#index'
   get '/blog/:id' => 'blogposts#show', as: "show_post"
+
+  comfy_route :cms_admin, :path => '/cms'
+  comfy_route :cms, :path => '/content', :sitemap => false
 end
