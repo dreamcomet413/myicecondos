@@ -1,45 +1,43 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1 class="pull-left">System Administrators</h1>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="pull-left">System Administrators</h1>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table table-striped admin_table">
-        <thead>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped admin_table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @admins.each do |admin| %>
           <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Email</th>
-            <th></th>
+            <td style="width:15%;"><%= image_tag admin.avatar.url, class: "img-circle" %></td>
+            <td style="width:15%;"><%= admin.name %></td>
+            <td style="width:50%;"><%= admin.email %></td>
+            <th style="vertical-align:middle;width:20%;"><%= link_to "Remove Admin Access", admin_remove_admin_path(admin), method: :post %></th>
           </tr>
-        </thead>
-        <tbody>
-          <% @admins.each do |admin| %>
-            <tr>
-              <td style="width:15%;"><%= image_tag admin.avatar.url, class: "img-circle" %></td>
-              <td style="width:15%;"><%= admin.name %></td>
-              <td style="width:50%;"><%= admin.email %></td>
-              <th style="vertical-align:middle;width:20%;"><%= link_to "Remove Admin Access", admin_remove_admin_path(admin), method: :post %></th>
-            </tr>
-          <% end %>
-          <tr>
-            <td></td>
-            <td></td>
-            <td>
-              Add an admin by entering an email of the existing user:<br/>
-              <%= form_tag admin_add_admin_path, class: "form-inline" do %>
-                <div class="form-group">
-                  <%= text_field_tag :email, "", class: "form-control", placeholder: "Email" %>
-                </div>
-                <%= submit_tag "Add", class: "btn btn-primary" %>
-              <% end %>
-            </td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>
+            Add an admin by entering an email of the existing user:<br/>
+            <%= form_tag admin_add_admin_path, class: "form-inline" do %>
+              <div class="form-group">
+                <%= text_field_tag :email, "", class: "form-control", placeholder: "Email" %>
+              </div>
+              <%= submit_tag "Add", class: "btn btn-primary" %>
+            <% end %>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

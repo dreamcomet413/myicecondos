@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount MailsViewer::Engine => '/delivered_mails'
-  get 'admin' => 'admin#index', as: 'admin'
+  #get 'admin' => 'admin#index', as: 'admin'
   get 'admin/listings' => 'admin#listings', as: 'admin_listings'
   get 'admin/configurations' => 'admin#configurations', as: 'admin_configurations'
   get 'admin/user' => 'admin#user_management', as: 'admin_user_management'
@@ -65,6 +65,6 @@ Rails.application.routes.draw do
   get '/blog' => 'blogposts#index'
   get '/blog/:id' => 'blogposts#show', as: "show_post"
 
-  comfy_route :cms_admin, :path => '/cms'
+  comfy_route :cms_admin, :path => '/admin'
   comfy_route :cms, :path => '/content', :sitemap => false
 end

@@ -22,6 +22,6 @@
     = f.text_field :short_description, :class => "form-control"
   .form-group
     = f.label :body, "Blogpost Body"
-    = f.text_area :body, class: "wysihtml5 form-control", style: "height:400px;"
+    = f.text_area :body, class: "rich-text-editor form-control", style: "height:400px;"
 
   = f.submit :class => 'btn btn-success pull-right', data: {disable_with: (@blogpost.new_record? ? "Creating Blogpost..." : "Updating Blogpost...")}

@@ -1,11 +1,10 @@
-.container
-  .row
-    .col-md-12
-      %br
-      %h1.pull-left New Blogpost
-      = link_to "Back to Blogposts", :admin_blog, class: "btn btn-primary pull-right"
-      .clearfix
-      %hr
-      = render "blog_form", form_path: admin_create_blog_path
-      %br
-      %br
+.row
+  .col-md-12
+    %br
+    %h1.pull-left New Blogpost
+    = link_to "Back to Blogposts", :admin_blog, class: "btn btn-primary pull-right"
+    .clearfix
+    %hr
+    = render "blog_form", form_path: admin_create_blog_path
+    %br
+    %br

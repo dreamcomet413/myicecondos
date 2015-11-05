@@ -1,30 +1,27 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>Nicholas Alli Admin</h1>
-      <div class="row">
-        <div class="col-md-4" style="padding:20px;">
-          <div class="admin-box">
-            <h3>Listings</h3>
-            <%= link_to "Manage Existing", admin_listings_path, class: "btn btn-block btn-primary" %><br/>
-            <%= link_to "Create New", admin_new_listing_path, class: "btn btn-block btn-primary" %>
-          </div>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Nicholas Alli Admin</h1>
+    <div class="row">
+      <div class="col-md-4" style="padding:20px;">
+        <div class="admin-box">
+          <h3>Listings</h3>
+          <%= link_to "Manage Existing", admin_listings_path, class: "btn btn-block btn-primary" %><br/>
+          <%= link_to "Create New", admin_new_listing_path, class: "btn btn-block btn-primary" %>
         </div>
-        <div class="col-md-4" style="padding:20px;">
-          <div class="admin-box">
-            <h3>Admin Access</h3>
-            <%= link_to "Manage Access", admin_user_management_path, class: "btn btn-block btn-primary" %>
-          </div>
+      </div>
+      <div class="col-md-4" style="padding:20px;">
+        <div class="admin-box">
+          <h3>Admin Access</h3>
+          <%= link_to "Manage Access", admin_user_management_path, class: "btn btn-block btn-primary" %>
         </div>
-        <div class="col-md-4" style="padding:20px;">
-          <div class="admin-box">
-            <h3>Configurations</h3>
-            <%= link_to "Set Up Site", admin_configurations_path, class: "btn btn-block btn-primary" %>
-            <%= link_to "Manage Blog", admin_blog_path, class: "btn btn-block btn-primary" %>
-          </div>
+      </div>
+      <div class="col-md-4" style="padding:20px;">
+        <div class="admin-box">
+          <h3>Configurations</h3>
+          <%= link_to "Set Up Site", admin_configurations_path, class: "btn btn-block btn-primary" %>
+          <%= link_to "Manage Blog", admin_blog_path, class: "btn btn-block btn-primary" %>
         </div>
       </div>
     </div>
   </div>
 </div>
-<br/><br/>

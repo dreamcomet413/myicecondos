@@ -1,5 +1,6 @@
 require 'will_paginate/array'
-class AdminController < ApplicationController
+
+class AdminController < Comfy::Admin::Cms::BaseController
   before_action :authenticate_user!
   before_action :verify_admin
 

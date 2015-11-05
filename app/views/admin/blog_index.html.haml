@@ -1,28 +1,27 @@
-.container
-  .row
-    .col-md-12
-      %br
-      %h1.pull-left Nicholas Alli Blog
-      = link_to "New Blogpost", :admin_blog_new, class: "btn btn-primary pull-right"
-      .clearfix
-      %hr
-      %table.table.table-striped
-        %thead
-          %tr
-            %th Title
-            %th Short Description
-            %th Author
-            %th Status
-            %th
-        %tbody
-          - if @blogposts.empty?
-            %tr.empty
-              %td{colspan: 5} No blogposts to display.
-          - else
-            - for post in @blogposts
-              %tr
-                %td= link_to post.title, admin_view_blog_path(post)
-                %td= post.short_description
-                %td= post.author.name
-                %td= post.status
-                %td= link_to "Delete", admin_delete_blog_path(post), method: :delete, data: {confirm: "Are you sure?"}
+.row
+  .col-md-12
+    %br
+    %h1.pull-left Nicholas Alli Blog
+    = link_to "New Blogpost", :admin_blog_new, class: "btn btn-primary pull-right"
+    .clearfix
+    %hr
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Title
+          %th Short Description
+          %th Author
+          %th Status
+          %th
+      %tbody
+        - if @blogposts.empty?
+          %tr.empty
+            %td{colspan: 5} No blogposts to display.
+        - else
+          - for post in @blogposts
+            %tr
+              %td= link_to post.title, admin_view_blog_path(post)
+              %td= post.short_description
+              %td= post.author.name
+              %td= post.status
+              %td= link_to "Delete", admin_delete_blog_path(post), method: :delete, data: {confirm: "Are you sure?"}
