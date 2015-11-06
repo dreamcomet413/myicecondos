@@ -108,6 +108,6 @@ class User < ActiveRecord::Base
         address_type: "Business"
       }
     }
-    Crm::Lead.delay.send_to_crm lead_params
+    Crm::Lead.delay(priority: 10).send_to_crm lead_params
   end
 end

@@ -17,7 +17,10 @@ class ProspectMatch < ActiveRecord::Base
         if pm.property_types.present?
           pm.property_types.split(",").each do |f|
             search_filters["type_own1_out"] = f
-            results << Listing.search("", search_filters).to_a
+            byebug
+            listings = Listing.all
+            listings = Listing.near([pm.lat, pm.long], pm.radius.to_i/1000, units: :km) if pm.radius.to_i > 0 && pm.lat.present? && pm.long.present?
+            results << listings.search("", search_filters).to_a
           end
         end
       end

@@ -41,6 +41,16 @@ class LandingsController < ApplicationController
       price_search_radius: params[:radius],
       title: "StreetMatch"
     }
-    Crm::Lead.delay.send_to_crm lead_params
+
+    if lead_params[:email].present?
+      user = User.where(email: lead_params[:email]).first_or_initialize
+      user.assign_attributes(first_name: lead_params[:first_name], last_name: lead_params[:last_name])
+      user.password = Devise.friendly_token(8) if user.new_record?
+      if user.save
+        pm = user.prospect_matches.create(title: "Street Match - #{params[:route]}", city: lead_params[:listing_info_city], property_types: lead_params[:listing_info_property_type], lat: params[:lat], long: params[:lng], radius: lead_params[:price_search_radius])
+      end
+    end
+
+    Crm::Lead.delay(priority: 20).send_to_crm lead_params
   end
 end
