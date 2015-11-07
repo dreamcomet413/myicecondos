@@ -7,8 +7,8 @@ class Sync
     load_location_file
     try_loading_photos
     ProspectMatch.process_house_alerts
-    Tire.index("listings").delete
-    Listing.import
+    # Tire.index("listings").delete
+    # Listing.import
   end
 
   def self.reset_photo_count

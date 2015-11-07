@@ -61,30 +61,44 @@
       </div>
       <h2>Social Links</h2>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="form-group">
             <%= f.label :facebook_url, "Facebook Page URL" %>
             <%= f.text_field :facebook_url, class: "form-control" %>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="form-group">
             <%= f.label :twitter_url, "Twitter Page URL" %>
             <%= f.text_field :twitter_url, class: "form-control" %>
           </div>
         </div>
-        <div class="col-md-4">
+      </div>
+      <div class="row">
+        <div class="col-md-6">
           <div class="form-group">
             <%= f.label :blog_url, "Blog URL" %>
             <%= f.text_field :blog_url, class: "form-control" %>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="form-group">
             <%= f.label :contact_us_email, "Contact Us - Email To" %>
             <%= f.text_field :contact_us_email, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :meta_description, "Generic Meta Description" %>
+            <%= f.text_field :meta_description, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :meta_keywords, "Generic Meta Keywords (comma separated)" %>
+            <%= f.text_field :meta_keywords, class: "form-control" %>
           </div>
         </div>
       </div>

@@ -68,6 +68,7 @@ gem 'bootstrap-wysihtml5-rails'
 gem "acts-as-taggable-on"
 gem 'slim'
 gem "slim-rails"
+gem 'meta-tags'
 gem 'comfortable_mexican_sofa', '~> 1.12.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

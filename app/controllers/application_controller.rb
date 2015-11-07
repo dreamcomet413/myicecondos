@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :build_meta_tags
 
   helper_method :logged_in?
 
@@ -25,4 +26,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name, :password, :password_confirmation, :current_password]
   end
 
+  def build_meta_tags
+    set_meta_tags(title: @page_title || 'Nicholas Alli', description: SiteConfiguration.first.try(:meta_description), keywords: SiteConfiguration.first.try(:meta_keywords))
+  end
 end

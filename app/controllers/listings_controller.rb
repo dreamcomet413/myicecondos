@@ -5,6 +5,30 @@ class ListingsController < ApplicationController
   def show
     @listing = Listing.where(id: params[:id]).first
     @page_title = @listing.full_address
+
+    set_meta_tags title: "#{@page_title}", description: "#{@listing.description}", keywords: "property, listing, realestate, sale, rent, #{@listing.city}, #{@listing.province}, #{@listing.street}, #{@listing.type}"
+
+    set_meta_tags twitter: {
+      card:  "product",
+      title: @listing.full_address,
+      description: @listing.description,
+      image: @listing.listing_images.first.try(:image_src),
+      data1: "$#{@listing.price}",
+      label1: "Price"
+    }
+    set_meta_tags og: {
+      title: @listing.full_address,
+      type: @listing.type,
+      url: listing_url(@listing),
+      image: @listing.listing_images.first.try(:image_src),
+      description: @listing.description,
+      site_name: "Nicholas Alli",
+      price: {
+        amount: @listing.price,
+        currency: "CAD"
+      }
+    }
+
     respond_to do |format|
       format.html {
         impressionist(@listing, "", {unique: [:ip_address]})

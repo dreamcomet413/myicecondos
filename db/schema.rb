@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105211657) do
+ActiveRecord::Schema.define(version: 20151107023326) do
 
   create_table "ahoy_events", force: :cascade do |t|
     t.uuid     "visit_id",   limit: 16
@@ -608,6 +608,8 @@ ActiveRecord::Schema.define(version: 20151105211657) do
     t.string   "facebook_url",      limit: 255
     t.string   "twitter_url",       limit: 255
     t.string   "contact_us_email",  limit: 255
+    t.string   "meta_description",  limit: 255
+    t.string   "meta_keywords",     limit: 255
   end
 
   create_table "taggings", force: :cascade do |t|
