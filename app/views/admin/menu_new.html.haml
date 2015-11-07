@@ -1,0 +1,10 @@
+.row
+  .col-md-12
+    %br
+    %h1.pull-left New Menu Item
+    = link_to "Back to Navigations", :admin_menu, class: "btn btn-primary pull-right"
+    .clearfix
+    %hr
+    = render "menu_form", form_path: admin_create_menu_path
+    %br
+    %br

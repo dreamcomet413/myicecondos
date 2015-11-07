@@ -256,7 +256,9 @@ header .navbar-custom .navbar-collapse {
 	padding: 0;
 	border: none !important;
   position: relative;
-  z-index:1000;
+  &.in {
+    z-index:1000;
+  }
 }
 header .navbar-custom .navbar-collapse,
 header .navbar-custom .navbar-form {

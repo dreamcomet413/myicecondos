@@ -53,10 +53,10 @@
 						</div>
 						<div class="links">
 							<ul>
-								<li><a href="/about">About Us</a></li>
-								<li><a href="/sellers">Sellers</a></li>
-								<li><a href="/buyers">Buyers</a></li>
-								<li><a href="/contact">Contact</a></li>
+								<% l = MenuLocation.where(name: "More to Explore").first %>
+								<% l.menu_items.each do |m| %>
+									<li><%= link_to m.title, m.url %></li>
+								<% end if l %>
 							</ul>
 						</div>
 					</div>

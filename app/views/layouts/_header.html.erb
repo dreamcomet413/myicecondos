@@ -23,17 +23,20 @@
             <span class="icon-bar"></span>
           </button>
         </div>
-        <a class="navbar-brand" href="/"><%= image_tag "logo.png" %></a>
         <div class="collapse navbar-collapse" id="navbarTop">
+          <a class="navbar-brand" href="/"><%= image_tag "logo.png" %></a>
           <ul class="nav navbar-nav navbar-left">
-            <li><a href="/about">About</a></li>
-            <li><a href="/sellers">Sellers</a></li>
-            <li><a href="/buyers">Buyers</a></li>
+            <% l = MenuLocation.where(name: "Header Left").first %>
+            <% l.menu_items.each do |m| %>
+              <li><%= link_to m.title, m.url %></li>
+            <% end if l %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#modal-advanced-search" class="navbar-link" data-toggle="modal">Search</a></li>
-            <li><a href="<%= SiteConfiguration.first.try(:blog_url) %>">Blog</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <% l = MenuLocation.where(name: "Header Right").first %>
+            <% l.menu_items.each do |m| %>
+              <li><%= link_to m.title, m.url %></li>
+            <% end if l %>
           </ul>
         </div>
       </nav>

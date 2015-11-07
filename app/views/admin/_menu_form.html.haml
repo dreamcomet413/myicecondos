@@ -1,0 +1,19 @@
+= form_for @menu, url: form_path do |f|
+  - if f.object.errors.full_messages.present?
+    .alert.alert-danger
+      - f.object.errors.full_messages.each do |message|
+        = message
+        %br
+  .form-group
+    = f.label :title
+    = f.text_field :title, :class => "form-control"
+  .form-group
+    = f.label :url
+    = f.text_field :url, :class => "form-control"
+  .form-group
+    = f.label :menu_location_id, "Menu Item Location"
+    = f.select :menu_location_id, options_from_collection_for_select(MenuLocation.all, :id, :name, f.object.menu_location_id), :class => "form-control"
+  .form-group
+    = f.label :sort_order
+    = f.text_field :sort_order, :class => "form-control", placeholder: "1"
+  = f.submit :class => 'btn btn-success pull-right', data: {disable_with: (@menu.new_record? ? "Creating Menu Item..." : "Updating Menu Item...")}

@@ -112,7 +112,7 @@ class AdminController < Comfy::Admin::Cms::BaseController
 
       redirect_to admin_view_blog_path(@blogpost), :flash => {:notice => "Blogpost has been updated successfully"}
     else
-      render :action => "edit"
+      render :action => "blog_show"
     end
   end
 
@@ -122,10 +122,50 @@ class AdminController < Comfy::Admin::Cms::BaseController
     redirect_to admin_blog_path, :flash => {:notice => "Blogpost has been deleted successfully"}
   end
 
+  def menu_index
+    @menus = MenuItem.all
+  end
+
+  def menu_new
+    @menu = MenuItem.new
+  end
+
+  def menu_show
+    @menu = MenuItem.find params[:id]
+  end
+
+  def menu_create
+    @menu = MenuItem.new(menu_params)
+    if @menu.save
+      redirect_to admin_menu_path, :flash => {:notice => "Menu Item has been created successfully"}
+    else
+      render :action => "menu_new"
+    end
+  end
+
+  def menu_update
+    @menu = MenuItem.find params[:id]
+    if @menu.update_attributes(menu_params)
+      redirect_to admin_menu_path, :flash => {:notice => "Menu Item has been updated successfully"}
+    else
+      render :action => "menu_show"
+    end
+  end
+
+  def menu_destroy
+    @menu = MenuItem.find params[:id]
+    @menu.destroy
+    redirect_to admin_menu_path, :flash => {:notice => "Menu Item has been deleted successfully"}
+  end
+
   private
 
   def blog_params
     params[:blogpost].permit(:title, :short_description, :body, :status, :author_id, :published_at, :featured_image)
+  end
+
+  def menu_params
+    params[:menu_item].permit(:title, :url, :menu_location_id, :sort_order)
   end
 
   def verify_admin

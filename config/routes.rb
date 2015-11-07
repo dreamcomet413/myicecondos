@@ -20,6 +20,13 @@ Rails.application.routes.draw do
   patch 'admin/blog/:id' => 'admin#blog_update', as: "admin_update_blog"
   delete 'admin/blog/:id' => 'admin#blog_destroy', as: "admin_delete_blog"
 
+  get 'admin/menu' => 'admin#menu_index'
+  get 'admin/menu/new' => 'admin#menu_new'
+  get 'admin/menu/:id' => 'admin#menu_show', as: "admin_view_menu"
+  post 'admin/menu' => 'admin#menu_create', as: "admin_create_menu"
+  patch 'admin/menu/:id' => 'admin#menu_update', as: "admin_update_menu"
+  delete 'admin/menu/:id' => 'admin#menu_destroy', as: "admin_delete_menu"
+
   root to: 'home#index'
   get 'fetch_res_data', to: 'fetchdata#fetch_res_data'
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }

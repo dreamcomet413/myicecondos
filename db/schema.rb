@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107023326) do
+ActiveRecord::Schema.define(version: 20151107150050) do
 
   create_table "ahoy_events", force: :cascade do |t|
     t.uuid     "visit_id",   limit: 16
@@ -575,6 +575,22 @@ ActiveRecord::Schema.define(version: 20151107023326) do
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string   "title",            limit: 255
+    t.string   "url",              limit: 255
+    t.integer  "menu_location_id", limit: 4
+    t.integer  "sort_order",       limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "menu_locations", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "prospect_matches", force: :cascade do |t|
     t.string   "title",          limit: 255
