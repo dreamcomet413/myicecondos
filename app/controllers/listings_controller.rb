@@ -121,6 +121,7 @@ class ListingsController < ApplicationController
     end
 
     location_search = params[:province].present? || params[:city].present? || params[:street].present?
+
     respond_to do |format|
       format.html {
         @page_title = "Search Results"
@@ -139,7 +140,7 @@ class ListingsController < ApplicationController
           ahoy.track "Advanced Search", search_attributes: JSON.parse(params[:custom_search]) if params[:custom_search].present?
           ahoy.track "Searched Location", location: params.except!(*[:action, :controller, :format, :page]) if location_search
         end
-        render json: Listing.where(id: params[:ids]).as_json(only: ['id', 'addr', 'municipality', 'county', 'zip', 'lp_dol', 'ml_num', 'type_own1_out', 'latitude', 'longitude', 'br', 'bath_tot', 'visibility']) and return if params[:ids].present?
+        render json: Listing.where(id: params[:ids]).as_json(only: ['id', 'addr', 'municipality', 'county', 'zip', 'lp_dol', 'ml_num', 'type_own1_out', 'latitude', 'longitude', 'br', 'bath_tot', 'visibility', 'sqft']) and return if params[:ids].present?
         custom_search = params[:custom_search].present? ? JSON.parse(params[:custom_search]) : {}
         custom_search["listing_type"] = params[:listing_type] if params[:listing_type].present?
         custom_search["sort_field"] = params[:sort_field] if params[:sort_field].present?
@@ -151,9 +152,11 @@ class ListingsController < ApplicationController
         end
         @listings = Listing.search(params[:query] || "", custom_search).to_a
         full_count = @listings.count
+        @listings = Listing.near([params[:lat], params[:lng]], 10, units: :km).to_a if full_count == 0
         render json: [{count: full_count}] and return if params[:count_only] == "1"
         render json: @listings.as_json(only: ['id']) and return if params[:ids_only] == "1"
-        render json: Listing.near([params[:latitude], params[:longitude]], 20, units: :km).sample(params[:sample].to_i || 30).as_json(only: ['id', 'addr', 'municipality', 'county', 'zip', 'lp_dol', 'ml_num', 'type_own1_out', 'latitude', 'longitude', 'br', 'bath_tot', 'visibility', 'sqft']) << {count: full_count} and return if params[:geolocation]
+        render json: Listing.near([params[:latitude], params[:longitude]], 20, units: :km).sample(params[:sample].to_i || 30).as_json(only: ['id', 'addr', 'municipality', 'county', 'zip', 'lp_dol', 'ml_num', 'type_own1_out', 'latitude',
+        'longitude', 'br', 'bath_tot', 'visibility', 'sqft']) << {count: full_count} and return if params[:geolocation]
         unless params[:paginate] == "0"
           ids_to_use = @listings.paginate(page: params[:page], per_page: params[:per_page] || 12).collect(&:id)
           @listings = Listing.where(id: ids_to_use).order("field(id, #{ids_to_use.join(',')})") if ids_to_use.present?

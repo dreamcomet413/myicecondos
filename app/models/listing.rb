@@ -50,10 +50,14 @@ class Listing < ActiveRecord::Base
       end
 
       filter :term, type_own1_out: additional_attr["type_own1_out"] if additional_attr["type_own1_out"].present?
-      query {string "county: #{additional_attr["county"]}"} if additional_attr["county"].present?
+      query do
+        boolean do
+          must { string "county: #{additional_attr["county"]}" } if additional_attr["county"].present?
+          must { string "municipality: #{additional_attr["municipality"]}" } if additional_attr["municipality"].present?
+          must { string "st: #{additional_attr["st"]}" } if additional_attr["st"].present?
+        end
+      end
       filter :term, featured: 1 if additional_attr["featured"].present?
-      query {string "municipality: #{additional_attr["municipality"]}"} if additional_attr["municipality"].present?
-      query {string "st: #{additional_attr["st"]}"} if additional_attr["st"].present?
       filter :term, listing_type: additional_attr["listing_type"].downcase if additional_attr["listing_type"].present?
       filter :range, created_at: { gte: additional_attr["timestamp"] } if additional_attr["timestamp"].present?
 
@@ -78,7 +82,7 @@ class Listing < ActiveRecord::Base
           filter :term, br: Listable.format_number(additional_attr["search_beds"])
         end
       end
-      size 50000
+      size 25000
       fields {}
       if additional_attr["sort_field"].present?
         sort { by additional_attr["sort_field"].to_sym, additional_attr["sort_field"] == 'lp_dol' ? 'asc' : 'desc' }

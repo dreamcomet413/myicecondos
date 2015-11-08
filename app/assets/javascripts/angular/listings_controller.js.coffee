@@ -410,6 +410,8 @@ app.controller 'ListingsCtrl', ['$scope', '$http', 'Listing', 'Favourite', ($sco
     $scope.search_filters.query = $(".search-filters-autocomplete-field").val()
     $scope.search_filters.locality = $("#refine-locality").val()
     $scope.search_filters.route = $("#refine-route").val()
+    $scope.search_filters.lat = $("#refine-lat").val()
+    $scope.search_filters.lng = $("#refine-lng").val()
     $scope.search_filters.administrative_area_level_1 = $("#refine-administrative_area_level_1").val()
     $scope.search_results_loading = true
     $scope.search_filters["page"] = 1

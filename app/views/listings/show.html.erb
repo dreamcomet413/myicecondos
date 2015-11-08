@@ -120,9 +120,16 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="property-map-image">
-            <%= image_tag "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=#{@listing.latitude},#{@listing.longitude}&heading=0&pitch=10", class: "img-responsive w100" %>
+          <div class="property-map-image" id="street_view" style="height:555px;">
+            <%#= image_tag "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=#{@listing.latitude},#{@listing.longitude}&pitch=10", class: "img-responsive w100" %>
           </div>
+          <script>
+          var fenway = {lat: <%= @listing.latitude %>, lng: <%= @listing.longitude %>};
+          var panorama = new google.maps.StreetViewPanorama(
+              document.getElementById('street_view'), {
+                position: fenway
+              });
+          </script>
         </div>
         <div class="col-sm-12">
           <div class="details-tab">
