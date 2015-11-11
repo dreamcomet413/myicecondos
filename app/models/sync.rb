@@ -6,7 +6,7 @@ class Sync
     update_geocode
     load_location_file
     try_loading_photos
-    ProspectMatch.process_house_alerts
+    #ProspectMatch.process_house_alerts
     # Tire.index("listings").delete
     # Listing.import
   end
@@ -164,12 +164,14 @@ class Sync
                h[k.downcase] = v
              end
            end
-           existing = Listing.where(ml_num: new_hash["ml_num"]).first
-           if existing.present? && existing.visibility == "vow" && visibility == "idx"
-             existing.update_attributes(visibility: "idx")
-           elsif existing.nil?
-             r = Listing.create!(new_hash.merge({visibility: visibility, listing_type: listing_type}))
-             store_photo(visibility, r, client)
+           if new_hash["municipality"] == "Toronto" && (new_hash["addr"].include?("14 York") || new_hash["addr"].include?("12 York"))
+             existing = Listing.where(ml_num: new_hash["ml_num"]).first
+             if existing.present? && existing.visibility == "vow" && visibility == "idx"
+               existing.update_attributes(visibility: "idx")
+             elsif existing.nil?
+               r = Listing.create!(new_hash.merge({visibility: visibility, listing_type: listing_type}))
+               store_photo(visibility, r, client)
+             end
            end
          puts "\nFinish Listing: #{i+1}"
        rescue
@@ -189,9 +191,9 @@ class Sync
        photos.each_with_index do |data, index|
          begin
            s3 = AWS::S3.new
-           object = s3.buckets['nicholasalli'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
+           object = s3.buckets['icecondos'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
            response = object.write(data.body, acl: :public_read)
-           listing.listing_images.create(image_src: "http://nicholasalli.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
+           listing.listing_images.create(image_src: "http://icecondos.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
            puts "#{response}"
          rescue
            puts "File upload failed. #{listing.id}"
@@ -224,9 +226,9 @@ class Sync
          photos.each_with_index do |data, index|
            begin
              s3 = AWS::S3.new
-             object = s3.buckets['nicholasalli'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
+             object = s3.buckets['icecondos'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
              response = object.write(data.body, acl: :public_read)
-             listing.listing_images.create(image_src: "http://nicholasalli.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
+             listing.listing_images.create(image_src: "http://icecondos.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
              i += 1
              puts "#{response}"
              puts "count: #{i}"
@@ -262,9 +264,9 @@ class Sync
          photos.each_with_index do |data, index|
            begin
              s3 = AWS::S3.new
-             object = s3.buckets['nicholasalli'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
+             object = s3.buckets['icecondos'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
              response = object.write(data.body, acl: :public_read)
-             listing.listing_images.create(image_src: "http://nicholasalli.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
+             listing.listing_images.create(image_src: "http://icecondos.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
              i += 1
              puts "#{response}"
              puts "count: #{i}"

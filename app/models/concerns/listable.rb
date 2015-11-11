@@ -1,7 +1,7 @@
 module Listable
   extend ActiveSupport::Concern
 
-  LISTABLE_ACCESSORS = %w(full_address address province city postal_code street price sale rent bedrooms bathrooms view_count mls description images type city_listing_count title class_name _type)
+  LISTABLE_ACCESSORS = %w(full_address address province city postal_code street price sale rent bedrooms bathrooms view_count mls description images type city_listing_count title class_name _type unit_num stories)
 
   def full_address
     "#{address}, #{city}, #{province}, #{postal_code}"
@@ -65,6 +65,10 @@ module Listable
 
   def description
     ad_text
+  end
+
+  def main_image
+    listing_images.sample(1).try(:first).try(:image_src) || "/missing-image.png"
   end
 
   def images

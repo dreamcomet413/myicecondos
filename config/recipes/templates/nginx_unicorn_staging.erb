@@ -8,22 +8,10 @@ upstream unicorn_fat_free_crm_stagins  {
 }
 
 server {
-   listen       80;
-   server_name  www.beta.nicholasalli.ca;
-   rewrite ^(.*) http://beta.nicholasalli.ca$1 permanent;
-}
-
-server {
-   listen       80;
-   server_name  69.28.67.197;
-   rewrite ^(.*) http://beta.nicholasalli.ca$1 permanent;
-}
-
-server {
     listen       80;
 
     client_max_body_size 4G;
-    server_name crm.nicholasalli.ca;
+    server_name 45.58.37.92/crm;
 
     # ~2 seconds is often enough for most folks to parse HTML/CSS and
     # retrieve needed images/icons/frames, connections are cheap in
@@ -109,7 +97,7 @@ server {
     listen       80;
 
     client_max_body_size 4G;
-    server_name beta.nicholasalli.ca;
+    server_name 45.58.37.92;
 
     # ~2 seconds is often enough for most folks to parse HTML/CSS and
     # retrieve needed images/icons/frames, connections are cheap in

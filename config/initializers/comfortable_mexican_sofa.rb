@@ -9,7 +9,7 @@ end
 
 ComfortableMexicanSofa.configure do |config|
   # Title of the admin area
-  config.cms_title = 'Nicholas Alli CMS'
+  config.cms_title = 'Ice Condos CMS'
   config.admin_auth = 'CmsDeviseAuth'
   # Controller that is inherited from CmsAdmin::BaseController
   #   config.base_controller = 'ApplicationController'

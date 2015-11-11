@@ -3,7 +3,7 @@ development:
   facebook_app_secret: 733bfae3dd1979a184d46577c6f63661
   google_app_id: 551744300503-otfj9ags9o15nhgso1rjg3omtng4rsvv.apps.googleusercontent.com
   google_app_secret: QuA2nB49GTyWsyuBVRwZaUcu
-  crm_api_url: http://alli-crm.dev
+  crm_api_url: http://icecondos-crm.dev
   crm_api_token: ZuB2nB24GTyWsyuPVRwMaZmi
   mapbox_token: pk.eyJ1IjoidHp1YnlhayIsImEiOiIxNmI5OTMzYzM0NTdhZjc3MDJiNGQ5YjI0NWQ2MTg0YSJ9.xA_OjQLoZREbHhOX-XW0jQ
   mapbox_map: tzubyak.m8nb9c8d
@@ -17,7 +17,7 @@ staging:
   facebook_app_secret: 59c6656bb3342509e53f08285b7dc2ed
   google_app_id: 551744300503-ivgml300qa557ptghs7ddutk9h9q3h5u.apps.googleusercontent.com
   google_app_secret: 8lghZVyl99k2KInhzKkIW-wR
-  crm_api_url: http://crm.alli.ca
+  crm_api_url: http://45.58.37.92/crm
   crm_api_token: ZuB2nB24GTyWsyuPVRwMaZmi
   mapbox_token: pk.eyJ1IjoidHp1YnlhayIsImEiOiIxNmI5OTMzYzM0NTdhZjc3MDJiNGQ5YjI0NWQ2MTg0YSJ9.xA_OjQLoZREbHhOX-XW0jQ
   mapbox_map: tzubyak.m8nb9c8d
@@ -31,7 +31,7 @@ production:
   facebook_app_secret: 59c6656bb3342509e53f08285b7dc2ed
   google_app_id: 551744300503-ivgml300qa557ptghs7ddutk9h9q3h5u.apps.googleusercontent.com
   google_app_secret: 8lghZVyl99k2KInhzKkIW-wR
-  crm_api_url: http://crm.nicholasalli.com
+  crm_api_url: http://crm.icecondos.com
   crm_api_token: ZuB2nB24GTyWsyuPVRwMaZmi
   mapbox_token: pk.eyJ1IjoidHp1YnlhayIsImEiOiIxNmI5OTMzYzM0NTdhZjc3MDJiNGQ5YjI0NWQ2MTg0YSJ9.xA_OjQLoZREbHhOX-XW0jQ
   mapbox_map: tzubyak.m8nb9c8d

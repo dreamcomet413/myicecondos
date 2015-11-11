@@ -1,200 +1,31 @@
 <footer>
-	<div class="footer-top">
-		<div class="social">
-			<div class="container">
-				<div class="title">
-					GET CONNECTED WITH NICHOLAS
-				</div>
-				<ul>
-					<li><a href="<%= SiteConfiguration.first.try(:facebook_url) %>" target="_blank"><i class="fa fa-facebook"></i></a></li>
-					<li><a href="<%= SiteConfiguration.first.try(:twitter_url) %>" target="_blank"><i class="fa fa-twitter"></i></a></li>
-					<li><a href="<%= SiteConfiguration.first.try(:blog_url) %>">Blog</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="links">
-			<div class="container">
-				<ul>
-					<% l = MenuLocation.where(name: "Footer").first %>
-					<% l.menu_items.each do |m| %>
-						<li><%= link_to m.title, m.url %></li>
-					<% end if l %>
-				</ul>
-			</div>
-		</div>
-		<div class="logo">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8">
-						<a href="/"><%= image_tag "logo-footer.png" %></a>
-					</div>
-					<div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
-						<a href="http://www.royallepage.ca/en/agent/ontario/ajax/nicholas-alli/46147/" target="_blank"><%= image_tag "RLP.png" %></a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<br>
-		<div class="copyright">
-			<div class="container">
-				<p>&copy; Copyright 2015 Nicholas Alli</p>
-				<p>Nicholas Alli is a Licensed Real Estate Agent operating in Toronto, Ontario through Royal Le Page Connect Realty Brokerage. All Rights Reserverd.  Not intended to solicit buyers and sellers currently under contract. MLS®, REALTOR®, and the associated logos are trademarks of the Canadian Real Estate Association.</p>
-			</div>
-		</div>
-	</div>
-	<div class="footer-bottom">
-		<div class="container">
-			<div class="powered-by">
-				<span>Powered By</span>&nbsp;<a href="http://variationmedia.com/" target="_blank"><%= image_tag "logo-vm.png" %></a>
-			</div>
-		</div>
-	</div>
-</footer>
+  <% if params[:controller] == "home" && params[:action] == "index" %>
+    <div class="row hidden-xs logos">
+      <div class="col-sm-6">
+  			<%= image_tag "footer-left.png", width: "207", height: "56" %>
+      </div>
+      <div class="col-sm-6">
+  			<%= image_tag "footer-right.png", width: "250", height: "56", class: "pull-right" %>
+      </div>
+    </div>
 
-<div class="modal fade" id="modal-advanced-search" tabindex="-1" role="dialog">
-  	<div class="modal-dialog">
-    	<div class="modal-content">
-      		<div class="modal-header icon-user">
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        		<h4 class="modal-title">SEARCH</h4>
-      		</div>
-      		<div class="modal-body" style="padding:25px;">
-            <%= form_tag listings_path, method: :get, id: "advanced_search_detail_fields" do %>
-              <div class="box-grey">
-                Enter Address, Neighborhood, City, Zip or Keyword
-                <div class="form-group no-margin">
-                  <%= text_field_tag :query, params[:query], class: "form-control advanced-search-autocomplete-field", placeholder: "Search Properties" %>
-                  <small>Examples: "Phoenix, AZ" "Lincoln Park, Chicage, IL" "90210"</samll>
-                </div>
-                <input name="autocomplete_form" type="hidden" value="true">
-                <input name="route" type="hidden" value="">
-                <input name="locality" type="hidden" value="">
-                <input name="administrative_area_level_1" type="hidden" value="">
-                <input name="lat" type="hidden" value="">
-                <input name="lng" type="hidden" value="">
-              </div>
-							<hr>
-              <div class="box-grey">
-                <div class="row">
-                	<div class="col-sm-3">
-                  	<div class="form-group">
-                      <%= select_tag 'custom_search[search_beds]', options_for_select(beds_options), class: "form-control", id: "search_beds_select" %>
-                    </div>
-                  </div>
-                	<div class="col-sm-3">
-                  	<div class="form-group">
-                      <%= select_tag 'custom_search[search_bath]', options_for_select(baths_options), class: "form-control", id: "search_baths_select" %>
-                    </div>
-                  </div>
-                	<div class="col-sm-6">
-                  	<%= select_tag 'custom_search[type_own1_out]', options_for_select([["Detached Homes", "Detached"], ["Semi-detached Homes", "Semi-Detached"], ["Multiplexes", "Multiplex"], ["Townhouses", "Att/Row/Twnhouse"], ["Cottages", "Cottage"], ["Condos", "Condo Apt"], ["Farms", "Farm"]]), class: "form-control", include_blank: "All Property Types" %>
-                  </div>
-                </div>
-                <div class="row">
-                	<div class="col-sm-6">
-                  	<div class="form-group no-margin">
-                      <%= select_tag "custom_search[min_price]", options_for_select(price_options), include_blank: "No Min Price", class: "form-control" %>
-                    </div>
-                  </div>
-                	<div class="col-sm-6">
-                  	<div class="form-group no-margin">
-                      <%= select_tag "custom_search[max_price]", options_for_select(price_options), include_blank: "No Max Price", class: "form-control" %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-							<hr>
-              <div class="box-grey">
-                <div class="row">
-                	<div class="col-sm-4">
-                    <div class="radio no-margin">
-                      <label style="font-size:16px;">
-                        <input type="radio" name="custom_search[listing_type]" id="optionsRadios1" value="Residential" checked>
-                        All Homes
-                      </label>
-                    </div>
-                  </div>
-                	<div class="col-sm-4">
-                    <div class="radio no-margin">
-                      <label style="font-size:16px;">
-                        <input type="radio" name="custom_search[listing_type]" id="optionsRadios2" value="Condo">
-                        Condominiums
-                      </label>
-                    </div>
-                  </div>
-                	<div class="col-sm-4">
-                    <div class="radio no-margin">
-                      <label style="font-size:16px;">
-                        <input type="radio" name="custom_search[listing_type]" id="optionsRadios3" value="PreConstruction">
-                        Pre Construction
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-							<hr>
-              <div class="box-grey">
-                <div class="row">
-                	<div class="col-sm-4">
-                    <div class="checkbox no-margin">
-                      <label style="font-size:16px;">
-                        <input type="checkbox" name="custom_search[a_c]" value="true">
-                        A/C
-                      </label>
-                    </div>
-                  </div>
-                	<div class="col-sm-4">
-                    <div class="checkbox no-margin">
-                      <label style="font-size:16px;">
-                        <input type="checkbox" name="custom_search[pool]" value="true">
-                        Pool
-                      </label>
-                    </div>
-                  </div>
-                	<div class="col-sm-4">
-                    <div class="checkbox no-margin">
-                      <label style="font-size:16px;">
-                        <input type="checkbox" name="custom_search[fpl_num]" value="true">
-                        Fireplace
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                	<div class="col-sm-4">
-                    <div class="checkbox no-margin">
-                      <label style="font-size:16px;">
-                        <input type="checkbox" name="custom_search[gar_type]" value="true">
-                        Garage
-                      </label>
-                    </div>
-                  </div>
-                	<div class="col-sm-4">
-                    <div class="checkbox no-margin">
-                      <label style="font-size:16px;">
-                        <input type="checkbox" name="custom_search[waterfront]" value="true">
-                        Waterfront
-                      </label>
-                    </div>
-                  </div>
-                	<div class="col-sm-4">
-                    <div class="checkbox no-margin">
-                      <label style="font-size:16px;">
-                        <input type="checkbox" name="custom_search[acres]" value="true">
-                        Acreage
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-							<hr>
-              <button type="submit" class="btn btn-primary btn-search pull-right">SEARCH</button>
-              <div class="clearfix"></div>
-            <% end %>
-      		</div>
-    	</div>
-  	</div>
-</div>
+    <div style="position: relative; top: -56px;">
+      <a href="#" id="scroll-page-top" class="center-block" style="width: 50px"><%= image_tag "icons/up.png", width: "50", height: "49" %></a>
+      <a href="#" id="scroll-page-down" class="center-block" style="width: 50px"><%= image_tag "icons/down.png", width: "50", height: "49" %></a>
+    </div>
+  <% end %>
+
+  <div class="bottom">
+    <hr>
+
+    <div class="row">
+      <div class="col-xs-6">12 YORK ST, TORONTO, ON M5J 0A9, CANADA</div>
+      <div class="col-xs-6">
+        <div class="pull-right">© 2015. ALL RIGTHS RESERVED <a href="#">TERMS OF USE</a> <a href="#">PRIVACY</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <% unless user_signed_in? %>
   <div class="modal fade" id="modal-login" tabindex="-1" role="dialog">

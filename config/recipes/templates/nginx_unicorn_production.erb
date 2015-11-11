@@ -9,15 +9,15 @@ upstream unicorn_fat_free_crm_production  {
 
 server {
    listen       80;
-   server_name  www.nicholasalli.com;
-   rewrite ^ http://nicholasalli.com$request_uri? permanent;
+   server_name  www.icecondos.com;
+   rewrite ^ http://icecondos.com$request_uri? permanent;
 }
 
 server {
     listen       80;
 
     client_max_body_size 4G;
-    server_name crm.nicholasalli.com;
+    server_name crm.icecondos.com;
 
     # ~2 seconds is often enough for most folks to parse HTML/CSS and
     # retrieve needed images/icons/frames, connections are cheap in
@@ -103,7 +103,7 @@ server {
     listen       80;
 
     client_max_body_size 4G;
-    server_name nicholasalli.com;
+    server_name icecondos.com;
 
     # ~2 seconds is often enough for most folks to parse HTML/CSS and
     # retrieve needed images/icons/frames, connections are cheap in

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="IceCondos" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <%= display_meta_tags site: 'Ice Condos' %>
+    <link rel="shortcut icon" href="">
+
+    <title><%= @page_title || "Ice Condos" %></title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <% homepage = params[:action] == "index" && params[:controller] == "home" %>
+  <body data-signed-in="<%= user_signed_in? ? 'true' : 'false' %>" id="page-top">
+    <%= render "layouts/header" %>
+    <% unless homepage %>
+      <%= render "layouts/flash_messages" %>
+    <% end %>
+    <%= yield %>
+
+    <%= render "layouts/footer" %>
+  </body>
+</html>

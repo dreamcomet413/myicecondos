@@ -1,23 +1,14 @@
 <!DOCTYPE html>
-<html ng-app="NicholasAlli" lang="en">
+<html ng-app="IceCondos" lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <%= display_meta_tags site: 'Nicholas Alli' %>
+    <%= display_meta_tags site: 'Ice Condos' %>
     <link rel="shortcut icon" href="">
 
-    <title><%= @page_title || "Nicholas Alli" %></title>
+    <title><%= @page_title || "Ice Condos" %></title>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places,geometry"></script>
     <%= javascript_include_tag 'application' %>
-    <script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0" type="text/javascript"></script>
-    <script src="/maps/jquery.ui.bmap.full.min.js" type="text/javascript"></script>
-    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js'></script>
-    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css' rel='stylesheet' />
-    <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
-    <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,14 +19,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <% homepage = params[:action] == "index" && params[:controller] == "home" %>
-  <body data-signed-in="<%= user_signed_in? ? 'true' : 'false' %>">
-    <%= render "layouts/header" %>
-    <% unless homepage %>
+  <body data-signed-in="<%= user_signed_in? ? 'true' : 'false' %>" id="buyer">
+    <div class="container-fluid" id="page-top">
+      <%= render "layouts/header" %>
       <%= render "layouts/flash_messages" %>
-    <% end %>
-    <%= yield %>
-
+      <%= yield %>
+    </div>
     <%= render "layouts/footer" %>
   </body>
 </html>

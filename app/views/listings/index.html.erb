@@ -1,197 +1,99 @@
 <% search_params = params.except(*[:action, :controller]).to_json %>
-<div class="page-header">
+<section id="about" class="section" ng-controller="ListingsCtrl" ng-init="load_search_page('<%= search_params %>')">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-1">
-        <div class="imagebox">
-          <%= image_tag "icon-home.png" %>
-        </div>
+    <div class="text-center">
+      <p class="top">THE ICE CONDO BUILDINGS</p>
+    </div>
+
+    <% if params[:rent] == "1" %>
+      <%= image_tag "captions/rent.png", class: "header" %>
+    <% else %>
+      <%= image_tag "captions/buy.png", class: "header" %>
+    <% end %>
+
+    <div class="subnav">
+      <ul class="list-inline">
+        <li><a href="#" class="active">New Condos</a></li>
+        <li><a href="#">Offers</a></li>
+        <li><a href="#">Sellers Condos</a></li>
+        <li class="pull-right"><a href="#">From new to old</a></li>
+      </ul>
+    </div>
+
+    <div class="condo" ng-repeat="o_listing in listings">
+      <div class="col-md-5">
+        <img ng-src="{{o_listing.main_image}}" onerror="this.onerror=null;this.src='/missing-image.png';" class="img-responsive">
       </div>
-      <div class="col-sm-2">
-        <div class="info">
-          <span>Quick Search</span>
-          <p>Let Nicholas help find your next home</p>
+      <div class="col-md-7">
+        <div class="row">
+          <div class="col-sm-9">
+            <h3>Unit #{{o_listing.unit_num}}<br>Floor {{o_listing.stories}}</h3>
+          </div>
+          <div class="col-sm-3">
+            <div class="alert-info">NEW</div>
+          </div>
+          <div class="col-sm-12">
+            <hr>
+            <p>{{o_listing.ad_text}}</p>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-9">
-        <div class="searchbox">
-          <%= form_tag listings_path, method: :get, id: "home_detail_fields"  do %>
-            <div class="input-group">
-              <%= text_field_tag :query, params[:query], class: "form-control home-autocomplete-field", placeholder: "Search by Address, City, Postal Code, Neighborhood or MLS" %>
-              <input name="autocomplete_form" type="hidden" value="true">
-              <input name="route" type="hidden" value="">
-              <input name="locality" type="hidden" value="">
-              <input name="administrative_area_level_1" type="hidden" value="">
-              <input name="lat" type="hidden" value="">
-              <input name="lng" type="hidden" value="">
-              <span class="input-group-btn">
-                <button type="submit" class="btn">Search</button>
-              </span>
-            </div>
-          <% end %>
+        <div class="row" style="padding-bottom: 20px;">
+          <div class="col-lg-offset-2 col-lg-5">
+            <ul class="list-unstyled">
+              <li><span class="gold">MLS:</span> {{o_listing.ml_num}}</li>
+              <li><span class="gold">SQ.FT:</span> {{o_listing.sqft}}</li>
+              <li><span class="gold">BEDROOMS:</span> {{o_listing.br}}</li>
+              <li><span class="gold">BATHROOMS:</span> {{o_listing.bath_tot}}</li>
+            </ul>
+          </div>
+          <div class="col-lg-5 text-right-lg">
+            <h2 class="gold price">{{o_listing.lp_dol ? (o_listing.lp_dol | currency : "$CAD ").slice(0, -3) : "--"}}</h2>
+
+            <div class="text-xsmall vspace">Ice is a way of life, it is at once urban and cl</div>
+            <a class="btn btn-gold">More Information</a>
+          </div>
+        </div>
+        <hr>
+        <div class="social-icons">
+          <a href="#" class="social"><span class="icon twitter"></span></a>
+          <a href="#" class="social"><span class="icon facebook"></span></a>
         </div>
       </div>
     </div>
+    <a ng-click="search_paging('<%= search_params %>')" id="load_more_search_results"></a>
   </div>
-</div>
+
+  <div class="row hidden-xs logos">
+    <div class="col-sm-6">
+      <%= image_tag "footer-left.png", width: "207", height: "56" %>
+    </div>
+    <div class="col-sm-6">
+      <%= image_tag "footer-right.png", width: "250", height: "56", class: "pull-right" %>
+    </div>
+  </div>
+
+  <div style="position: relative; top: -56px;">
+    <a href="#page-top" class="center-block page-scroll" style="width: 50px"><%= image_tag "icons/up.png", width: "50", height: "49" %></a>
+  </div>
+</section>
+
+
+
+
+<% if false %>
 <div class="main-container" ng-controller="ListingsCtrl" ng-init="load_search_page('<%= search_params %>')" style="min-height:100%;">
   <div class="property-listing-container">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-          <div class="page-title">
-            <div class="row">
-              <div class="col-sm-8">
-                <a class="resort_link btn btn-alter active" ng-click="resort_search_results('<%= search_params %>', 'timestamp_sql')">Newest</a>
-                <a class="resort_link btn btn-alter" ng-click="resort_search_results('<%= search_params %>', 'lp_dol')">Cheapest</a>
-              </div>
-              <div class="col-sm-4">
-                <div class="right-controls">
-                  <a href="" class="resort_link btn btn-alter active" id="switch_to_map_view" ng-click="toggle_search_results('<%= MAPS_API_KEY %>','<%= search_params %>')">List View</a>
-                  <a href="" class="resort_link btn btn-alter" id="switch_to_map_view" ng-click="toggle_search_results('<%= MAPS_API_KEY %>','<%= search_params %>')">Map View</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="searchbar">
-            <div class="title">
-              Refine Search
-            </div>
-            <div class="search-form">
-              <form name="search_filters_form" novalidate ng-submit="refine_search_results()" id="search_filters_details_fields">
-                <input name="autocomplete_form" type="hidden" value="true" ng-model="search_filters.autocomplete_form" ng-init="search_filters.autocomplete_form = true">
-                <input name="route" type="hidden" value="<%= params[:route] %>" ng-model="search_filters.route" ng-init="search_filters.route = '<%= params[:route] %>'" id="refine-route">
-                <input name="locality" type="hidden" value="<%= params[:locality] %>" ng-model="search_filters.locality" ng-init="search_filters.locality = '<%= params[:locality] %>'" id="refine-locality">
-                <input name="lat" type="hidden" value="<%= params[:lat] %>" ng-model="search_filters.lat" ng-init="search_filters.lat = '<%= params[:lat] %>'" id="refine-lat">
-                <input name="lng" type="hidden" value="<%= params[:lng] %>" ng-model="search_filters.lng" ng-init="search_filters.lng = '<%= params[:lng] %>'" id="refine-lng">
-                <input name="administrative_area_level_1" type="hidden" value="<%= params[:administrative_area_level_1] %>" ng-model="search_filters.administrative_area_level_1" ng-init="search_filters.administrative_area_level_1 = '<%= params[:administrative_area_level_1] %>'" id="refine-administrative_area_level_1">
-                <div class="form-group">
-                  <%= select_tag 'custom_search[type_own1_out]', options_for_select([["Detached Homes", "Detached"], ["Semi-detached Homes", "Semi-Detached"], ["Multiplexes", "Multiplex"], ["Townhouses", "Att/Row/Twnhouse"], ["Cottages", "Cottage"], ["Condos", "Condo Apt"], ["Farms", "Farm"]], params[:custom_search].try(:[], :type_own1_out)), class: "form-control", include_blank: "All Property Types", "ng-model" => "search_filters.custom_search.type_own1_out", "ng-init" => "search_filters.custom_search.type_own1_out = '#{params[:custom_search].try(:[], :type_own1_out)}'" %>
-                </div>
-                <div class="form-group">
-                  <%= select_tag 'custom_search[search_bath]', options_for_select(baths_options, params[:custom_search].try(:[], :search_bath)), class: "form-control", id: "search_baths_select", "ng-model" => "search_filters.custom_search.search_bath", "ng-init" => "search_filters.custom_search.search_bath = '#{params[:custom_search].try(:[], :search_bath)}'" %>
-                </div>
-                <div class="form-group">
-                  <%= select_tag 'custom_search[search_beds]', options_for_select(beds_options, params[:custom_search].try(:[], :search_beds)), class: "form-control", id: "search_beds_select", "ng-model" => "search_filters.custom_search.search_beds", "ng-init" => "search_filters.custom_search.search_beds = '#{params[:custom_search].try(:[], :search_beds)}'" %>
-                </div>
-                <div class="form-group">
-                  <%= select_tag "custom_search[min_price]", options_for_select(price_options, params[:custom_search].try(:[], :min_price)), include_blank: "No Min Price", class: "form-control", "ng-model" => "search_filters.custom_search.min_price", "ng-init" => "search_filters.custom_search.min_price = '#{params[:custom_search].try(:[], :min_price)}'" %>
-                </div>
-                <div class="form-group">
-                  <%= select_tag "custom_search[max_price]", options_for_select(price_options, params[:custom_search].try(:[], :max_price)), include_blank: "No Max Price", class: "form-control", "ng-model" => "search_filters.custom_search.max_price", "ng-init" => "search_filters.custom_search.max_price = '#{params[:custom_search].try(:[], :max_price)}'" %>
-                </div>
-                <div class="separator"></div>
-                <div class="form-group">
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="custom_search[listing_type]" ng-model="search_filters.custom_search.listing_type" ng-init="search_filters.custom_search.listing_type = '<%= params[:custom_search].try(:[], :listing_type) || params[:listing_type] %>'" id="optionsRadios4" value="Residential" <% if params[:custom_search].try(:[], :listing_type) == "Residential" || params[:listing_type] == "Residential" %>checked<% end %>>
-                      Homes
-                    </label>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="custom_search[listing_type]" ng-model="search_filters.custom_search.listing_type" ng-init="search_filters.custom_search.listing_type = '<%= params[:custom_search].try(:[], :listing_type) || params[:listing_type] %>'" id="optionsRadios5" value="Condo" <% if params[:custom_search].try(:[], :listing_type) == "Condo" || params[:listing_type] == "Condo" %>checked<% end %>>
-                      Condominiums
-                    </label>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="custom_search[listing_type]" ng-model="search_filters.custom_search.listing_type" ng-init="search_filters.custom_search.listing_type = '<%= params[:custom_search].try(:[], :listing_type) || params[:listing_type] %>'" id="optionsRadios6" value="PreConstruction" <% if params[:custom_search].try(:[], :listing_type) == "PreConstruction" || params[:listing_type] == "PreConstruction" %>checked<% end %>>
-                      Pre Construction
-                    </label>
-                  </div>
-                </div>
-                <div class="separator"></div>
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="custom_search[a_c]" ng-model="search_filters.custom_search.a_c" ng-init="search_filters.custom_search.a_c = <%= params[:custom_search].try(:[], :a_c).present? %>" value="true" <% if params[:custom_search].try(:[], :a_c).present? %>checked<% end %>>
-                          A/C
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="custom_search[pool]" ng-model="search_filters.custom_search.pool" ng-init="search_filters.custom_search.pool = <%= params[:custom_search].try(:[], :pool).present? %>" value="true" <% if params[:custom_search].try(:[], :pool).present? %>checked<% end %>>
-                          Pool
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="custom_search[gar_type]" ng-model="search_filters.custom_search.gar_type" ng-init="search_filters.custom_search.gar_type = <%= params[:custom_search].try(:[], :gar_type).present? %>" value="true" <% if params[:custom_search].try(:[], :gar_type).present? %>checked<% end %>>
-                          Garage
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="custom_search[waterfront]" ng-model="search_filters.custom_search.waterfront" ng-init="search_filters.custom_search.waterfront = <%= params[:custom_search].try(:[], :waterfront).present? %>" value="true" <% if params[:custom_search].try(:[], :waterfront).present? %>checked<% end %>>
-                          Waterfront
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="custom_search[acres]" ng-model="search_filters.custom_search.acres" value="true" ng-init="search_filters.custom_search.acres = <%= params[:custom_search].try(:[], :acres).present? %>" <% if params[:custom_search].try(:[], :acres).present? %>checked<% end %>>
-                          Acreage
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="custom_search[fpl_num]" ng-model="search_filters.custom_search.fpl_num" ng-init="search_filters.custom_search.fpl_num = <%= params[:custom_search].try(:[], :fpl_num).present? %>" value="true" <% if params[:custom_search].try(:[], :fpl_num).present? %>checked<% end %>>
-                          Fireplace
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="separator"></div>
-                <div class="form-group">
-                  <input type="submit" class="btn" value="Refine Search" />
-                </div>
-              </form>
-            </div>
-          </div>
-          <%= render "layouts/subscribe_form" %>
-        </div>
         <div class="col-sm-8">
-
-          <div class="map-container" id="map_results" style="display:none;">
-            <div class="progress-overlay col-md-12" ng-show="map_loading">
-              <div class="progress-container">
-                Loading...
-              </div>
-            </div>
-            <div id="map" style="position:absolute; top:0; bottom:0; left:0; width:100%;"></div>
-          </div>
 
 
           <div class="property-listing" id="search_results">
-            <div ng-show="!search_results_loading && listings.length < 1" class="row">
-              <div class="col-md-12 center-text">
-                <h3>Unfortunately, there are no listings matching your request</h3>
-              </div>
-            </div>
             <ul ng-show="listings.length > 0">
               <li ng-repeat="o_listing in listings">
                 <div class="property-box">
                   <div class="imagebox">
-                    <img ng-src="http://nicholasalli.s3.amazonaws.com/listing_photos/listing_{{o_listing.id}}_0.jpg" onerror="this.onerror=null;this.src='/missing-image.png';">
+                    <img ng-src="http://icecondos.s3.amazonaws.com/listing_photos/listing_{{o_listing.id}}_0.jpg" onerror="this.onerror=null;this.src='/missing-image.png';">
                   </div>
                   <div class="place">
                     {{(o_listing.municipality | uppercase) || "NOT AVAILABLE"}}
@@ -232,3 +134,4 @@
     </div>
   </div>
 </div>
+<% end %>

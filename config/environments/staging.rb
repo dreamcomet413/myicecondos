@@ -77,22 +77,23 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'beta.nicholasalli.com' }
+  config.action_mailer.default_url_options = { host: '45.58.37.92' }
 
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => 'nicholasalli-dev'
+      :bucket => 'icecondos-dev'
     }
   }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => '417773c1daf3710ca',
-    :password => '2d716b9a0d1592',
-    :address => 'mailtrap.io',
-    :domain => 'mailtrap.io',
-    :port => '2525',
-    :authentication => :cram_md5
-  }
+      :address   => "smtp.mandrillapp.com",
+      :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
+      :enable_starttls_auto => true, # detects and uses STARTTLS
+      :user_name => "webmaster@kitchenandbath.ca",
+      :password  => "Cjsy9CNAhEspT8OnlAjexA", # SMTP password is any valid API key
+      :authentication => 'login', # Mandrill supports 'plain' or 'login'
+      :domain => '45.58.37.92', # your domain to identify your server when connecting
+    }
 end

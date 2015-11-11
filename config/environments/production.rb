@@ -77,12 +77,12 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'nicholasalli.com' }
+  config.action_mailer.default_url_options = { host: 'icecondos.com' }
 
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => 'nicholasalli'
+      :bucket => 'icecondos'
     }
   }
 
@@ -93,6 +93,6 @@ Rails.application.configure do
       :user_name => "webmaster@kitchenandbath.ca",
       :password  => "Cjsy9CNAhEspT8OnlAjexA", # SMTP password is any valid API key
       :authentication => 'login', # Mandrill supports 'plain' or 'login'
-      :domain => 'nicholasalli.com', # your domain to identify your server when connecting
+      :domain => 'icecondos.com', # your domain to identify your server when connecting
     }
 end

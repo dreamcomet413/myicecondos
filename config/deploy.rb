@@ -20,13 +20,13 @@ require 'capistrano/ext/multistage'
 set :rbenv_ruby_version, "2.1.2"
 
 set :user, "rails"
-set :application, "alli"
+set :application, "icecondos"
 set :deploy_to, "/home/#{user}/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 set :scm, "git"
 set :scm_verbose, true
-set :repository, "git@bitbucket.org:tzubyak/nicholas-alli.git"
+set :repository, "git@bitbucket.org:tzubyak/icecondos.git"
 set :branch, ENV['BRANCH'] ? ENV['BRANCH'] : "master"
 
 default_run_options[:pty] = true

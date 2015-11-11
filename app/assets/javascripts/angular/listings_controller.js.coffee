@@ -1,4 +1,4 @@
-app = angular.module("NicholasAlli", ["ngResource", "ngtimeago", "numberFilter"])
+app = angular.module("IceCondos", ["ngResource", "ngtimeago", "numberFilter"])
 
 app.filter 'makeRange', ->
   (input) ->
@@ -157,6 +157,7 @@ app.controller 'ListingsCtrl', ['$scope', '$http', 'Listing', 'Favourite', ($sco
     else
       search = JSON.parse search
     search["page"] = 1
+    search["paginate"] = 1
     search["sort_field"] = $scope.current_sort if $scope.current_sort
     $scope.results = Listing.query(search, ->
       $scope.results_count = $scope.results.pop().count

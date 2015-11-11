@@ -1,4 +1,4 @@
-server "45.58.37.102", :web, :app, :db, primary: true
+server "45.58.37.92", :web, :app, :db, primary: true
 
 set :rails_env, "staging"
 set :unicorn_user, "#{user}"

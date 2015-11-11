@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
+  layout 'application'
+
   def index
+    render layout: "home"
   end
 
   def privacy
@@ -18,7 +21,7 @@ class HomeController < ApplicationController
   end
 
   def about
-    @title = "I’m Nicholas Alli"
+    @title = "Ice Condos"
     @content = SiteConfiguration.first.try(:about_content)
   end
 

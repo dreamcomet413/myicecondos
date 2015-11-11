@@ -1,38 +1,3 @@
-<div class="page-header">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-1">
-				<div class="imagebox">
-					<%= image_tag "icon-home.png" %>
-				</div>
-			</div>
-			<div class="col-sm-2">
-				<div class="info">
-					<span>Quick Search</span>
-					<p>Let Nicholas help find your next home</p>
-				</div>
-			</div>
-			<div class="col-sm-9">
-				<div class="searchbox">
-					<%= form_tag listings_path, method: :get, id: "home_detail_fields"  do %>
-					<div class="input-group">
-						<%= text_field_tag :query, params[:query], class: "form-control home-autocomplete-field", placeholder: "Search by Address, City, Postal Code, Neighborhood or MLS" %>
-						<input name="autocomplete_form" type="hidden" value="true">
-						<input name="route" type="hidden" value="">
-						<input name="locality" type="hidden" value="">
-						<input name="lat" type="hidden" value="">
-						<input name="lng" type="hidden" value="">
-						<input name="administrative_area_level_1" type="hidden" value="">
-						<span class="input-group-btn">
-							<button type="submit" class="btn">Search</button>
-						</span>
-					</div>
-					<% end %>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 
 <div class="main-container">
 	<div class="about-us">
@@ -54,12 +19,6 @@
 							<br><br>
 							<div class="row">
 								<div class="col-md-10 col-md-offset-1 login-form">
-									<h3 class="text-center" style="line-height:40px !important;">Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market.
-										<br><br>
-										<a href="<%= SiteConfiguration.first.try(:facebook_url) %>" target="_blank"><i class="fa fa-facebook"></i></a>
-										&nbsp;
-										<a href="<%= SiteConfiguration.first.try(:twitter_url) %>" target="_blank"><i class="fa fa-twitter"></i></a>
-									</h3>
 								</div>
 							</div>
 						</div>

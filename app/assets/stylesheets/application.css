@@ -12,12 +12,8 @@
  *
  *= require_self
  *= require bootstrap_and_overrides
+ *= require jquery.fullPage
  *= require main
- *= require listings
- *= require nanoscroller
- *= require owl.carousel
- *= require pin_clusterer
- *= require landings
  *= require bootstrap-select
  *= require social-share-button
  *= require bootstrap-wysihtml5

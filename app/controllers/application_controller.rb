@@ -27,6 +27,6 @@ class ApplicationController < ActionController::Base
   end
 
   def build_meta_tags
-    set_meta_tags(title: @page_title || 'Nicholas Alli', description: SiteConfiguration.first.try(:meta_description), keywords: SiteConfiguration.first.try(:meta_keywords))
+    set_meta_tags(title: @page_title || 'Ice Condos', description: SiteConfiguration.first.try(:meta_description), keywords: SiteConfiguration.first.try(:meta_keywords))
   end
 end

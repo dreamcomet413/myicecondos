@@ -1,160 +1,176 @@
-<div class="main-container" ng-controller="ListingsCtrl">
-  <div class="search-container">
-    <div class="container">
-      <div class="title">
-        <h1>Let us help you find your next home!</h1>
-      </div>
-      <div class="info">
-        Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas Alli prides himself on his ability to provide customers with the latest information about their market, customer service and the correct advice to maximize their investment.
-      </div>
-      <div class="searchbox">
-        <%= form_tag listings_path, method: :get, id: "home_detail_fields"  do %>
-          <div class="input-group">
-            <%= text_field_tag :query, params[:query], class: "form-control home-autocomplete-field", placeholder: "Search by Address, City, Postal Code, Neighborhood or MLS" %>
-            <input name="autocomplete_form" type="hidden" value="true">
-            <input name="route" type="hidden" value="">
-            <input name="locality" type="hidden" value="">
-						<input name="lat" type="hidden" value="">
-						<input name="lng" type="hidden" value="">
-            <input name="administrative_area_level_1" type="hidden" value="">
-            <span class="input-group-btn">
-              <button type="submit" class="btn">Search</button>
-            </span>
-          </div>
-        <% end %>
+<div id="fullpage">
+  <section id="header" class="section">
+    <div class="header-content">
+      <div class="header-content-inner">
+        <!-- nothing yet -->
       </div>
     </div>
-  </div>
-  <div class="properties" ng-init="load_listing_items('featured')">
-    <div class="row" ng-if="search_results_loading">
-      <div class="col-sm-12">
-        <p style="text-align:center;margin-top:20px;">Loading...</p>
-      </div>
-    </div>
-    <div class="row" ng-if="listings.length < 1 && !search_results_loading">
-      <div class="col-sm-12 text-center">
-        <br>
-        Currently there are no featured listings
-        <br><br>
-      </div>
-    </div>
-    <ul ng-if="listings.length > 0 && !search_results_loading">
-      <li ng-repeat="o_listing in listings" class="homepage_item">
-        <img ng-src="http://nicholasalli.s3.amazonaws.com/listing_photos/listing_{{o_listing.id}}_0.jpg" onerror="this.onerror=null;this.src='/missing-image.png';">
-        <div class="items">
-          <div class="place">
-            {{(o_listing.municipality | uppercase) || "NOT AVAILABLE"}}
-          </div>
-          <div class="address">
-            {{o_listing.addr || "Address not available"}}
-          </div>
-          <div class="properties-carousel">
-            <div class="owl-carousel">
-              <div class="item">
-                <%= image_tag "icon-bed.png" %>
-                <span class="title">Beds</span>
-                <span class="numbers">{{o_listing.br || '--'}}</span>
-              </div>
-              <div class="item">
-                <%= image_tag "icon-baths.png" %>
-                <span class="title">Baths</span>
-                <span class="numbers">{{o_listing.bath_tot || '--'}}</span>
-              </div>
-              <div class="item">
-                <%= image_tag "icon-square-feets.png" %>
-                <span class="title">Sq. Ft.</span>
-                <span class="numbers">{{o_listing.sqft || '--'}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="btn-container">
-            <a href="#" class="btn" ng-click="go_to_listing(o_listing.id)">View Property</a>
-          </div>
+    <div class="button-bar text-center">
+      <a href="buyers.html" class="btn btn-gold text-uppercase">Buyers</a>
+      <a href="renters.html" class="btn btn-gold text-uppercase">Renters</a>
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-push-2 col-md-6 col-md-push-3 text-center">
+          ICE IS A WAY OF LIFE, IT IS AT ONCE URBAN AND CLOSE TO NATURE, INSPIRED BY ARCHITECTURE THAT WHISPERS TIMELESS
+          SIMPLICITY THROUGH CLEAN ELEGANT LINES.
         </div>
-      </li>
-    </ul>
-  </div>
-  <% if false %>
-  <div class="feedback-container">
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="building hidden-xs hidden-sm"></div>
     <div class="container">
       <div class="row">
-        <div class="col-sm-6">
-          <div class="feedback">
-            Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market.
-          </div>
+        <div class="col-md-7 col-md-offset-5">
+          <p class="top">THE ICE CONDO BUILDINGS</p>
         </div>
-        <div class="col-sm-6">
-          <div class="feedback-details">
-            Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas Alli prides himself on his ability to provide customers with the latest information about their market, customer service and the correct advice to maximize their investment.
-          </div>
+      </div>
+      <div class="row">
+        <%= image_tag "captions/tall.png", class: "ice-caption" %>
+      </div>
+      <div class="row">
+        <div class="col-md-7 col-md-offset-5 col-lg-5 col-md-offset-7">
+          <h3>ICE IS A WAY OF LIFE, IT IS AT ONCE URBAN AND CLOSE TO NATURE, INSPIRED BY ARCHITECTURE THAT WHISPERS
+            TIMELESS
+            SIMPLICITY THROUGH CLEAN ELEGANT LINES.</h3>
+
+          <div class="line"></div>
+
+          <p style="padding-left: 40px">Ice is a way of life, it is at once urban and close to nature, inspired by
+            architecture that whispers
+            timeless simplicity through clean elegant lines. ICE is tall, sleek and ultimately cool. ICE is
+            Scandinavian-inspired design emerging as a gleaming amalgam of glass and metal from the concrete labyrinth
+            of
+            Canada’s largest metropolis. ICE offers a green roof that will impact the Toronto skyline with lush, oxygen
+            creating landscaping, while creating a canopy of organic shelter over the bustling plaza below. ICE is a
+            condominium living that melds its contemporary design with trendsetting lifestyle amenities in Toronto’s
+            premiere waterfront location. ICE is prime real estate, sculpted for urban purchasers.</p>
         </div>
       </div>
     </div>
-  </div>
-  <div class="welcome-container">
+  </section>
+
+  <section id="design" class="section">
+    <%= image_tag "building-2.jpg", class: "img-responsive" %>
+
     <div class="container">
-      <div class="welcome">
-        <div class="info">
-          <h1>Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market.</h1>
-          <p>Nicholas Alli is a boutique like real estate agent servicing the Ajax and Pickering Market. As a young, up and coming Real Estate agent Nicholas.</p>
-          <a href="/contact" class="btn">Contact Nicholas</a>
+      <p class="top">THE ICE CONDO BUILDINGS</p>
+      <%= image_tag "captions/design.png", class: "img-responsive" %><br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Ice is a way of life, it is at once urban and close to nature, inspired by architecture that whispers
+            timeless simplicity through clean elegant lines. ICE is tall, sleek and ultimately cool. ICE is
+            Scandinavian-inspired design emerging as a gleaming amalgam of glass and metal from the concrete labyrinth
+            of
+            Canada’s largest metropolis.</p></div>
+
+        <div class="col-md-6">
+          <h3>ICE IS A COLLABORATION OF SOME OF THE FINEST MINDS AND BRIGHTEST TALENTS OF THE DAY. IN SEARCH FOR THE
+            NEWEST CONDS OF CLASSIC SCANDINAVIAN DESIGN THE ICE TEAM TRAVELED TO SWEDEN AND NORWAY IN THE SPRING OF
+            2008.</h3>
+
+          <div class="line"></div>
         </div>
       </div>
     </div>
-  </div>
-  <% end %>
-  <div class="mortgage-calculator-container">
-    <div class="container">
-      <div class="info">
-        <h1>Mortgage calculator</h1>
-        <p>Use this calculator to estimate your monthly mortgage payment, including taxes and insurance. Simply enter the price of the home, your down payment, and details about the home loan to calculate your payment breakdown, schedule, and more.</p>
-      </div>
-      <div class="calculator">
-        <div class="home-price-caption">
-          Home Price
-        </div>
-        <div class="down-payment-caption">
-          Down Payment
-        </div>
-        <div class="rate-caption">
-          Rate, %
-        </div>
-        <div class="clearfix"></div>
-        <form name="mortgage_form" novalidate ng-submit="mortgage_form.$valid && submit_mortgage_form()" id="mortgage_form" ng-init="basic_mortgage()">
-          <div class="home-price">
-            <input name="home_price" ng-model="mortgage.home_price" required type="text" class="form-control" format="number" id="" placeholder="$600,000">
-          </div>
-          <div class="down-payment">
-            <input name="down_payment" ng-model="mortgage.down_payment" type="text" class="form-control price" id="" placeholder="20" format="number">
-              &nbsp;&nbsp;
-            <div class="btn-group">
-              <a class="btn btn-default mortgage_btn" ng-click="change_down_payment('dol')"> $ </a>
-              <a class="btn btn-default active mortgage_btn" ng-click="change_down_payment('percent')"> %</a>
+  </section>
+
+  <section id="amenities" class="section">
+    <div class="container-fluid">
+      <div class="col-md-6">
+        <div class="col-sm-10 col-sm-offset-2">
+          <p class="top">THE ICE CONDO BUILDINGS</p>
+          <%= image_tag "captions/amenities.png", class: "img-responsive caption" %>
+
+          <div class="row">
+            <div class="col-sm-7" style="padding-bottom: 20px;">
+              <h4>MEZZANINE LEVEL</h4>
+
+              <p>FITNESS & WEIGHT TRAINING ROOM<br>
+                AEROBIC / YOGA ROOM<br>
+                ICE SPA &amp; FITNESS CENTRE<br>
+                MASSAGE ROOMS<br>
+                RELAXING LOUNGE<br>
+                SAUNA<br>
+                COLD PLUNGE<br>
+                STEAM ROOM<br>
+                SWIMMING POOL &amp; HOT TUB</p>
             </div>
+            <div class="col-sm-5" style="padding-bottom: 20px;">
+              <h4>SECOND LEVEL</h4>
+
+              <p>PARTY ROOM<br>
+                KITCHEN<br>
+                COCKTAIL/DINING ROOM<br>
+                LOUNGE<br>
+                BUSINESS CENTRE<br>
+                BOARD ROOM<br>
+                MEETING ROOM
+              </p></div>
           </div>
-          <div class="rate">
-            <input type="text" class="form-control" name="rate" required ng-model="mortgage.rate" placeholder="2.5">
-          </div>
-          <div class="calculate">
-            <a class="btn" ng-click="recalculate_mortgage()">Calculate</a>
-          </div>
-          <div class="clearfix"></div><br>
-          <div ng-show="mortgage_form.home_price.$invalid">Home price can't be blank</div>
-          <div ng-show="mortgage_form.rate.$invalid">Rate can't be blank</div>
-          <div class="clearfix"></div><br>
-          <div>
-            <strong>Down Payment:</strong> &nbsp;
-            {{(mortgage.down_payment_calculated | currency).slice(0, -3)}}
-          </div>
-          <div>
-            <strong>Mortgage Payment:</strong> &nbsp;
-            {{(mortgage.payment | currency).slice(0, -3)}}
-          </div>
-        </form>
+        </div>
       </div>
-      <div class="imagebox">
-        <%= image_tag "bg-mortgage-calculator.png" %>
+      <div class="col-md-6">
+        <div class="row" style="padding-top: 30px;">
+          <div class="col-sm-6" style="padding-right: 0;">
+            <%= image_tag "building-3.jpg", class: "img-responsive" %>
+          </div>
+          <div class="col-sm-6">
+            <h3> ICE OFFERS A GREEN ROOF THAT WILL IMPACT THE TORONTO SKYLINE WITH LUSH, OXYGEN CREATING LANDSCAPING,
+              WHILE CREATING A CANOPY OF ORGANIC SHELTER OVER THE BUSTLING PLAZA BELOW.</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 text-right">
+            <h3> ICE OFFERS A GREEN ROOF THAT WILL IMPACT THE TORONTO SKYLINE WITH LUSH, OXYGEN CREATING LANDSCAPING,
+              WHILE CREATING A CANOPY OF ORGANIC SHELTER OVER THE BUSTLING PLAZA BELOW.</h3>
+          </div>
+          <div class="col-sm-6 hidden-xs" style="padding-left: 0;">
+            <%= image_tag "building-3.jpg", class: "img-responsive" %>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section id="welcome" class="text-center section">
+    <p class="top">THE ICE CONDO BUILDINGS</p>
+
+    <div class="container">
+      <%= image_tag "captions/welcome.png", class: "img-responsive center-block" %>
+
+      <div class="row" style="padding: 30px 0">
+        <div class="col-md-4">
+          <h3 class="text-uppercase">Architect</h3>
+
+          <p>Peter Clewes and architects Alliance</p>
+        </div>
+        <div class="col-md-4">
+          <h3 class="text-uppercase">INTERIOR DESIGN</h3>
+
+          <p>Alessandro Munge and Sai Leung </p>
+        </div>
+        <div class="col-md-4">
+          <h3 class="text-uppercase">LANDSCAPE ARCHITECT</h3>
+
+          <p>Robert Ng and NAK Design</p>
+        </div>
+      </div>
+      <div class="footer" style="padding-bottom: 20px;">
+        <div class="row text-center">
+          <div style="display: inline-block">
+            <%= image_tag "logo.png", width: "75", height: "29", class: "pull-left", style: "margin-top: -6px;" %>
+            <span class="xsmall-font pull-left" style="line-height: 29px">TORONTO’S MOST LUXURIOUS CONDOMINIUMS</span></div>
+        </div>
+        <a href="buyers.html" class="btn btn-gold text-uppercase">Buyers</a>
+        <a href="renters.html" class="btn btn-gold text-uppercase">Renters</a>
+      </div>
+      <div class="center-block" style="padding-bottom: 20px;">
+        <%= image_tag "footer-left.png", width: "207", height: "56", style: "padding-right: 40px;" %>
+        <%= image_tag "footer-right.png", width: "250", height: "56" %>
+      </div>
+    </div>
+  </section>
 </div>

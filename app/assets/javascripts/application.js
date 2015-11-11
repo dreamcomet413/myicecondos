@@ -12,12 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require smart_listing
+//= require jquery.easing.min
+//= require jquery.fittext
+//= require jquery.scrollify.min
+//= require jquery.slimscroll.min
+//= require jquery.fullPage.min
 //= require bootstrap-sprockets
-//= require jquery.nanoscroller.min
-//= require owl.carousel.min
 //= require main
-//= require pin_clusterer
 //= require ahoy
 //= require bootstrap-select
 //= require angular

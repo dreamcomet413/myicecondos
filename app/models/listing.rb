@@ -36,7 +36,7 @@ class Listing < ActiveRecord::Base
     tire.search do
       query { string q_str } if q_str.present?
       filter :missing, field: "deleted_at"
-      filter :term, s_r: "sale"
+      filter :term, s_r: additional_attr["s_r"] || "sale"
       filter :range, listing_images_count: { gte: 1 }
 
       filter :exists, field: "acres" if additional_attr["acres"].present?
