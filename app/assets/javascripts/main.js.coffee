@@ -169,11 +169,11 @@ window.markers = null
 #     $('.homepage_categories .active').removeClass('active')
 #     $(this).addClass('active')
 #
-#   $(document).on 'click', '.request-info-link', ->
-#     $("#request-info-modal .modal-title").html($(this).data('modal-title'))
-#     $("#request-info-modal input[type=submit]").val($(this).data('modal-btn'))
-#     $("#request-info-modal #listing_modal_details").val($(this).data('modal-details'))
-#     $("#request-info-modal #listing_modal_source").val($(this).data('modal-source'))
+$(document).on 'click', '.request-info-link', ->
+  $("#request-info-modal .modal-title").html($(this).data('modal-title'))
+  $("#request-info-modal input[type=submit]").val($(this).data('modal-btn'))
+  $("#request-info-modal #listing_modal_details").val($(this).data('modal-details'))
+  $("#request-info-modal #listing_modal_source").val($(this).data('modal-source'))
 #
 #   $("#home_detail_fields").on "submit", (e)->
 #     if $("#home_detail_fields .home-autocomplete-field").val() == ""

@@ -242,7 +242,7 @@ app.controller 'ListingsCtrl', ['$scope', '$http', 'Listing', 'Favourite', ($sco
     $scope.favourite.favouriteable_type = "Listing"
     $scope.favourite.favouriteable_id = listing_id
     Favourite.save $scope.favourite, ->
-      $("#favourite").html("SAVED")
+      $("#favourite").html("FAVOURITED")
       $("#favourite").attr("disabled", "disabled")
     , ->
       alert "Something went wrong! Please try again later."

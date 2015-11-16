@@ -2304,11 +2304,11 @@ th {
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #333333;
 }
 .table > thead > tr > th {
   vertical-align: bottom;
-  border-bottom: 2px solid #dddddd;
+  border-bottom: 2px solid #333333;
 }
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
@@ -2319,7 +2319,7 @@ th {
   border-top: 0;
 }
 .table > tbody + tbody {
-  border-top: 2px solid #dddddd;
+  border-top: 2px solid #333333;
 }
 .table .table {
   background-color: #ffffff;
@@ -2333,7 +2333,7 @@ th {
   padding: 5px;
 }
 .table-bordered {
-  border: 1px solid #dddddd;
+  border: 1px solid #333333;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -2341,7 +2341,7 @@ th {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #dddddd;
+  border: 1px solid #333333;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
@@ -2479,7 +2479,7 @@ table th[class*="col-"] {
     margin-bottom: 13.5px;
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    border: 1px solid #dddddd;
+    border: 1px solid #333333;
   }
   .table-responsive > .table {
     margin-bottom: 0;
@@ -7195,6 +7195,124 @@ a.btn-gold .badge {
   color: #c4b257;
   background-color: #ffffff;
 }
+
+
+input.btn-gold {
+  color: #ffffff;
+  background-color: #c4b257;
+  border-color: #bda944;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  min-width: 250px !important;
+  text-transform: uppercase;
+}
+input.btn-gold:focus,
+input.btn-gold.focus {
+  color: #ffffff;
+  background-color: #ac993c;
+  border-color: #605622;
+}
+input.btn-gold:hover {
+  color: #ffffff;
+  background-color: #ac993c;
+  border-color: #918233;
+}
+input.btn-gold:active,
+input.btn-gold.active,
+.open > .dropdown-togglea.btn-gold {
+  color: #ffffff;
+  background-color: #ac993c;
+  border-color: #918233;
+}
+input.btn-gold:active:hover,
+input.btn-gold.active:hover,
+.open > .dropdown-togglea.btn-gold:hover,
+input.btn-gold:active:focus,
+input.btn-gold.active:focus,
+.open > .dropdown-togglea.btn-gold:focus,
+input.btn-gold:active.focus,
+input.btn-gold.active.focus,
+.open > .dropdown-togglea.btn-gold.focus {
+  color: #ffffff;
+  background-color: #918233;
+  border-color: #605622;
+}
+input.btn-gold:active,
+input.btn-gold.active,
+.open > .dropdown-togglea.btn-gold {
+  background-image: none;
+}
+input.btn-gold.disabled,
+input.btn-gold[disabled],
+fieldset[disabled] input.btn-gold,
+input.btn-gold.disabled:hover,
+input.btn-gold[disabled]:hover,
+fieldset[disabled] input.btn-gold:hover,
+input.btn-gold.disabled:focus,
+input.btn-gold[disabled]:focus,
+fieldset[disabled] input.btn-gold:focus,
+input.btn-gold.disabled.focus,
+input.btn-gold[disabled].focus,
+fieldset[disabled] input.btn-gold.focus,
+input.btn-gold.disabled:active,
+input.btn-gold[disabled]:active,
+fieldset[disabled] input.btn-gold:active,
+input.btn-gold.disabled.active,
+input.btn-gold[disabled].active,
+fieldset[disabled] input.btn-gold.active {
+  background-color: #c4b257;
+  border-color: #bda944;
+}
+input.btn-gold .badge {
+  color: #c4b257;
+  background-color: #ffffff;
+}
+input.btn-gold:hover,
+input.btn-gold:focus,
+input.btn-gold.focus,
+input.btn-gold:active,
+input.btn-gold.active,
+.open > .dropdown-togglea.btn-gold {
+  color: #ffffff;
+  background-color: #bda944;
+  border-color: #a4933a;
+}
+input.btn-gold:active,
+input.btn-gold.active,
+.open > .dropdown-togglea.btn-gold {
+  background-image: none;
+}
+input.btn-gold.disabled,
+input.btn-gold[disabled],
+fieldset[disabled] input.btn-gold,
+input.btn-gold.disabled:hover,
+input.btn-gold[disabled]:hover,
+fieldset[disabled] input.btn-gold:hover,
+input.btn-gold.disabled:focus,
+input.btn-gold[disabled]:focus,
+fieldset[disabled] input.btn-gold:focus,
+input.btn-gold.disabled.focus,
+input.btn-gold[disabled].focus,
+fieldset[disabled] input.btn-gold.focus,
+input.btn-gold.disabled:active,
+input.btn-gold[disabled]:active,
+fieldset[disabled] input.btn-gold:active,
+input.btn-gold.disabled.active,
+input.btn-gold[disabled].active,
+fieldset[disabled] input.btn-gold.active {
+  background-color: #c4b257;
+  border-color: #bda944;
+}
+input.btn-gold .badge {
+  color: #c4b257;
+  background-color: #ffffff;
+}
+
+
+
+
+
 .ice-container {
   position: relative;
 }
@@ -7712,4 +7830,116 @@ body#buyer section {
 }
 hr.gold {
   border-top-color: #c4b257;
+}
+.page_title {
+  font-size: 64px;
+  margin-top: 0;
+  letter-spacing: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.listing-details {
+  .top {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
+}
+
+.property-slider {
+	display: block;
+	width: 100%;
+	margin: 0 0 30px 0;
+  text-align: center;
+  img {
+    margin: 0 auto;
+  }
+}
+
+.listing_social {
+  font-size: 12px;
+  a {
+    color: #fff;
+  }
+}
+.white-link {
+  color: #fff;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.modal-content {
+  color: #333;
+}
+
+.mortgage_form {
+  background: #333;
+  padding: 20px 35px;
+  font-size:8px;
+  input {
+    background: #222;
+    color: #ccc;
+    border-radius: 0 !important;
+    border: 1px solid #333;
+  }
+  .input-group-addon {
+    background: #222;
+    color: #ccc;
+    border-left: 0;
+    border-color: #333;
+  }
+  .input-group {
+    input {
+      border-right:0px;
+    }
+  }
+  hr {
+    border-color: #555;
+  }
+}
+.no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+.no-min-width {
+  min-width: none !important;
+}
+.mortgage-price {
+  font-size: 22px;
+}
+
+.about-list {
+  padding-left:20px;
+  li {
+    margin-bottom:10px;
+    color: #999;
+  }
+}
+.about-content {
+  color: #999;
+  line-height:30px;
+  p {
+    line-height:30px;
+  }
+}
+.letter-spaced {
+  letter-spacing: 5px;
+}
+
+.about-row-1 {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position: top center;
+  background-image: asset-url('about-bg-1.png');
+}
+.about-row-2 {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position: top center;
+  background-image: asset-url('about-bg-2.png');
 }
