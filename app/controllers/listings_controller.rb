@@ -3,7 +3,7 @@ class ListingsController < ApplicationController
   respond_to :html, :json
 
   def show
-    @listing = Listing.where(id: params[:id]).first
+    @listing = is_number?(params[:id]) ? Listing.where(id: params[:id]).first : Listing.where(slug: params[:id]).first
     @page_title = @listing.full_address
 
     set_meta_tags title: "#{@page_title}", description: "#{@listing.description}", keywords: "property, listing, realestate, sale, rent, #{@listing.city}, #{@listing.province}, #{@listing.street}, #{@listing.type}"
@@ -72,8 +72,7 @@ class ListingsController < ApplicationController
 
   def request_info
     listing = Listing.where(id: params[:id]).first
-    render nothing: true unless listing
-    details = params[:request][:details] + " - " + listing_path(listing)
+    details = listing ? params[:request][:details] + " - " + listing_path(listing) : ""
     details += " (#{params[:request][:comments]});" if params[:request][:comments].present?
     lead_params = {
       first_name: params[:request][:first_name],
@@ -140,7 +139,7 @@ class ListingsController < ApplicationController
           ahoy.track "Advanced Search", search_attributes: JSON.parse(params[:custom_search]) if params[:custom_search].present?
           ahoy.track "Searched Location", location: params.except!(*[:action, :controller, :format, :page]) if location_search
         end
-        render json: Listing.where(id: params[:ids]).as_json(only: ['id', 'addr', 'municipality', 'county', 'zip', 'lp_dol', 'ml_num', 'type_own1_out', 'latitude', 'longitude', 'br', 'bath_tot', 'visibility', 'sqft', 'unit_num', 'stories', 'ad_text']) and return if params[:ids].present?
+        render json: Listing.where(id: params[:ids]).as_json(only: ['id', 'addr', 'municipality', 'county', 'zip', 'lp_dol', 'ml_num', 'type_own1_out', 'latitude', 'longitude', 'br', 'bath_tot', 'visibility', 'sqft', 'unit_num', 'stories', 'ad_text', 'slug']) and return if params[:ids].present?
         custom_search = params[:custom_search].present? ? JSON.parse(params[:custom_search]) : {}
         custom_search["listing_type"] = params[:listing_type] if params[:listing_type].present?
         custom_search["sort_field"] = params[:sort_field] if params[:sort_field].present?
@@ -156,13 +155,13 @@ class ListingsController < ApplicationController
         render json: [{count: full_count}] and return if params[:count_only] == "1"
         render json: @listings.as_json(only: ['id']) and return if params[:ids_only] == "1"
         render json: Listing.near([params[:latitude], params[:longitude]], 20, units: :km).sample(params[:sample].to_i || 30).as_json(only: ['id', 'addr', 'municipality', 'county', 'zip', 'lp_dol', 'ml_num', 'type_own1_out', 'latitude',
-        'longitude', 'br', 'bath_tot', 'visibility', 'sqft', 'unit_num', 'stories', 'ad_text']) << {count: full_count} and return if params[:geolocation]
+        'longitude', 'br', 'bath_tot', 'visibility', 'sqft', 'unit_num', 'stories', 'ad_text', 'slug']) << {count: full_count} and return if params[:geolocation]
         unless params[:paginate] == "0"
           ids_to_use = @listings.paginate(page: params[:page], per_page: params[:per_page] || 10).collect(&:id)
           @listings = Listing.where(id: ids_to_use).order("field(id, #{ids_to_use.join(',')})") if ids_to_use.present?
         end
         @listings = Listing.where(id: @listings.sample(params[:sample].to_i).collect(&:id)) if params[:sample]
-        render json: @listings.as_json(only: ['id', 'addr', 'municipality', 'county', 'zip', 'lp_dol', 'ml_num', 'type_own1_out', 'latitude', 'longitude', 'br', 'bath_tot', 'visibility', 'sqft', 'unit_num', 'stories', 'ad_text'], methods: "main_image") << {count: full_count}
+        render json: @listings.as_json(only: ['id', 'addr', 'municipality', 'county', 'zip', 'lp_dol', 'ml_num', 'type_own1_out', 'latitude', 'longitude', 'br', 'bath_tot', 'visibility', 'sqft', 'unit_num', 'stories', 'ad_text', 'slug'], methods: "main_image") << {count: full_count}
       }
     end
   end
@@ -221,6 +220,11 @@ class ListingsController < ApplicationController
   end
 
   private
+
+  def is_number? (str)
+    true if Float(str) rescue false
+  end
+
   def listing_addr(listing)
     addr = listing.addr
     if addr

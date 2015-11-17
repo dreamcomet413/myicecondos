@@ -15,6 +15,8 @@ class Listing < ActiveRecord::Base
 
   default_scope { where(deleted_at: nil) }
 
+  before_create :slugify
+
   mapping do
     indexes :type_own1_out, index: :not_analyzed
     self.columns.reject{|c| %w(type_own1_out).include?(c.name)}.each do |f|
@@ -90,6 +92,17 @@ class Listing < ActiveRecord::Base
         sort { by :timestamp_sql, 'desc' }
       end
     end
+  end
+
+  def self.slugify_all
+    Listing.all.each do |l|
+      l.slugify
+      l.save
+    end
+  end
+
+  def slugify
+    self.slug = "#{municipality} #{type_own1_out} #{unit_num} #{addr} #{ml_num}".parameterize
   end
 
   def email_friend email_details

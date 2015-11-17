@@ -1,5 +1,5 @@
 <section id="about" class="section" ng-controller="ListingsCtrl">
-  <div class="container listing-details" ng-init="loadListing(<%= params[:id] %>)">
+  <div class="container listing-details" ng-init="loadListing('<%= params[:id] %>')">
     <div class="text-center">
       <br>
       <p class="top">{{listing.addr || "Loading Details"}}</p>
@@ -130,12 +130,30 @@
               <div class="col-md-12">
                 <br><br>
                 <span class="gold">FLOORPLAN</span><br><br>
+                <hr><br>
                 <table class="table table-nob table-sm">
-                  <tbody>
+                  <thead>
+                    <tr>
+                      <th>
+                        ROOM
+                      </th>
+                      <th>
+                        SIZE  <span style="border: 2px solid #fff;padding:1px 4px;">FT</span>
+                      </th>
+                      <th>
+                        LEVEL
+                      </th>
+                      <th>
+                        FEATURES
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody style="color:#999;">
                     <tr ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12]" ng-show="listing['rm'+i+'_out']">
-                      <th>{{listing['rm'+i+'_out']}}</th>
+                      <td>{{listing['rm'+i+'_out']}}</td>
+                      <td>{{listing['rm'+i+'_len']*3.28 || "--"}} x {{listing['rm'+i+'_wth']*3.28 || "--"}}</td>
+                      <td>{{listing['level'+i] || "--"}}</td>
                       <td>{{listing['rm'+i+'_dc1_out'] ? listing['rm'+i+'_dc1_out']+";" : ""}} {{listing['rm'+i+'_dc2_out'] ? listing['rm'+i+'_dc2_out']+";" : ""}} {{listing['rm'+i+'_dc3_out'] ? listing['rm'+i+'_dc3_out']+";" : ""}}</td>
-                      <td class="text-right">{{listing['rm'+i+'_len'] || "--"}}' x {{listing['rm'+i+'_wth'] || "--"}}'</td>
                     </tr>
                   </tbody>
                 </table>

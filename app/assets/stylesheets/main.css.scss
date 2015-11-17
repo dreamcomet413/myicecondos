@@ -7893,6 +7893,9 @@ hr.gold {
     input {
       border-right:0px;
     }
+    .form-control {
+      z-index: 1 !important;
+    }
   }
   hr {
     border-color: #555;
