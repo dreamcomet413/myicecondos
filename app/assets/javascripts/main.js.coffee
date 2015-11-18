@@ -336,4 +336,15 @@ $ ->
     e.preventDefault()
     $.fn.fullpage.moveSectionDown()
     return
+  $('.menu-toggle').click (e) ->
+    if $(this).hasClass('active')
+      $('.nav-menu').removeClass 'show'
+      $('body').removeClass 'nav-open'
+      $(this).removeClass 'active'
+    else
+      $(this).addClass 'active'
+      $('body').addClass 'nav-open'
+      $('.nav-menu').addClass 'show'
+    e.preventDefault()
+    return
   return

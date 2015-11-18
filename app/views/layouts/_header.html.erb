@@ -19,14 +19,33 @@
       <ul class="nav navbar-nav navbar-right">
         <% l = MenuLocation.where(name: "Header").first %>
         <% l.menu_items.each do |m| %>
-          <li><%= link_to m.title, m.url %></li>
+          <li class="visible-xs"><%= link_to m.title, m.url %></li>
         <% end if l %>
+        <li>
+          <a href="#" class="menu-toggle hidden-xs">
+            <div class="hamburger">
+              <span></span>
+            </div>
+          </a>
+        </li>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
   </div>
   <!-- /.container-fluid -->
 </nav>
+<div class="nav-menu">
+  <div id="menu-scroll" class="nano">
+    <div class="nano-content">
+      <ul class="nav">
+        <% l = MenuLocation.where(name: "Header").first %>
+        <% l.menu_items.each do |m| %>
+          <li class="text-uppercase"><%= link_to m.title, m.url %></li>
+        <% end if l %>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <div class="social hidden-xs">
   <a href="#"><%= image_tag "icons/twitter.png", height: "16", width: "16", alt: "Twitter" %></a>

@@ -2,7 +2,7 @@
 <section id="about" class="section" ng-controller="ListingsCtrl" ng-init="load_search_page('<%= search_params %>')">
   <div class="container">
     <div class="text-center">
-      <p class="top">THE ICE CONDO BUILDINGS</p>
+      <p class="top letter-spaced">THE ICE CONDO BUILDINGS</p>
     </div>
 
     <% if params[:rent] == "1" %>
@@ -49,7 +49,7 @@
           <div class="col-lg-5 text-right-lg">
             <h2 class="gold price">{{o_listing.lp_dol ? (o_listing.lp_dol | currency : "$CAD ").slice(0, -3) : "--"}}</h2>
 
-            <div class="text-xsmall vspace">Ice is a way of life, it is at once urban and classic</div>
+            <div class="text-xsmall vspace">Ice is a way of life, it is at once urban and close to nature</div>
             <a class="btn btn-gold" href="/listings/{{o_listing.slug}}">More Information</a>
           </div>
         </div>
