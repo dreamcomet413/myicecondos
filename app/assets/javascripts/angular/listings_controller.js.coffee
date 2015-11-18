@@ -249,7 +249,7 @@ app.controller 'ListingsCtrl', ['$scope', '$http', 'Listing', 'Favourite', ($sco
 
   $scope.load_favourites = ->
     $scope.favourites = Favourite.query({}, ->
-      $scope.listings = chunk($scope.favourites, 4)
+      $scope.listings = $scope.favourites
     )
 
   $scope.toggle_search_results = (api_key, search) ->

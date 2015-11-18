@@ -1,41 +1,51 @@
-<div class="container" ng-controller="ListingsCtrl" ng-init="load_favourites()" id="favourites">
-  <h1 class="static_content_title">FAVOURITES</h1>
-  <h3 ng-show="listings.length == 0">You have not favourited any listings yet</h3>
-  <div class="row" ng-repeat="group in listings">
-    <div class="col-md-3 col-sm-6" ng-repeat="o_listing in group">
-      <div class="property-box">
-        <div class="imagebox">
-          <img ng-src="http://icecondos.s3.amazonaws.com/listing_photos/listing_{{o_listing.id}}_0.jpg" onerror="this.onerror=null;this.src='/missing-image.png';">
-        </div>
-        <div class="place">
-          {{(o_listing.municipality | uppercase) || "NOT AVAILABLE"}}
-        </div>
-        <div class="address">
-          {{o_listing.addr || "Address not available"}}
-        </div>
-        <div class="property-carousel">
-          <div class="owl-carousel">
-            <div class="item">
-              <%= image_tag "icon-bed.png" %>
-              <span class="title">Beds</span>
-              <span class="numbers">{{o_listing.br || '--'}}</span>
-            </div>
-            <div class="item">
-              <%= image_tag "icon-baths.png" %>
-              <span class="title">Baths</span>
-              <span class="numbers">{{o_listing.bath_tot || '--'}}</span>
-            </div>
-            <div class="item">
-              <%= image_tag "icon-square-feets.png" %>
-              <span class="title">Sq. Ft.</span>
-              <span class="numbers">{{o_listing.sqft || '--'}}</span>
-            </div>
+<section id="about" class="section">
+  <div class="container" ng-controller="ListingsCtrl" ng-init="load_favourites()" id="favourites">
+    <br><br>
+    <h1 class="page_title">FAVOURITES</h1>
+    <div class="text-center" ng-show="listings.length == 0">
+      <br>
+      <p class="top letter-spaced">You have not favourited any listings yet</p>
+    </div>
+    <br><br>
+    <div class="condo" ng-repeat="o_listing in listings">
+      <div class="col-md-5">
+        <img ng-src="{{o_listing.main_image}}" onerror="this.onerror=null;this.src='/missing-image.png';" class="img-responsive">
+      </div>
+      <div class="col-md-7">
+        <div class="row">
+          <div class="col-sm-9">
+            <h3>Unit #{{o_listing.unit_num}}<br>Floor {{o_listing.stories}}</h3>
+          </div>
+          <div class="col-sm-3">
+            <div class="alert-info" ng-show="o_listing.created_at > ('<%= 48.hours.ago %>' | date)">NEW</div>
+          </div>
+          <div class="col-sm-12">
+            <hr>
+            <p>{{o_listing.ad_text}}</p>
           </div>
         </div>
-        <div class="btn-container">
-          <a ng-click="go_to_listing(o_listing.slug)" class="btn">View Property</a>
+        <div class="row" style="padding-bottom: 20px;">
+          <div class="col-lg-offset-2 col-lg-5">
+            <ul class="list-unstyled">
+              <li><span class="gold">MLS:</span> {{o_listing.ml_num}}</li>
+              <li><span class="gold">SQ.FT:</span> {{o_listing.sqft}}</li>
+              <li><span class="gold">BEDROOMS:</span> {{o_listing.br}}</li>
+              <li><span class="gold">BATHROOMS:</span> {{o_listing.bath_tot}}</li>
+            </ul>
+          </div>
+          <div class="col-lg-5 text-right-lg">
+            <h2 class="gold price">{{o_listing.lp_dol ? (o_listing.lp_dol | currency : "$CAD ").slice(0, -3) : "--"}}</h2>
+
+            <div class="text-xsmall vspace">Ice is a way of life, it is at once urban and close to nature</div>
+            <a class="btn btn-gold" href="/listings/{{o_listing.slug}}">More Information</a>
+          </div>
+        </div>
+        <hr>
+        <div class="social-icons">
+          <a href="#" class="social"><span class="icon twitter"></span></a>
+          <a href="#" class="social"><span class="icon facebook"></span></a>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>

@@ -83,7 +83,7 @@
                 <% if current_user && current_user.favourited?(@listing.id) %>
                   <a href="" disabled="disabled">FAVOURITED</a>
                 <% else %>
-                  <a href="" ng-click="add_favourite(<%= params[:id] %>)" id="favourite">SAVE AS FAVOURITE</a>
+                  <a href="" ng-click="add_favourite(<%= @listing.id %>)" id="favourite">SAVE AS FAVOURITE</a>
                 <% end %>
               </div>
               <div class="col-md-7">

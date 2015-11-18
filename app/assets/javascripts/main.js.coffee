@@ -114,23 +114,7 @@ window.isShowingDownArrow = null
 #     e.preventDefault()
 #     return
 #   $('#menu-scroll').nanoScroller sliderMaxHeight: 50
-#   $('[data-toggle="signup"]').click (e) ->
-#     $('#modal-login').modal 'hide'
-#     setTimeout (->
-#       $('#modal-signup').modal 'show'
-#       return
-#     ), 350
-#     e.preventDefault()
-#     return
-#   $('[data-toggle="login"]').click (e) ->
-#     $('#modal-signup').modal 'hide'
-#     setTimeout (->
-#       $('#modal-login').modal 'show'
-#       return
-#     ), 350
-#     e.preventDefault()
-#     return
-#   return
+
 #
 # $ ->
 #
@@ -345,6 +329,22 @@ $ ->
       $(this).addClass 'active'
       $('body').addClass 'nav-open'
       $('.nav-menu').addClass 'show'
+    e.preventDefault()
+    return
+  $('[data-toggle="signup"]').click (e) ->
+    $('#modal-login').modal 'hide'
+    setTimeout (->
+      $('#modal-signup').modal 'show'
+      return
+    ), 350
+    e.preventDefault()
+    return
+  $('[data-toggle="login"]').click (e) ->
+    $('#modal-signup').modal 'hide'
+    setTimeout (->
+      $('#modal-login').modal 'show'
+      return
+    ), 350
     e.preventDefault()
     return
   return

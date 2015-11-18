@@ -6320,7 +6320,7 @@ button.close {
   filter: alpha(opacity=0);
 }
 .modal-backdrop.in {
-  opacity: 0.5;
+  opacity: 0.8;
   filter: alpha(opacity=50);
 }
 .modal-header {
@@ -7920,3 +7920,163 @@ right: -100%;-webkit-transition: all 350ms;transition: all 350ms;}
 .nav-menu .nav > li > .nav > li > a, .nav-menu .nav > li.assub > a{font-size: 11px;}
 body.nav-open{overflow-y:visible;}
 .nav-menu.show {visibility: visible !important;right: 0;-webkit-transition: all 350ms;transition: all 350ms}
+
+input.btn-gold {
+  color: #ffffff;
+  background-color: #c4b257;
+  border-color: #bda944;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  min-width: 250px !important;
+  text-transform: uppercase;
+}
+input.btn-gold:focus,
+input.btn-gold.focus {
+  color: #ffffff;
+  background-color: #ac993c;
+  border-color: #605622;
+}
+input.btn-gold:hover {
+  color: #ffffff;
+  background-color: #ac993c;
+  border-color: #918233;
+}
+input.btn-gold:active,
+input.btn-gold.active,
+.open > .dropdown-toggle.btn-gold {
+  color: #ffffff;
+  background-color: #ac993c;
+  border-color: #918233;
+}
+input.btn-gold:active:hover,
+input.btn-gold.active:hover,
+input.btn-gold:active:focus,
+input.btn-gold.active:focus {
+  color: #ffffff;
+  background-color: #918233;
+  border-color: #605622;
+}
+input.btn-gold:active,
+input.btn-gold.active,
+.open > .dropdown-toggle.btn-gold {
+  background-image: none;
+}
+input.btn-gold.disabled,
+input.btn-gold[disabled],
+fieldset[disabled] input.btn-gold,
+input.btn-gold.disabled:hover,
+input.btn-gold[disabled]:hover,
+fieldset[disabled] input.btn-gold:hover,
+input.btn-gold.disabled:focus,
+input.btn-gold[disabled]:focus,
+fieldset[disabled] input.btn-gold:focus,
+input.btn-gold.disabled.focus,
+input.btn-gold[disabled].focus,
+fieldset[disabled] input.btn-gold.focus,
+input.btn-gold.disabled:active,
+input.btn-gold[disabled]:active,
+fieldset[disabled] input.btn-gold:active,
+input.btn-gold.disabled.active,
+input.btn-gold[disabled].active,
+fieldset[disabled] input.btn-gold.active {
+  background-color: #c4b257;
+  border-color: #bda944;
+}
+input.btn-gold .badge {
+  color: #c4b257;
+  background-color: #ffffff;
+}
+input.btn-gold:hover,
+input.btn-gold:focus,
+input.btn-gold.focus,
+input.btn-gold:active,
+input.btn-gold.active,
+.open > .dropdown-toggle.btn-gold {
+  color: #ffffff;
+  background-color: #bda944;
+  border-color: #a4933a;
+}
+input.btn-gold:active,
+input.btn-gold.active,
+.open > .dropdown-toggle.btn-gold {
+  background-image: none;
+}
+input.btn-gold.disabled,
+input.btn-gold[disabled],
+fieldset[disabled] input.btn-gold,
+input.btn-gold.disabled:hover,
+input.btn-gold[disabled]:hover,
+fieldset[disabled] input.btn-gold:hover,
+input.btn-gold.disabled:focus,
+input.btn-gold[disabled]:focus,
+fieldset[disabled] input.btn-gold:focus,
+input.btn-gold.disabled.focus,
+input.btn-gold[disabled].focus,
+fieldset[disabled] input.btn-gold.focus,
+input.btn-gold.disabled:active,
+input.btn-gold[disabled]:active,
+fieldset[disabled] input.btn-gold:active,
+input.btn-gold.disabled.active,
+input.btn-gold[disabled].active,
+fieldset[disabled] input.btn-gold.active {
+  background-color: #c4b257;
+  border-color: #bda944;
+}
+input.btn-gold .badge {
+  color: #c4b257;
+  background-color: #ffffff;
+}
+
+.devise_box {
+  margin-top:50px;
+  padding: 30px;
+  background: #fff;
+  color: #999;
+  margin-bottom:100px;
+  .title {
+    font-size:18px;
+  }
+  .facebook-btn {
+    background: #395592;
+    color: #fff;
+    padding: 15px;
+    &:hover {
+      background: #2B4170;
+    }
+  }
+  .login-separator {
+    color: #111;
+    text-align: center;
+    font-size:16px;
+    margin-bottom:15px;
+    position: relative;
+    z-index: 1;
+
+    &:before {
+        border-top: 1px solid #ccc;
+        content:"";
+        margin: 0 auto; /* this centers the line to the full width specified */
+        position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+        top: 50%; left: 0; right: 0; bottom: 0;
+        width: 100%;
+        z-index: -1;
+    }
+
+    span {
+        /* to hide the lines from behind the text, you have to set the background color the same as the container */
+        background: #fff;
+        padding: 0 25px;
+    }
+  }
+  input:not([type=checkbox]){
+    height: 50px;
+    border-radius: 0;
+  }
+}
+#fullpage .alert {
+  display: none;
+}
+.modal-sm {
+  width: 400px;
+}
