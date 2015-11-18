@@ -8,7 +8,7 @@ window.chunk = (arr, size) ->
 
 window.map = null
 window.markers = null
-
+window.isShowingDownArrow = null
 # window.load_info_box = (e) ->
 #   id = e.target.options.id
 #   lat = e.target.options.lat
@@ -296,9 +296,24 @@ $ ->
       'Welcome'
     ]
     'afterLoad': (anchorLink, index) ->
+      showDownArrow = (index < 5)
+
+      if showDownArrow == isShowingDownArrow
+        return
+
+      if showDownArrow
+        $('#scroll-page-top').hide()
+        $('#scroll-page-down').show()
+      else
+        $('#scroll-page-down').hide()
+        $('#scroll-page-top').show()
+
+      isShowingDownArrow = showDownArrow
+
       if index == 1
         $('section#about .building').addClass 'active'
-      return
+        return
+
     'onLeave': (index, nextIndex, direction) ->
       if index == 1 and direction == 'down'
         $('section#about .building').addClass 'active'

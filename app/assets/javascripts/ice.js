@@ -6,7 +6,7 @@
 
 (function($) {
     "use strict"; // Start of use strict
-
+    var isShowingDownArrow;
     // jQuery for page scrolling feature - requires jQuery Easing plugin
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
@@ -35,7 +35,7 @@
             top: 100
         }
     });
-    
+
     // Scrollify
 
     //$.scrollify({
@@ -60,9 +60,24 @@
         'navigationPosition': 'left',
         'navigationTooltips': ['Welcome', 'Cool', 'Design', 'Amenities', 'Welcome'],
         'afterLoad': function(anchorLink, index){
+            var showDownArrow = (index < 5);
+
             if(index === 1) {
                 $('section#about .building').addClass('active');
             }
+            if(showDownArrow === isShowingDownArrow){
+                return;
+            }
+
+            if (showDownArrow) {
+                $('#scroll-page-top').hide();
+                $('#scroll-page-down').show();
+            } else {
+                $('#scroll-page-down').hide();
+                $('#scroll-page-top').show();
+            }
+
+            isShowingDownArrow = showDownArrow;
         },
         'onLeave': function(index, nextIndex, direction){
             if(index === 1 && direction === 'down') {

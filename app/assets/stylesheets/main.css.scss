@@ -297,7 +297,8 @@ th {
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: asset-url('glyphicons-halflings-regular.eot');
-  src: asset-url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), asset-url('glyphicons-halflings-regular.woff2') format('woff2'), asset-url('glyphicons-halflings-regular.woff') format('woff'), asset-url('glyphicons-halflings-regular.ttf') format('truetype'), asset-url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: asset-url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), asset-url('glyphicons-halflings-regular.woff2') format('woff2'),
+  asset-url('glyphicons-halflings-regular.woff') format('woff'), asset-url('glyphicons-halflings-regular.ttf') format('truetype'), asset-url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;
@@ -2304,11 +2305,11 @@ th {
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
-  border-top: 1px solid #333333;
+  border-top: 1px solid #dddddd;
 }
 .table > thead > tr > th {
   vertical-align: bottom;
-  border-bottom: 2px solid #333333;
+  border-bottom: 2px solid #dddddd;
 }
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
@@ -2319,7 +2320,7 @@ th {
   border-top: 0;
 }
 .table > tbody + tbody {
-  border-top: 2px solid #333333;
+  border-top: 2px solid #dddddd;
 }
 .table .table {
   background-color: #ffffff;
@@ -2333,7 +2334,7 @@ th {
   padding: 5px;
 }
 .table-bordered {
-  border: 1px solid #333333;
+  border: 1px solid #dddddd;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -2341,7 +2342,7 @@ th {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #333333;
+  border: 1px solid #dddddd;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
@@ -2474,12 +2475,24 @@ table th[class*="col-"] {
   min-height: 0.01%;
 }
 @media screen and (max-width: 767px) {
+  .navbar-header {
+    background-color: black;
+  }
+  .navbar-header span {
+    display: none;
+  }
+  .fullpage-wrapper {
+    padding: 0px 20px 0px 20px;
+  }
+  .scroll-page-buttons {
+    top: auto !important;
+  }
   .table-responsive {
     width: 100%;
     margin-bottom: 13.5px;
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    border: 1px solid #333333;
+    border: 1px solid #dddddd;
   }
   .table-responsive > .table {
     margin-bottom: 0;
@@ -4855,10 +4868,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 .navbar-default .navbar-toggle {
-  border-color: #dddddd;
+  /* border-color: #dddddd; */
 }
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
+.navbar-default .navbar-toggle:hover{
   background-color: #dddddd;
 }
 .navbar-default .navbar-toggle .icon-bar {
@@ -4866,7 +4878,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: #e7e7e7;
+  /* border-color: #e7e7e7; */
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
@@ -7195,124 +7207,6 @@ a.btn-gold .badge {
   color: #c4b257;
   background-color: #ffffff;
 }
-
-
-input.btn-gold {
-  color: #ffffff;
-  background-color: #c4b257;
-  border-color: #bda944;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  transition: all 0.5s;
-  min-width: 250px !important;
-  text-transform: uppercase;
-}
-input.btn-gold:focus,
-input.btn-gold.focus {
-  color: #ffffff;
-  background-color: #ac993c;
-  border-color: #605622;
-}
-input.btn-gold:hover {
-  color: #ffffff;
-  background-color: #ac993c;
-  border-color: #918233;
-}
-input.btn-gold:active,
-input.btn-gold.active,
-.open > .dropdown-togglea.btn-gold {
-  color: #ffffff;
-  background-color: #ac993c;
-  border-color: #918233;
-}
-input.btn-gold:active:hover,
-input.btn-gold.active:hover,
-.open > .dropdown-togglea.btn-gold:hover,
-input.btn-gold:active:focus,
-input.btn-gold.active:focus,
-.open > .dropdown-togglea.btn-gold:focus,
-input.btn-gold:active.focus,
-input.btn-gold.active.focus,
-.open > .dropdown-togglea.btn-gold.focus {
-  color: #ffffff;
-  background-color: #918233;
-  border-color: #605622;
-}
-input.btn-gold:active,
-input.btn-gold.active,
-.open > .dropdown-togglea.btn-gold {
-  background-image: none;
-}
-input.btn-gold.disabled,
-input.btn-gold[disabled],
-fieldset[disabled] input.btn-gold,
-input.btn-gold.disabled:hover,
-input.btn-gold[disabled]:hover,
-fieldset[disabled] input.btn-gold:hover,
-input.btn-gold.disabled:focus,
-input.btn-gold[disabled]:focus,
-fieldset[disabled] input.btn-gold:focus,
-input.btn-gold.disabled.focus,
-input.btn-gold[disabled].focus,
-fieldset[disabled] input.btn-gold.focus,
-input.btn-gold.disabled:active,
-input.btn-gold[disabled]:active,
-fieldset[disabled] input.btn-gold:active,
-input.btn-gold.disabled.active,
-input.btn-gold[disabled].active,
-fieldset[disabled] input.btn-gold.active {
-  background-color: #c4b257;
-  border-color: #bda944;
-}
-input.btn-gold .badge {
-  color: #c4b257;
-  background-color: #ffffff;
-}
-input.btn-gold:hover,
-input.btn-gold:focus,
-input.btn-gold.focus,
-input.btn-gold:active,
-input.btn-gold.active,
-.open > .dropdown-togglea.btn-gold {
-  color: #ffffff;
-  background-color: #bda944;
-  border-color: #a4933a;
-}
-input.btn-gold:active,
-input.btn-gold.active,
-.open > .dropdown-togglea.btn-gold {
-  background-image: none;
-}
-input.btn-gold.disabled,
-input.btn-gold[disabled],
-fieldset[disabled] input.btn-gold,
-input.btn-gold.disabled:hover,
-input.btn-gold[disabled]:hover,
-fieldset[disabled] input.btn-gold:hover,
-input.btn-gold.disabled:focus,
-input.btn-gold[disabled]:focus,
-fieldset[disabled] input.btn-gold:focus,
-input.btn-gold.disabled.focus,
-input.btn-gold[disabled].focus,
-fieldset[disabled] input.btn-gold.focus,
-input.btn-gold.disabled:active,
-input.btn-gold[disabled]:active,
-fieldset[disabled] input.btn-gold:active,
-input.btn-gold.disabled.active,
-input.btn-gold[disabled].active,
-fieldset[disabled] input.btn-gold.active {
-  background-color: #c4b257;
-  border-color: #bda944;
-}
-input.btn-gold .badge {
-  color: #c4b257;
-  background-color: #ffffff;
-}
-
-
-
-
-
 .ice-container {
   position: relative;
 }
@@ -7344,7 +7238,6 @@ footer a:visited,
 footer a:link,
 footer a:hover {
   color: #c4b257;
-  padding-left: 10px;
 }
 .navbar-default {
   background-color: white;
@@ -7729,7 +7622,7 @@ div.social a {
   background-color: #eee;
 }
 .fp-viewing-4 .logos {
-  display: none;
+  visibility: hidden;
 }
 body#buyer {
   padding-top: 44px;
