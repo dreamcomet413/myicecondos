@@ -1,6 +1,6 @@
 <footer>
   <% if params[:controller] == "home" && params[:action] == "index" %>
-    <div style="position: relative; top: 56px; z-index: 1;">
+    <div style="position: relative; top: 56px; z-index: 1; width:50px; left: 50%; margin-left: -25px;">
       <a href="#" id="scroll-page-top" class="center-block bounce" style="width: 50px; display: none;"><%= image_tag "icons/up.png", width: "50", height: "49" %></a>
       <a href="#" id="scroll-page-down" class="center-block bounce" style="width: 50px; display: none;"><%= image_tag "icons/down.png", width: "50", height: "49" %></a>
     </div>
@@ -9,7 +9,8 @@
   			<%= image_tag "footer-left.png", width: "207", height: "56" %>
       </div>
       <div class="col-sm-6">
-  			<%= image_tag "footer-right.png", width: "250", height: "56", class: "pull-right" %>
+        <%= link_to image_tag("footer-right2.png", width: "150", height: "56"), "http://www.mississauga-realestate.com/", target: "_blank", class: "pull-right" %>
+        <%= link_to image_tag("footer-right1.png", width: "100", height: "56"), "http://www.cloudrealty.ca", target: "_blank", class: "pull-right" %>
       </div>
     </div>
   <% end %>
@@ -114,7 +115,7 @@
             <center>Already have an account? <%= link_to "Sign In", "#", class: "gold", "data-toggle" => "login" %></center>
           <% end %>
         </div>
-      	
+
     	</div>
   </div>
 <% end %>

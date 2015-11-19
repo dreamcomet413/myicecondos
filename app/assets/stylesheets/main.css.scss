@@ -7615,13 +7615,13 @@ section#about .building {
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
-  -webkit-transform: translate(-100%, 0);
-  -ms-transform: translate(-100%, 0);
-  -o-transform: translate(-100%, 0);
-  transform: translate(-100%, 0);
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transform: translate(0, 100%);
+  -ms-transform: translate(0, 100%);
+  -o-transform: translate(0, 100%);
+  transform: translate(0, 100%);
+  -webkit-transition: all 2s;
+  -moz-transition: all 2s;
+  transition: all 2s;
 }
 @media (min-width: 992px) {
   section#about .building {
@@ -7817,6 +7817,10 @@ hr.gold {
   font-size: 12px;
   a {
     color: #fff;
+  }
+  i {
+    font-size:14px;
+    margin-right:5px;
   }
 }
 .white-link {
@@ -8079,4 +8083,30 @@ input.btn-gold .badge {
 }
 .modal-sm {
   width: 400px;
+}
+a.gold {
+  &:hover {
+    color: #c4b257;
+  }
+}
+
+.listing_social a .fa-heart, .listing_social a:hover .fa-heart-o {
+    display: none;
+}
+.listing_social a:hover .fa-heart {
+    display: inline;
+}
+.listing_social a:hover {
+  text-decoration: none;
+  span {
+    text-decoration: underline;
+  }
+}
+#floor_size_link {
+  color: #fff;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
 }

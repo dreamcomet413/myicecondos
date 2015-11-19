@@ -4,7 +4,7 @@
       <div class="header-content-inner">
         <!-- nothing yet -->
       </div>
-    </div>    
+    </div>
     <%= render "layouts/flash_messages" %>
     <div class="button-bar text-center">
       <a href="/listings" class="btn btn-gold text-uppercase">Buyers</a>
@@ -172,7 +172,8 @@
       </div>
       <div class="center-block" style="padding-bottom: 20px;">
         <%= image_tag "footer-left.png", width: "207", height: "56", style: "padding-right: 40px;" %>
-        <%= image_tag "footer-right.png", width: "250", height: "56" %>
+        <%= link_to image_tag("footer-right1.png", width: "100", height: "56"), "http://www.cloudrealty.ca", target: "_blank" %>
+        <%= link_to image_tag("footer-right2.png", width: "150", height: "56"), "http://www.mississauga-realestate.com/", target: "_blank" %>
       </div>
     </div>
   </section>

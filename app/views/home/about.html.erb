@@ -89,11 +89,12 @@
       <%= image_tag "footer-left.png", width: "207", height: "56" %>
     </div>
     <div class="col-sm-6">
-      <%= image_tag "footer-right.png", width: "250", height: "56", class: "pull-right" %>
+      <%= link_to image_tag("footer-right2.png", width: "150", height: "56"), "http://www.mississauga-realestate.com/", target: "_blank", class: "pull-right" %>
+      <%= link_to image_tag("footer-right1.png", width: "100", height: "56"), "http://www.cloudrealty.ca", target: "_blank", class: "pull-right" %>
     </div>
   </div>
 
-  <div style="position: relative; top: -56px;">
+  <div style="position: relative; top: -56px; width:50px; left: 50%; margin-left: -25px;">
     <a href="#page-top" class="center-block page-scroll" style="width: 50px"><%= image_tag "icons/up.png", width: "50", height: "49" %></a>
   </div>
 </div>

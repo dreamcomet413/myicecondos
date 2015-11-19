@@ -179,6 +179,8 @@ GEM
     execjs (2.2.2)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     geocoder (1.2.1)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
@@ -436,6 +438,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   faraday
+  font-awesome-rails
   geocoder
   haml-rails (~> 0.9)
   impressionist

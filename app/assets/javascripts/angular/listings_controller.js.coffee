@@ -85,12 +85,21 @@ app.controller 'ListingsCtrl', ['$scope', '$http', 'Listing', 'Favourite', ($sco
       $("#create_lead_error").removeClass('hide')
       return
 
+  $scope.change_size = () ->
+    if($("#floor_size_link").html() == "FT")
+      $scope.size_multiplier = 1
+      $("#floor_size_link").html("M")
+    else
+      $scope.size_multiplier = 3.28
+      $("#floor_size_link").html("FT")
+      
   $scope.loadListing = (id) ->
     $scope.listing = Listing.get({id:id}, ->
       $scope.related_listings = Listing.query({city: $scope.listing.city, listing_type: $scope.listing.listing_type, sample: 12, paginate: 0, notrack: 1}, ->
         $scope.related_listings.pop()
       )
       $scope.current_page = 1
+      $scope.size_multiplier = 3.28
       if $scope.listing.latitude
         $.getJSON '/listings/walkscore?&lat='+$scope.listing.latitude+'&lon='+$scope.listing.longitude, (data) ->
           if data.status == 1
@@ -242,8 +251,7 @@ app.controller 'ListingsCtrl', ['$scope', '$http', 'Listing', 'Favourite', ($sco
     $scope.favourite.favouriteable_type = "Listing"
     $scope.favourite.favouriteable_id = listing_id
     Favourite.save $scope.favourite, ->
-      $("#favourite").html("FAVOURITED")
-      $("#favourite").attr("disabled", "disabled")
+      $("#favourite").replaceWith("<i class='fa fa-heart'></i>FAVOURITED")
     , ->
       alert "Something went wrong! Please try again later."
 

@@ -26,13 +26,15 @@
           <li><%= link_to "My Account", my_account_path %></li>
           <li><%= link_to('Log Out', destroy_user_session_path, :method => :delete) %></li>
         <% else %>
-          <li><a href="#modal-login" data-toggle="modal">LOG IN</a></li>
+          <li><a href="#modal-login" data-toggle="modal">LOGIN / REGISTER</a></li>
         <% end %>
+        <li><a href="#">CONTACT US</a></li>
         <li>
           <a href="#" class="menu-toggle hidden-xs">
             <div class="hamburger">
               <span></span>
             </div>
+            &nbsp;&nbsp;MENU
           </a>
         </li>
       </ul>
@@ -52,9 +54,4 @@
       </ul>
     </div>
   </div>
-</div>
-
-<div class="social hidden-xs">
-  <a href="#"><%= image_tag "icons/twitter.png", height: "16", width: "16", alt: "Twitter" %></a>
-  <a href="#"><%= image_tag "icons/facebook.png", height: "16", width: "16", alt: "Facebook" %></a>
 </div>

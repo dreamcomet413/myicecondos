@@ -268,7 +268,7 @@ $ ->
     'verticalCentered': false
     'css3': true
     scrollOverflow: true
-    paddingTop: '40px'
+    paddingTop: '80px'
     paddingBottom: '42px'
     'navigation': true
     'navigationPosition': 'left'
