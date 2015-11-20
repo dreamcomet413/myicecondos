@@ -6,41 +6,45 @@ class HomeController < ApplicationController
   end
 
   def privacy
-    @title = "Privacy Policy"
+    @page_title = "Privacy Policy"
     @content = SiteConfiguration.first.try(:privacy_content)
   end
 
   def terms
-    @title = "Terms of Service"
+    @page_title = "Terms of Service"
     @content = SiteConfiguration.first.try(:terms_content)
   end
 
   def cookies_policy
-    @title = "Cookies Policy"
+    @page_title = "Cookies Policy"
     @content = SiteConfiguration.first.try(:cookies_content)
   end
 
   def about
-    @title = "Ice Condos"
+    @page_title = "Ice Condos"
     @content = SiteConfiguration.first.try(:about_content)
   end
 
   def gallery
-    @title = "Gallery"
+    @page_title = "Gallery"
+  end
+
+  def location
+    @page_title = "Location"
   end
 
   def sellers
-    @title = "Sellers"
+    @page_title = "Sellers"
     @content = SiteConfiguration.first.try(:sellers_content)
   end
 
   def buyers
-    @title = "Buyers"
+    @page_title = "Buyers"
     @content = SiteConfiguration.first.try(:buyers_content)
   end
 
   def resources
-    @title = "Resources"
+    @page_title = "Resources"
     @content = SiteConfiguration.first.try(:resources_content)
   end
 

@@ -28,7 +28,7 @@
         <% else %>
           <li><a href="#modal-login" data-toggle="modal">LOGIN / REGISTER</a></li>
         <% end %>
-        <li><a href="#">CONTACT US</a></li>
+        <li><a href="/contact?u=<%=u request.original_url %>">CONTACT US</a></li>
         <li>
           <a href="#" class="menu-toggle hidden-xs">
             <div class="hamburger">
@@ -49,7 +49,11 @@
       <ul class="nav">
         <% l = MenuLocation.where(name: "Header").first %>
         <% l.menu_items.each do |m| %>
-          <li class="text-uppercase"><%= link_to m.title, m.url %></li>
+          <% if m.title.downcase == "contact us" || m.title.downcase == "condo evaluation" %>
+            <li class="text-uppercase"><%= link_to m.title, "#{m.url}?u=#{u request.original_url}" %></li>
+          <% else %>
+            <li class="text-uppercase"><%= link_to m.title, m.url %></li>
+          <% end %>
         <% end if l %>
       </ul>
     </div>

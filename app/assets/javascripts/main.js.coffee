@@ -356,4 +356,8 @@ $ ->
   $('.tab_link').click ->
     $(this).closest('.list-inline').find('.tab_link.active').removeClass('active')
     $(this).addClass('active')
+  $('#tower1 .unit_row').hover ->
+    $("#tower1_img").attr('src', '/map-'+$(this).find('.unit_name').html()+'.png')
+    $("#tower1_name").html($(this).find('.unit_name').html())
+    $("#tower1_beds").html($(this).find('.unit_beds').html())
   return

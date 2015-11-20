@@ -1,0 +1,156 @@
+<%
+  tower1 = [
+    ["Bachelor / Studio", '402 sq ft', 'North', 'Oslo'],
+    ['1 Bedroom', '503 sq ft', 'East', 'Solna'],
+    ['1 Bedroom + Study', '522 sq ft', 'West', 'Visby'],
+    ['1 Bedroom + Study', '534 sq ft', 'West', 'Stockholm'],
+    ['1 Bedroom + Study', '538 sq ft', 'East', 'Lund'],
+    ['1 Bedroom + Den', '590 sq ft', 'North', 'Asker'],
+    ['1 Bedroom + Den', '592 sq ft', 'East', 'Uppsala'],
+    ['1 Bedroom + Den', '616 sq ft', 'South', 'Dramment'],
+    ['1 Bedroom + Den', '625 sq ft', 'East', 'Rauma'],
+    ['2 Bedrooms', '761 sq ft', 'South East', 'Helsinki'],
+    ['2 Bedrooms + Study', '751 sq ft', 'North West', 'Copenhagen'],
+    ['2 Bedrooms + Study', '770 sq ft', 'North East', 'Malmo'],
+    ['3 Bedrooms + Den', '1091 sq ft', 'South West', 'Gothemburg'],
+    ['3 Bedrooms + Den', '1360 sq ft', 'North East', 'Brondby']
+  ]
+
+%>
+
+
+<section id="about" class="section">
+  <div class="container">
+    <div class="text-center">
+      <p class="top letter-spaced">THE ICE CONDO BUILDINGS</p>
+    </div>
+    <h1 class="page_title">LOCATION</h1>
+
+    <div class="subnav">
+    </div>
+
+    <div class="about">
+      <div class="col-md-5">
+        <%= image_tag "about1.jpg", class: "img-responsive" %>
+      </div>
+      <div class="col-md-6 col-md-offset-1">
+        <ul class="list-unstyled">
+          <li><span class="gold">ADDRESS:</span> YORK AND BREMNER, TORONTO</li>
+          <li><span class="gold">DEVELOPER:</span> LANTERRA DEVELOPMENTS, CADILLAC FAIRVIEW</li>
+          <li><span class="gold">ARCHITECT:</span> ARCHITECTSALLIANCE</li>
+          <li><span class="gold">INTERIOR DESIGNER:</span> STUDIO MUNGE</li>
+          <li><span class="gold">LANDSCAPE ARCHITECT:</span> NAK DESIGN STRATEGIES</li>
+          <li><span class="gold">CATEGORY:</span> CONDO</li>
+          <li><span class="gold">HEIGHT:</span> 768 FT</li>
+          <li><span class="gold">STOREYS:</span> 67</li>
+          <li><span class="gold">NUMBER OF UNITS:</span> 743</li>
+          <li><span class="gold">HEIGHT:</span> 610FT</li>
+          <li><span class="gold">SMALLEST SUITE:</span> 402 SQ FT</li>
+          <li><span class="gold">LARGEST SUITE:</span> 1300 SQ FT</li>
+        </ul>
+      </div>
+    </div>
+    <div class="about" style="padding: 40px 0;">
+      <div class="col-md-6">
+        <h3>
+          ICE IS A WAY OF LIFE, IT IS AT ONCE URBAN AND CLOSE TO NATURE, INSPIRED BY ARCHITECTURE THAT WHISPERS
+          TIMELESS SIMPLICITY THROUGH CLEAN ELEGANT LINES.
+        </h3>
+
+        <div class="line"></div>
+
+        <p>Ice is a way of life, it is at once urban and close to nature, inspired by architecture that whispers
+          timeless simplicity through clean elegant lines. ICE is tall, sleek and ultimately cool. ICE is
+          Scandinavian-inspired design emerging as a gleaming amalgam of glass and metal from the concrete labyrinth
+          of Canada’s largest metropolis. ICE offers a green roof that will impact the Toronto skyline with lush,
+          oxygen creating landscaping, while creating a canopy of organic shelter over the bustling plaza below. ICE
+          is a condominium living that melds its contemporary design with trendsetting lifestyle amenities in
+          Toronto’s premiere waterfront location. ICE is prime real estate, sculpted for urban purchasers.</p>
+      </div>
+      <div class="col-md-5 col-md-offset-1">
+        <%= image_tag "about2.jpg", class: "img-responsive" %>
+      </div>
+    </div>
+    <hr class="gold vspace">
+    <h2 class="page_title">95 WALKSCORE</h2>
+    <br>
+    <div class="about">
+      <div class="col-md-5">
+        <%= image_tag "walkscore-map.png", class: "img-responsive" %>
+      </div>
+      <div class="col-md-6 col-md-offset-1">
+        <i>From Downtown Toronto</i><br><br>
+        <ul class="list-unstyled">
+          <li><span class="gold">CAR:</span> 3 min</li>
+          <li><span class="gold">BUS:</span> 16 min</li>
+          <li><span class="gold">BIKE:</span> 5 min</li>
+          <li><span class="gold">WALKING:</span> 19 min</li>
+          <hr class="gold">
+          <p>
+            Fantastic location in the heart of Toronto's South Core. Less than 5 minutes walk to the ACC, Rogers Centre, the Central Business District, the Lake and Union Station.
+          </p>
+        </ul>
+      </div>
+    </div>
+    <br><br>
+    <hr class="gold vspace">
+    <div class="row">
+      <div class="col-md-6">
+        <span>TOWER 1</span>
+        <br><br>
+        <span class="gold">ICE Phase 1 // 57 floors - 12 York Street</span>
+        <br><br>
+        <table class="table table-nob table-sm" id="tower1">
+          <thead>
+            <tr>
+              <th>
+                # BEDROOMS
+              </th>
+              <th>
+                SQUARE FOOTAGE
+              </th>
+              <th>
+                EXPOSURE
+              </th>
+              <th>
+                NAME
+              </th>
+            </tr>
+          </thead>
+          <tbody style="color:#999;">
+            <% tower1.each do |u| %>
+              <tr class="unit_row">
+                <td class="unit_beds"><%= u[0] %></td>
+                <td><%= u[1] %></td>
+                <td><%= u[2] %></td>
+                <td class="unit_name"><%= u[3] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6 tower">
+        <br><br>
+        <span class="gold">FLOORPLANS</span>
+        <br><br>
+        <img src="/map-oslo.png" class="img-responsive" id="tower1_img" /><br>
+        <h2 class="page_title right-text text-uppercase" id="tower1_name">OSLO</h2>
+        <div class="gold right-text text-uppercase" id="tower1_beds" style="padding-right:25px;">BACHELOR / STUDIO</div>
+      </div>
+    </div>
+    <hr class="gold vspace">
+  </div>
+  <div class="row hidden-xs logos">
+    <div class="col-sm-6">
+      <%= image_tag "footer-left.png", width: "207", height: "56" %>
+    </div>
+    <div class="col-sm-6">
+      <%= link_to image_tag("footer-right2.png", width: "150", height: "56"), "http://www.mississauga-realestate.com/", target: "_blank", class: "pull-right" %>
+      <%= link_to image_tag("footer-right1.png", width: "100", height: "56"), "http://www.cloudrealty.ca", target: "_blank", class: "pull-right" %>
+    </div>
+  </div>
+
+  <div style="position: relative; top: -56px; width:50px; left: 50%; margin-left: -25px;">
+    <a href="#page-top" class="center-block page-scroll" style="width: 50px"><%= image_tag "icons/up.png", width: "50", height: "49" %></a>
+  </div>
+</section>

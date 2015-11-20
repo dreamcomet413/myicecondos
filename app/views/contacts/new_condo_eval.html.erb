@@ -17,19 +17,27 @@
 		<label class="contact-form-label" for="phone">Phone</label>
 		<%= f.input :phone, :required => false, label: false, input_html: { class: "contact-form-field", placeholder: "Your Phone Number" } %>
 	</div>
+  <div class="contact-form-firstname">
+		<label class="contact-form-label" for"firstname">Building</label>
+		<%= f.input :building, :required => true, label: false, as: :select, collection: ["12 York St", "14 York St"], include_blank: false, input_html: { class: "contact-form-field" } %>
+	</div>
+	<div class="contact-form-lastname">
+		<label class="contact-form-label" for="lastname">Unit #</label>
+		<%= f.input :unit, :required => true, label: false, input_html: { class: "contact-form-field", placeholder: "Your Unit#" } %>
+	</div>
 	<div class="contact-form-message">
 		<label class="contact-form-label" for="message">Message</label>
-		<%= f.input :message, :required => true, as: :text, label: false, input_html: { class: "contact-form-field", placeholder: "What you'd like to say..." } %>
+		<%= f.input :message, :required => true, as: :text, label: false, input_html: { class: "contact-form-field", placeholder: "Any additional information..." } %>
 	</div>
 	<div class="contact-form-phone">
 		<label class="contact-form-label" for="phone">Best time to call</label>
-		<%= f.input :best_time_to_call, as: :select, include_blank: false, collection: ["Any Time", "ASAP", "Today", "Tomorrow"], label: false, input_html: { class: "contact-form-field"} %>
+		<%= f.input :time_frame, as: :select, include_blank: false, collection: ["I want to sell my condo now", "In the next 3 months", "In the next 6 months", "I’m just curious about my condo’s value"], label: false, input_html: { class: "contact-form-field"} %>
 	</div>
 	<div class= "hidden">
     <%= f.input :nickname, :hint => 'Leave this field blank!' %>
   </div>
 	<div class="contact-form-footer">
-		<button class="contact-form-button" type="submit">Send Message</button>
+		<button class="contact-form-button" type="submit" data-disable-with="Sending...">Send Message</button>
 		<%= link_to image_tag("cloud-realty.jpg", class: "contact-form-logo"), "http://www.cloudrealty.ca", target: "_blank" %>
 	</div>
 <% end %>
