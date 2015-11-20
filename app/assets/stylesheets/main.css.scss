@@ -8140,3 +8140,34 @@ a.gold {
     min-width:150px !important;
   }
 }
+.gallery-thumbnails {
+  background: #333;
+  height: 75px;
+  padding:10px;
+  margin-top: 20px;
+  text-align: center;
+  overflow-x: scroll;
+  white-space: nowrap;
+  div {
+    display: inline;
+    img {
+      height:55px;
+      margin: 0 5px;
+      opacity: 0.3;
+      cursor: pointer;
+    }
+    &.active {
+      img {
+        opacity: 1;
+        border: 3px solid #c4b257;
+      }
+    }
+    &:hover {
+      img {
+        opacity: 1;
+        border: 3px solid #c4b257;
+      }
+    }
+  }
+
+}

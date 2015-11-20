@@ -25,6 +25,10 @@ class HomeController < ApplicationController
     @content = SiteConfiguration.first.try(:about_content)
   end
 
+  def gallery
+    @title = "Gallery"
+  end
+
   def sellers
     @title = "Sellers"
     @content = SiteConfiguration.first.try(:sellers_content)

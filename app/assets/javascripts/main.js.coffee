@@ -348,6 +348,11 @@ $ ->
     e.preventDefault()
     return
   $('.selectpicker').selectpicker()
+  $('#myCarousel').on 'slid.bs.carousel', (e) ->
+    id = $('#myCarousel .item.active').data('slide-number')
+    $('.gallery-thumbnails .active').removeClass 'active'
+    $('#thumb_for_' + id).addClass 'active'
+    return
   $('.tab_link').click ->
     $(this).closest('.list-inline').find('.tab_link.active').removeClass('active')
     $(this).addClass('active')

@@ -15,14 +15,14 @@
           <div class="col-md-8">
             <div class="property-slider">
               <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active : $first}" ng-repeat="img in listing.images"></li>
-                </ol>
                 <div class="carousel-inner">
-                  <div ng-class="{active : $first, item : true}" ng-repeat="img in listing.images">
+                  <div ng-class="{active : $first, item : true}" ng-repeat="img in listing.images" data-slide-number="{{$index}}">
                     <img ng-src="{{img}}" alt="" onerror="this.onerror=null;this.src='/missing-image.png';"/>
                   </div>
                 </div>
+              </div>
+              <div id="thumbcarousel" class="gallery-thumbnails">
+                <div id="thumb_for_{{$index}}" data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active : $first, item : true}" ng-repeat="img in listing.images"><img ng-src="{{img}}" alt="" onerror="this.onerror=null;this.src='/missing-image.png';"/></div>
               </div>
             </div>
           </div>
