@@ -119,7 +119,7 @@ class ListingsController < ApplicationController
       params[:street] = params[:route]
     end
 
-    location_search = params[:province].present? || params[:city].present? || params[:street].present?
+    location_search = params[:province].present? || params[:city].present? || params[:street].present? || params[:st_num].present?
 
     respond_to do |format|
       format.html {
@@ -148,6 +148,7 @@ class ListingsController < ApplicationController
           custom_search["county"] = params[:province] if params[:province].present?
           custom_search["municipality"] = params[:city] if params[:city].present?
           custom_search["st"] = params[:street] if params[:street].present?
+          custom_search["st_num"] = params[:st_num] if params[:st_num].present?
           params[:query] = ""
         end
         @listings = Listing.search(params[:query] || "", custom_search).to_a

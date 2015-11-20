@@ -11,15 +11,29 @@
       <%= image_tag "captions/buy.png", class: "header" %>
     <% end %>
 
-    <div class="subnav">
+    <div class="subnav" style="margin-bottom: 20px;">
       <ul class="list-inline">
-        <li><a href="#" class="active">New Condos</a></li>
-        <li><a href="#">Offers</a></li>
-        <li><a href="#">Sellers Condos</a></li>
-        <li class="pull-right"><a href="#">From new to old</a></li>
+        <li><a href="" ng-click="load_search_page('<%= search_params %>')" class="tab_link active">All listings</a></li>
+        <% search_params_12 = params.except(*[:action, :controller]).merge({'st_num' => '12'}).to_json %>
+        <% search_params_14 = params.except(*[:action, :controller]).merge({'st_num' => '14'}).to_json %>
+        <li><a href="" ng-click="load_search_page('<%= search_params_12 %>');search_filters.custom_search.st_num=12;" class="tab_link">12 York St</a></li>
+        <li><a href="" ng-click="load_search_page('<%= search_params_14 %>');search_filters.custom_search.st_num=14;" class="tab_link">14 York St</a></li>
+        <li class="pull-right"><a href="" class="gold" data-toggle="collapse" data-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">FILTER LISTINGS&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a></li>
       </ul>
     </div>
-
+    <div class="collapse" id="collapseFilters">
+        <form name="search_filters_form" novalidate ng-submit="refine_search_results()" id="search_filters_details_fields">
+          <span class="filter_title gold">FILTER LISTINGS</span><br class='hidden-lg'>
+          <%= select_tag 'custom_search[search_beds]', options_for_select(beds_options, params[:custom_search].try(:[], :search_beds)), class: "selectpicker", id: "search_beds_select", "ng-model" => "search_filters.custom_search.search_beds", "ng-init" => "search_filters.custom_search.search_beds = '#{params[:custom_search].try(:[], :search_beds)}'" %>&nbsp;&nbsp;
+          <%= select_tag 'custom_search[search_bath]', options_for_select(baths_options, params[:custom_search].try(:[], :search_bath)), class: "selectpicker", id: "search_baths_select", "ng-model" => "search_filters.custom_search.search_bath", "ng-init" => "search_filters.custom_search.search_bath = '#{params[:custom_search].try(:[], :search_bath)}'" %>
+          &nbsp;&nbsp;
+          <%= select_tag 'custom_search[sort_field]', options_for_select(sort_options, params[:custom_search].try(:[], :sort_field)), class: "selectpicker", id: "sort_field_select", "ng-model" => "search_filters.custom_search.sort_field", "ng-init" => "search_filters.custom_search.sort_field = '#{params[:custom_search].try(:[], :sort_field)}'" %>
+          <input type="submit" class="btn btn-gold pull-right" value="APPLY" />
+        </form>
+        <br>
+        <div class="subnav"></div>
+    </div>
+    <br>
     <div class="condo" ng-repeat="o_listing in listings">
       <div class="col-md-5">
         <a class="gold" href="/listings/{{o_listing.slug}}">
@@ -42,6 +56,7 @@
         <div class="row" style="padding-bottom: 20px;">
           <div class="col-lg-offset-2 col-lg-5">
             <ul class="list-unstyled">
+              <li><span class="gold">ADDRESS:</span> {{o_listing.addr}}</li>
               <li><span class="gold">MLS:</span> {{o_listing.ml_num}}</li>
               <li><span class="gold">SQ.FT:</span> {{o_listing.sqft}}</li>
               <li><span class="gold">BEDROOMS:</span> {{o_listing.br}}</li>
@@ -56,10 +71,6 @@
           </div>
         </div>
         <hr>
-        <div class="social-icons">
-          <a href="#" class="social"><span class="icon twitter"></span></a>
-          <a href="#" class="social"><span class="icon facebook"></span></a>
-        </div>
       </div>
     </div>
     <a ng-click="search_paging('<%= search_params %>')" id="load_more_search_results"></a>

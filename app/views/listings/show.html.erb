@@ -88,8 +88,8 @@
               </div>
               <div class="col-md-6" style="text-align:right;">
                 SHARE &nbsp;&nbsp;
-                <a href="#"><%= image_tag "icons/twitter.png", height: "16", width: "16", alt: "Twitter" %></a>
-                <a href="#"><%= image_tag "icons/facebook.png", height: "16", width: "16", alt: "Facebook" %></a>
+                <a href="https://twitter.com/intent/tweet?url=<%=u request.original_url %>" target="_blank"><%= image_tag "icons/twitter.png", height: "16", width: "16", alt: "Twitter" %></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<%=u request.original_url %>" target="_blank"><%= image_tag "icons/facebook.png", height: "16", width: "16", alt: "Facebook" %></a>
               </div>
             </div>
             <br>

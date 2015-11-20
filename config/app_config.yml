@@ -1,6 +1,6 @@
 development:
-  facebook_app_id: 996780117015952
-  facebook_app_secret: 733bfae3dd1979a184d46577c6f63661
+  facebook_app_id: 1069038906461481
+  facebook_app_secret: 7eddc4cff94645438cef0da604d8c52f
   google_app_id: 551744300503-otfj9ags9o15nhgso1rjg3omtng4rsvv.apps.googleusercontent.com
   google_app_secret: QuA2nB49GTyWsyuBVRwZaUcu
   crm_api_url: http://icecondos-crm.dev
@@ -13,8 +13,8 @@ development:
   twitter_url: http://twitter.com
 
 staging:
-  facebook_app_id: 996769883683642
-  facebook_app_secret: 59c6656bb3342509e53f08285b7dc2ed
+  facebook_app_id: 1069038906461481
+  facebook_app_secret: 7eddc4cff94645438cef0da604d8c52f
   google_app_id: 551744300503-ivgml300qa557ptghs7ddutk9h9q3h5u.apps.googleusercontent.com
   google_app_secret: 8lghZVyl99k2KInhzKkIW-wR
   crm_api_url: http://45.58.37.92/crm

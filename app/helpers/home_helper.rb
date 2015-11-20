@@ -1,10 +1,14 @@
 module HomeHelper
   def beds_options
-    [["Any Beds", nil], ["0", "0"], ["1", "1"], ["1+", "1+"], ["2+", "2+"], ["3+", "3+"]]
+    [["ANY # OF BEDROOMS", nil], ["NO BEDROOMS", "0"], ["1 BEDROOM", "1"], ["1+ BEDROOMS", "1+"], ["2+ BEDROOMS", "2+"]]
   end
 
   def baths_options
-    [["Any Baths", nil], ["1+", "1+"], ["2+", "2+"], ["3+", "3+"]]
+    [["ANY # OF BATHROOMS", nil], ["1+ BATHROOMS", "1+"], ["2+ BATHROOMS", "2+"]]
+  end
+
+  def sort_options
+    [["SORT BY", nil], ["NEWEST TO OLDEST", "date_desc"], ["OLDEST TO NEWEST", "date_asc"], ["PRICE: LOW TO HIGH", "price_asc"], ["PRICE: HIGH TO LOW", "price_desc"]]
   end
 
   def price_options

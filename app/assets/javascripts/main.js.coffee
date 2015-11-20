@@ -347,4 +347,8 @@ $ ->
     ), 350
     e.preventDefault()
     return
+  $('.selectpicker').selectpicker()
+  $('.tab_link').click ->
+    $(this).closest('.list-inline').find('.tab_link.active').removeClass('active')
+    $(this).addClass('active')
   return

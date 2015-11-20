@@ -39,6 +39,7 @@ class Listing < ActiveRecord::Base
       query { string q_str } if q_str.present?
       filter :missing, field: "deleted_at"
       filter :term, s_r: additional_attr["s_r"] || "sale"
+      filter :term, st_num: additional_attr["st_num"].to_i if additional_attr["st_num"].present?
       filter :range, listing_images_count: { gte: 1 }
 
       filter :exists, field: "acres" if additional_attr["acres"].present?
@@ -87,7 +88,16 @@ class Listing < ActiveRecord::Base
       size 25000
       fields {}
       if additional_attr["sort_field"].present?
-        sort { by additional_attr["sort_field"].to_sym, additional_attr["sort_field"] == 'lp_dol' ? 'asc' : 'desc' }
+        case additional_attr["sort_field"]
+        when 'price_desc'
+          sort { by :lp_dol, 'desc' }
+        when 'price_asc'
+          sort { by :lp_dol, 'asc' }
+        when 'date_asc'
+          sort { by :timestamp_sql, 'asc' }
+        else
+          sort { by :timestamp_sql, 'desc' }
+        end
       else
         sort { by :timestamp_sql, 'desc' }
       end
