@@ -4,7 +4,7 @@
       <br>
       <p class="top">{{listing.addr || "Loading Details"}}</p>
     </div>
-    <h1 class="page_title">UNIT #{{listing.unit_num}}</h1>
+    <h1 class="page_title">UNIT #{{listing.apt_num}}</h1>
 
     <div class="subnav">
     </div>
@@ -32,7 +32,7 @@
                 <% if @listing.created_at > 48.hours.ago %><div class="alert-info">NEW</div><% end %>
               </div>
               <div class="col-sm-8 text-right-lg">
-                <h2 class="gold price">{{listing.lp_dol ? (listing.lp_dol | currency : "$CAD ").slice(0, -3) : "--"}}</h2>
+                <h2 class="gold price">{{listing.lp_dol ? (listing.lp_dol | currency : "$").slice(0, -3) : "--"}}</h2>
               </div>
             </div>
             <br>
@@ -41,18 +41,18 @@
             <div class="row">
               <div class="col-sm-6">
                 <ul class="list-unstyled">
-                  <li><span class="gold">MLS:</span> {{listing.ml_num}}</li>
-                  <li><span class="gold">SQ.FT:</span> {{listing.sqft}}</li>
                   <li><span class="gold">BEDROOMS:</span> {{listing.br}}</li>
                   <li><span class="gold">BATHROOMS:</span> {{listing.bath_tot}}</li>
+                  <li><span class="gold">SQ.FT:</span> {{listing.sqft}}</li>
+                  <li><span class="gold">MLS:</span> {{listing.ml_num}}</li>
                 </ul>
               </div>
               <div class="col-sm-6">
                 <ul class="list-unstyled">
-                  <li><span class="gold">FIREPLACE:</span> {{listing.fpl_num == "Y" ? "Yes" : "No"}}</li>
-                  <li><span class="gold">FURNISHED:</span> {{listing.furnished == "Y" ? "Yes" : "No"}}</li>
-                  <li><span class="gold">PARK SPACES:</span> {{listing.park_spcs || "--"}}</li>
                   <li><span class="gold">WALKSCORE:</span> {{current_walkscore || "N/A"}}</li>
+                  <li><span class="gold">PARK SPACES:</span> {{listing.park_spcs || "--"}}</li>
+                  <li><span class="gold">MAINTENANCE:</span> {{listing.maint ? (listing.maint | currency : "$").slice(0, -3) : "--"}}</li>
+                  <li><span class="gold">DAYS ON MARKET:</span> {{listing.DOM || "--"}}</li>
                 </ul>
               </div>
             </div>
@@ -71,7 +71,7 @@
                   <li></li>
                   <li></li>
                   <li>FLOOR {{listing.stories}}</li>
-                  <li>UNIT #{{listing.unit_num}}</li>
+                  <li>UNIT #{{listing.apt_num}}</li>
                 </ul>
               </div>
             </div>
@@ -99,9 +99,6 @@
               <div class="col-md-12">
                 <a class="btn btn-gold btn-block request-info-link" data-modal-title="BOOK A VIEWING" data-modal-btn="BOOK A VIEWING" data-modal-source="BOOK A VIEWING" data-modal-details="BOOK A VIEWING" data-toggle="modal" data-target="#request-info-modal">BOOK A VIEWING</a>
               </div>
-              <div class="col-md-12">
-                <a class="btn btn-link btn-block white-link request-info-link" data-modal-title="CONTACT A SALES AGENT" data-modal-btn="CONTACT A SALES AGENT" data-modal-source="CONTACT A SALES AGENT" data-modal-details="CONTACT A SALES AGENT" data-toggle="modal" data-target="#request-info-modal">OR CONTACT A SALES AGENT</a>
-              </div>
             </div>
           </div>
 
@@ -118,6 +115,7 @@
                 <br>
                 <div class="property-details">
                   <p>{{listing.description}}</p>
+                  <p>{{listing.extras}}</p>
                   <p class="added">Added to our website {{listing.created_at|timeago}}</p>
                   <p class="viewed">Viewed <ng-pluralize count="listing.view_count" when="{'1': '1 time', 'other': '{} times'}"></ng-pluralize></p>
                   MLS. {{listing.mls}}
@@ -129,7 +127,7 @@
             <div class="row">
               <div class="col-md-12">
                 <br><br>
-                <span class="gold">FLOORPLAN</span><br><br>
+                <span class="gold">ROOM DIMENSIONS</span><br><br>
                 <hr><br>
                 <table class="table table-nob table-sm">
                   <thead>
@@ -244,11 +242,6 @@
                 <br>
                 <hr>
                 <br>
-                <div class="row">
-                  <div class="col-md-12" style="font-size:10px;">
-                    {{listing.description}}
-                  </div>
-                </div>
               </form>
             </div>
           <% end %>
@@ -262,7 +255,7 @@
       <%= image_tag "footer-left.png", width: "207", height: "56" %>
     </div>
     <div class="col-sm-6">
-      <%= link_to image_tag("footer-right2.png", width: "150", height: "56"), "http://www.mississauga-realestate.com/", target: "_blank", class: "pull-right" %>
+      <%= image_tag("footer-right2.png", width: "150", height: "56", class: "pull-right") %>
       <%= link_to image_tag("footer-right1.png", width: "100", height: "56"), "http://www.cloudrealty.ca", target: "_blank", class: "pull-right" %>
     </div>
   </div>
@@ -325,7 +318,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <textarea name="comments" ng-model="request_info.comments" rows="4" class="form-control" placeholder="Comments? Questions? Concerns?"></textarea>
+                          <textarea name="comments" ng-model="request_info.comments" rows="4" class="form-control" placeholder="Comments? Questions? Concerns?" ng-init="request_info.comments='I\'m interested in checking the availability of <%= @listing.try(:addr) %> Unit <%= @listing.try(:apt_num) %> and possibly looking at the unit.'"></textarea>
                         </div>
                       </div>
                     </div>

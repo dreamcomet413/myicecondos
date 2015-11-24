@@ -1,7 +1,7 @@
 module Listable
   extend ActiveSupport::Concern
 
-  LISTABLE_ACCESSORS = %w(full_address address province city postal_code street price sale rent bedrooms bathrooms view_count mls description images type city_listing_count title class_name _type unit_num stories slug)
+  LISTABLE_ACCESSORS = %w(full_address address province city postal_code street price sale rent bedrooms bathrooms view_count mls description images type city_listing_count title class_name _type unit_num stories slug s_r apt_num maint DOM extras)
 
   def full_address
     "#{address}, #{city}, #{province}, #{postal_code}"

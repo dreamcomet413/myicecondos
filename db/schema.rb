@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117055056) do
+ActiveRecord::Schema.define(version: 20151124022303) do
 
   create_table "ahoy_events", force: :cascade do |t|
     t.uuid     "visit_id",   limit: 16
@@ -524,7 +524,7 @@ ActiveRecord::Schema.define(version: 20151117055056) do
     t.string   "slug",                  limit: 255
   end
 
-  add_index "listings", ["slug"], name: "index_listings_on_slug", unique: true, using: :btree
+  add_index "listings", ["slug"], name: "index_listings_on_slug", using: :btree
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.integer "unsubscriber_id",   limit: 4

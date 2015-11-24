@@ -37,7 +37,7 @@
             <h2 class="gold price">{{o_listing.lp_dol ? (o_listing.lp_dol | currency : "$CAD ").slice(0, -3) : "--"}}</h2>
 
             <div class="text-xsmall vspace">Ice is a way of life, it is at once urban and close to nature</div>
-            <a class="btn btn-gold" href="/listings/{{o_listing.slug}}">More Information</a>
+            <a class="btn btn-gold" href="/{{o_listing.s_r == 'Lease' ? 'condos-for-rent' : 'condos-for-sale'}}/{{o_listing.slug}}">More Information</a>
           </div>
         </div>
         <hr>

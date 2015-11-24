@@ -76,4 +76,9 @@ Rails.application.routes.draw do
 
   comfy_route :cms_admin, :path => '/admin'
   comfy_route :cms, :path => '/content', :sitemap => false
+
+  get '/condos-for-sale' => 'listings#index'
+  get '/condos-for-rent' => 'listings#index', defaults: {rent: "1"}
+  get '/condos-for-sale/:id' => 'listings#show'
+  get '/condos-for-rent/:id' => 'listings#show'
 end

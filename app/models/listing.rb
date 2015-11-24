@@ -111,8 +111,15 @@ class Listing < ActiveRecord::Base
     end
   end
 
+  def self.set_days_on_market
+    Listing.all.each do |l|
+      l.DOM = (Date.today.to_date - l.created_at.to_date).to_i
+      l.save
+    end
+  end
+
   def slugify
-    self.slug = "#{municipality} #{type_own1_out} #{unit_num} #{addr} #{ml_num}".parameterize
+    self.slug = "#{addr} Unit #{apt_num}".parameterize
   end
 
   def email_friend email_details

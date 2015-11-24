@@ -160,8 +160,9 @@ class Sync
        begin
          puts "\nStart Listing: #{i+1}"
            new_hash = row.each_with_object({}) do |(k, v), h|
-             if Listing.column_names.include? k.downcase
-               h[k.downcase] = v
+             f = k == "DOM" ? k : k.downcase
+             if Listing.column_names.include? f
+               h[f] = v
              end
            end
            if new_hash["municipality"] == "Toronto" && (new_hash["addr"].include?("14 York") || new_hash["addr"].include?("12 York"))
