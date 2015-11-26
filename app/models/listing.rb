@@ -119,7 +119,7 @@ class Listing < ActiveRecord::Base
   end
 
   def slugify
-    self.slug = "#{addr} Unit #{apt_num}".parameterize
+    self.slug = "#{addr} Unit #{apt_num} #{ml_num}".parameterize
   end
 
   def email_friend email_details
