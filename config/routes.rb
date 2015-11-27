@@ -65,6 +65,7 @@ Rails.application.routes.draw do
   get '/cookies_policy' => 'home#cookies_policy', as: 'cookies_policy'
   get '/about' => 'home#about', as: 'about'
   get '/gallery' => 'home#gallery', as: 'gallery'
+  get '/reviews' => 'home#reviews', as: 'reviews'
   get '/location' => 'home#location', as: 'location'
   match '/contact',     to: 'contacts#new',             via: 'get'
   get '/evaluation',     to: 'contacts#new_condo_eval', as: 'condo_eval_form'

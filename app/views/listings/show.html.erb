@@ -107,7 +107,7 @@
         <hr>
         <br>
         <div class="row">
-          <div class="col-md-<%= @listing.s_r == 'Sale' ? '7' : '12' %>">
+          <div class="col-md-7">
             <div class="row">
               <div class="col-md-12">
                 <span class="gold">DESCRIPTION</span><br><br>
@@ -158,8 +158,8 @@
               </div>
             </div>
           </div>
-          <% if @listing.s_r == 'Sale' %>
-            <div class="col-md-5">
+          <div class="col-md-5">
+            <% if @listing.s_r == 'Sale' %>
               <span class="gold">MORTGAGE CALCULATOR</span><br><br>
               <hr>
               <br>
@@ -243,8 +243,32 @@
                 <hr>
                 <br>
               </form>
+            <% end %>
+            <br><br>
+            <span class="gold">ICE CONDO EXPERT</span><br><br>
+            <hr>
+            <br>
+            <div class="realtor-box">
+              <div class="name">MARTIN ZIELINSKI</div>
+              <div class="realtor">CLOUD REALTY INC./MARTIN ZIELINSKI REALTORS<br>info@martinzielinski.com</div>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="phone">
+                    (+1) 416.889.<span class="hidden_part">xxxx<span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <a href="#" id="show-phone">Click to View</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <hr>
+                </div>
+              </div>
+              <%= image_tag("zielinski.png", width: "150", height: "20") %>
             </div>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>

@@ -119,7 +119,7 @@ select.contact-form-field {
 }
 
 .content-title {
-	margin-top: 35px;
+	margin-top: 5px;
 	display: none;
 }
 
@@ -205,7 +205,7 @@ select.contact-form-field {
 	}
 
 	.content {
-		width: 706px;
+		width: 900px;
 	}
 
 	.content-title {
@@ -214,6 +214,9 @@ select.contact-form-field {
 
 	.content-left {
 		display: block;
+		width:45%;
+		font-size:14px;
+		line-height:20px;
 	}
 
 	.contact-form {
@@ -321,4 +324,9 @@ text-align: left;
 	left:20px;
 	color: #fff;
 	text-decoration: none;
+}
+.quote {
+	span {
+		font-size:32px;
+	}
 }

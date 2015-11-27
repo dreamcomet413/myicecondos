@@ -360,4 +360,7 @@ $ ->
     $("#tower1_img").attr('src', '/map-'+$(this).find('.unit_name').html().toLowerCase()+'.png')
     $("#tower1_name").html($(this).find('.unit_name').html())
     $("#tower1_beds").html($(this).find('.unit_beds').html())
+  $('#show-phone').click (e) ->
+    e.preventDefault()
+    $('.phone .hidden_part').html '5603'
   return
