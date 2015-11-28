@@ -29,6 +29,10 @@ class HomeController < ApplicationController
     @page_title = "Gallery"
   end
 
+  def sell_with_us
+    @page_title = "Sell With Us"
+  end
+
   def location
     @page_title = "Location"
   end

@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   get '/privacy' => 'home#privacy', as: 'privacy'
   get '/cookies_policy' => 'home#cookies_policy', as: 'cookies_policy'
   get '/about' => 'home#about', as: 'about'
+  get '/sell_with_us' => 'home#sell_with_us', as: 'sell_with_us'
   get '/gallery' => 'home#gallery', as: 'gallery'
   get '/reviews' => 'home#reviews', as: 'reviews'
   get '/location' => 'home#location', as: 'location'

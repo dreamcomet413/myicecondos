@@ -28,7 +28,7 @@
         <% else %>
           <li><a href="#modal-login" data-toggle="modal">LOGIN / REGISTER</a></li>
         <% end %>
-        <li><a href="/contact?u=<%=u request.original_url %>">FAST RESPONSE&nbsp;&nbsp;<i class='fa fa-phone fa-rotate-90 fa-2x'></i></a></li>
+        <li><a href="/contact?u=<%=u request.path %>">FAST RESPONSE&nbsp;&nbsp;<i class='fa fa-phone fa-rotate-90 fa-2x'></i></a></li>
         <li>
           <a href="#" class="menu-toggle hidden-xs">
             &nbsp;&nbsp;&nbsp;&nbsp;MENU&nbsp;&nbsp;
@@ -51,9 +51,9 @@
         <li class="text-uppercase"><%= link_to "Buyers", "" %></li>
         <li class="text-uppercase assub"><%= link_to "condos for sale", "/condos-for-sale" %></li>
         <li class="text-uppercase"><%= link_to "Sellers", "" %></li>
-        <li class="text-uppercase assub"><%= link_to "why sell with us", "/" %></li>
-        <li class="text-uppercase assub"><%= link_to "sell my condo", "/evaluation?u=#{u request.original_url}" %></li>
-        <li class="text-uppercase assub"><%= link_to "what's my condo worth", "/evaluation?u=#{u request.original_url}" %></li>
+        <li class="text-uppercase assub"><%= link_to "why sell with us", "/sell_with_us" %></li>
+        <li class="text-uppercase assub"><%= link_to "sell my condo", "/evaluation?u=#{u request.path}" %></li>
+        <li class="text-uppercase assub"><%= link_to "what's my condo worth", "/evaluation?u=#{u request.path}" %></li>
         <li class="text-uppercase"><%= link_to "Renters", "" %></li>
         <li class="text-uppercase assub"><%= link_to "condos for lease", "/condos-for-rent" %></li>
         <li class="text-uppercase"><%= link_to "ice condo market data", "/" %></li>
@@ -62,7 +62,7 @@
         <li class="text-uppercase"><%= link_to "floor plans", "/location#floors" %></li>
         <li class="text-uppercase"><%= link_to "gallery", "/gallery" %></li>
         <li class="text-uppercase"><%= link_to "about us", "/about" %></li>
-        <li class="text-uppercase"><%= link_to "contact us", "/contact?u=#{u request.original_url}" %></li>
+        <li class="text-uppercase"><%= link_to "contact us", "/contact?u=#{u request.path}" %></li>
       </ul>
     </div>
   </div>
