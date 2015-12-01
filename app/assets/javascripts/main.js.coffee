@@ -357,9 +357,13 @@ $ ->
     $(this).closest('.list-inline').find('.tab_link.active').removeClass('active')
     $(this).addClass('active')
   $('#tower1 .unit_row').hover ->
-    $("#tower1_img").attr('src', '/map-'+$(this).find('.unit_name').html().toLowerCase()+'.png')
+    $("#tower1_img").attr('src', '/map-'+$(this).find('.unit_name').html().toLowerCase()+'.jpg')
     $("#tower1_name").html($(this).find('.unit_name').html())
     $("#tower1_beds").html($(this).find('.unit_beds').html())
+  $('#tower2 .unit_row').hover ->
+    $("#tower2_img").attr('src', '/map-'+$(this).find('.unit_name').html().toLowerCase()+'.jpg')
+    $("#tower2_name").html($(this).find('.unit_name').html())
+    $("#tower2_beds").html($(this).find('.unit_beds').html())
   $('#show-phone').click (e) ->
     e.preventDefault()
     $('.phone .hidden_part').html '5603'

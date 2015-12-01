@@ -7,15 +7,34 @@
     ['1 Bedroom + Study', '538 sq ft', 'East', 'Lund'],
     ['1 Bedroom + Den', '590 sq ft', 'North', 'Asker'],
     ['1 Bedroom + Den', '592 sq ft', 'East', 'Uppsala'],
-    ['1 Bedroom + Den', '616 sq ft', 'South', 'Dramment'],
+    ['1 Bedroom + Den', '616 sq ft', 'South', 'Drammen'],
     ['1 Bedroom + Den', '625 sq ft', 'East', 'Rauma'],
     ['2 Bedrooms', '761 sq ft', 'South East', 'Helsinki'],
     ['2 Bedrooms + Study', '751 sq ft', 'North West', 'Copenhagen'],
     ['2 Bedrooms + Study', '770 sq ft', 'North East', 'Malmo'],
-    ['3 Bedrooms + Den', '1091 sq ft', 'South West', 'Gothemburg'],
+    ['3 Bedrooms + Den', '1091 sq ft', 'South West', 'Gothenburg'],
     ['3 Bedrooms + Den', '1360 sq ft', 'North East', 'Brondby']
   ]
-
+  tower2 = [
+    ["Bachelor / Studio", '308 sq ft', 'East', 'Ski'],
+    ["Bachelor / Studio", '425 sq ft', 'East', 'Salo'],
+    ['1 Bedroom', '514 sq ft', 'North East', 'Kolding'],
+    ['1 Bedroom + Study', '505 sq ft', 'North', 'Bardo'],
+    ['1 Bedroom + Study', '529 sq ft', 'West', 'Trevola'],
+    ['1 Bedroom + Study', '546 sq ft', 'West', 'Stavanger'],
+    ['1 Bedroom + Den', '528 sq ft', 'North', 'Bergen'],
+    ['1 Bedroom + Den', '579 sq ft', 'East', 'Oyen'],
+    ['1 Bedroom + Den', '614 sq ft', 'South', 'Dalum'],
+    ['1 Bedroom + Den', '677 sq ft', 'West', 'Tampere'],
+    ['2 Bedrooms', '699 sq ft', 'West', 'Loviisa'],
+    ['2 Bedrooms', '753 sq ft', 'North West', 'Trondheim'],
+    ['2 Bedrooms', '781 sq ft', 'North East', 'Kuhmo'],
+    ['2 Bedrooms + Den', '746 sq ft', 'North East', 'Hamina'],
+    ['2 Bedrooms + Study', '1017 sq ft', 'North West', 'Parkano'],
+    ['3 Bedrooms', '934 sq ft', 'East', 'Valhalla'],
+    ['3 Bedrooms + Study', '983 sq ft', 'South East', 'Armena'],
+    ['3 Bedrooms + Study', '1042 sq ft', 'North', 'Helsingborg']
+  ]
 %>
 
 
@@ -178,9 +197,54 @@
         <br><br>
         <span class="gold">FLOORPLANS</span>
         <br><br>
-        <img src="/map-oslo.png" class="img-responsive" id="tower1_img" /><br>
+        <img src="/map-oslo.jpg" class="img-responsive" id="tower1_img" /><br>
         <h2 class="page_title right-text text-uppercase" id="tower1_name">OSLO</h2>
         <div class="gold right-text text-uppercase" id="tower1_beds" style="padding-right:25px;">BACHELOR / STUDIO</div>
+      </div>
+    </div>
+    <br><br><br>
+    <div class="row">
+      <div class="col-md-6">
+        <span>TOWER 2</span>
+        <br><br>
+        <span class="gold">ICE Phase 2 // 67 floors - 14 York Street</span>
+        <br><br>
+        <table class="table table-nob table-sm" id="tower2">
+          <thead>
+            <tr>
+              <th>
+                # BEDROOMS
+              </th>
+              <th>
+                SQUARE FOOTAGE
+              </th>
+              <th>
+                EXPOSURE
+              </th>
+              <th>
+                NAME
+              </th>
+            </tr>
+          </thead>
+          <tbody style="color:#999;">
+            <% tower2.each do |u| %>
+              <tr class="unit_row">
+                <td class="unit_beds"><%= u[0] %></td>
+                <td><%= u[1] %></td>
+                <td><%= u[2] %></td>
+                <td class="unit_name"><%= u[3] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6 tower">
+        <br><br>
+        <span class="gold">FLOORPLANS</span>
+        <br><br>
+        <img src="/map-ski.jpg" class="img-responsive" id="tower2_img" /><br>
+        <h2 class="page_title right-text text-uppercase" id="tower2_name">SKI</h2>
+        <div class="gold right-text text-uppercase" id="tower2_beds" style="padding-right:25px;">BACHELOR / STUDIO</div>
       </div>
     </div>
     <hr class="gold vspace">
