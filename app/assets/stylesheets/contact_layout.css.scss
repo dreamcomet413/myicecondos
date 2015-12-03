@@ -186,6 +186,17 @@ select.contact-form-field {
 			top:0px;
 			right: 20px;
 		}
+		.phone {
+			font-size:18px;
+			text-transform: uppercase;
+			position: absolute;
+			top: 80px;
+			left:20px;
+			color: #fff;
+			text-decoration: none;
+			text-align:left;
+		}
+
 	}
 }
 
@@ -329,4 +340,13 @@ text-align: left;
 	span {
 		font-size:32px;
 	}
+}
+.phone {
+	font-size:18px;
+	text-transform: uppercase;
+	position: absolute;
+	top: 50px;
+	right:20px;
+	color: #fff;
+	text-decoration: none;
 }

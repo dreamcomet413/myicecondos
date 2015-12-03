@@ -24,6 +24,7 @@
     <% if session[:contact_referrer].present? %>
       <%= link_to "< Back to Ice Condos", session[:contact_referrer], class: "back_link" %>
     <% end %>
+    <span class="phone">CALL US NOW:&nbsp;&nbsp;&nbsp;416.889.5603</span>
 		<a href="/"><%= image_tag "logo.jpg", class: "logo"%></a>
 		<div class="nav"><div class="title"><%= @page_title.try(:upcase) %></div></div>
 	</div>
@@ -33,11 +34,19 @@
 			<div class="content-left" style="text-align:left;">
         <%= image_tag "lets-talk-realestate.png", class: "content-title" %>
         <br>
-				<%= image_tag "contact-testimonial.png", width: "100px;" %>
-        <p class="quote">
-          <span>&quot;</span> As a first time home buyer, I was apprehensive in working with an agent, as I wanted to find someone I could fully trust; with the biggest purchase of my life. I had spoken to multiple agents prior to meeting with Martin, and due to his informative and approachable demeanor, he immediately had me at ease. He was quick to understand my needs, responsive when handling my inquiries and delicately balanced professionalism with a genuine, effective approach when corresponding, scheduling showings and closing the sale. I can honestly say that it was a seamless transition into owning my first home, and I can't thank Martin enough for all of his efforts in meeting tight deadlines and finding me a beautiful property!
-        </p>
-        <strong>Kimberley W.</strong>
+        <% if params[:action] == "new_condo_eval" %>
+          <%= image_tag "contact-testimonial-eval.png", width: "100px;" %>
+          <p class="quote">
+            <span>&quot;</span> You have been instrumental in my condo experiences. Both highly professional and knowledgeable in your field, I wouldn’t have anyone else in my corner when buying or selling a condo.  In my case it was one week from telling you that I needed my place on the market, to having it sold.  The condo was on the market for less than 72 hours and you helped me get more than I was expecting.  You are the definitive resource on how to present a condo and negotiate for top dollar.  You have been a pleasure to work with and I look forward to using you to purchase in the future.
+          </p>
+          <strong>Devan T.</strong>
+        <% else %>
+  				<%= image_tag "contact-testimonial.png", width: "100px;" %>
+          <p class="quote">
+            <span>&quot;</span> As a first time home buyer, I was apprehensive in working with an agent, as I wanted to find someone I could fully trust; with the biggest purchase of my life. I had spoken to multiple agents prior to meeting with Martin, and due to his informative and approachable demeanor, he immediately had me at ease. He was quick to understand my needs, responsive when handling my inquiries and delicately balanced professionalism with a genuine, effective approach when corresponding, scheduling showings and closing the sale. I can honestly say that it was a seamless transition into owning my first home, and I can't thank Martin enough for all of his efforts in meeting tight deadlines and finding me a beautiful property!
+          </p>
+          <strong>Kimberley W.</strong>
+        <% end %>
 			</div>
 			<div class="contact-form">
 				<%= yield %>
