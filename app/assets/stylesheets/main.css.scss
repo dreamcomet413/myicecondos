@@ -8200,8 +8200,8 @@ a.gold {
 }
 
 .realtor-box {
-  padding: 15px 15px 15px 100px;
-  background: transparent asset-url('bg-exper.jpg') top left no-repeat;
+  padding: 15px 15px 15px 125px;
+  background: transparent asset-url('bg-expert.jpg') top left no-repeat;
   background-size: cover;
   color: #999;
   .name {
@@ -8382,6 +8382,9 @@ section.sellers .heading p {
   .objective h3,
   .objective .objective-row-icons h3 {
     min-height: auto;
+  }
+  .about-row-2 .page_title {
+    font-size:24px;
   }
 }
 .start-now {
