@@ -3,21 +3,15 @@ upstream <%= "unicorn_#{application}_#{stage}" %>  {
   server unix:/tmp/unicorn.<%= "#{application}_#{stage}" %>.sock fail_timeout=0;
 }
 
-upstream unicorn_fat_free_crm_production  {
-  server unix:/tmp/unicorn.fat_free_crm_production.sock fail_timeout=0;
-}
-
-server {
-   listen       80;
-   server_name  www.myicecondos.com;
-   rewrite ^ http://myicecondos.com$request_uri? permanent;
+upstream unicorn_fat_free_crm_stagins  {
+  server unix:/tmp/unicorn.fat_free_crm_staging.sock fail_timeout=0;
 }
 
 server {
     listen       80;
 
     client_max_body_size 4G;
-    server_name crm.myicecondos.com;
+    server_name www.myicecondos.com/crm;
 
     # ~2 seconds is often enough for most folks to parse HTML/CSS and
     # retrieve needed images/icons/frames, connections are cheap in
@@ -71,7 +65,7 @@ server {
         # clients, really.
         # proxy_buffering off;
 
-        proxy_pass http://unicorn_fat_free_crm_production;
+        proxy_pass http://unicorn_fat_free_crm_stagins;
     }
 
   	recursive_error_pages on;
@@ -103,7 +97,8 @@ server {
     listen       80;
 
     client_max_body_size 4G;
-    server_name icecondos.com;
+    server_name www.myicecondos.com;
+    rewrite ^ http://myicecondos.com$request_uri? permanent;
 
     # ~2 seconds is often enough for most folks to parse HTML/CSS and
     # retrieve needed images/icons/frames, connections are cheap in
