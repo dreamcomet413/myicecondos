@@ -7531,6 +7531,18 @@ section#header .button-bar a {
   padding-right: 40px;
   transform: translateY(-50%);
 }
+
+@media (max-width: 915px) {
+  section#header .button-bar a {
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 995px) {
+  section#welcome .footer a {
+    margin: 5px 0 !important;
+  }
+}
 @media (min-width: 768px) {
   section#header {
     min-height: 100%;
@@ -7641,10 +7653,11 @@ section#about .ice-caption {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 71.62393162393162%;
 }
 @media (min-width: 1200px) {
   section#about .ice-caption {
-    width: 838px;
+    width: 71.62393162393162%; /* 838 / 1170 */
   }
 }
 .ice-caption {

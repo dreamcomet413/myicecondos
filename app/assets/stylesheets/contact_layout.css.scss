@@ -178,25 +178,56 @@ select.contact-form-field {
 .footer-link:visited {
 	color: #868686;
 }
+@media(max-width: 570px){
+	.header {
+		.back_link {
+			display: block !important;
+			float: none !important;
+		}
+		.phone {
+			display: block !important;
+			float: none !important;
+		}
+	}
 
+}
 @media(max-width: 600px) {
 	.header {
 		.logo {
-			position: absolute;
-			top:0px;
-			right: 20px;
+			padding-top: 5px;
 		}
 		.phone {
 			font-size:18px;
 			text-transform: uppercase;
-			position: absolute;
-			top: 80px;
-			left:20px;
+			position: relative;
+			top: 0px;
 			color: #fff;
 			text-decoration: none;
-			text-align:left;
 		}
 
+	}
+}
+@media(max-width: 775px) {
+	.header{
+		.back_link {
+			position: relative;
+			display: inline-block;
+			top: 0;
+			float: left;
+			margin-right: 10px;
+		}
+		.logo{
+		 	position: relative;
+		 	top: 0;
+		 	display: inline-block;
+		}
+
+		.phone {
+			position: relative;
+			top: 0;
+			display: inline-block;
+			float: right;
+		}
 	}
 }
 
