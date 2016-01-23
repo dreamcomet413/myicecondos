@@ -26,7 +26,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 set :scm, "git"
 set :scm_verbose, true
-set :repository, "git@bitbucket.org:tzubyak/icecondos.git"
+set :repository, "git@bitbucket.org:ewhyte/icecondos.git"
 set :branch, ENV['BRANCH'] ? ENV['BRANCH'] : "master"
 
 default_run_options[:pty] = true
