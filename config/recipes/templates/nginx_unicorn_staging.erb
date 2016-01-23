@@ -11,7 +11,7 @@ server {
     listen       80;
 
     client_max_body_size 4G;
-    server_name 45.58.37.92/crm;
+    server_name www.myicecondos.com/crm;
 
     # ~2 seconds is often enough for most folks to parse HTML/CSS and
     # retrieve needed images/icons/frames, connections are cheap in
@@ -97,7 +97,8 @@ server {
     listen       80;
 
     client_max_body_size 4G;
-    server_name 45.58.37.92;
+    server_name www.myicecondos.com;
+    rewrite ^ http://myicecondos.com$request_uri? permanent;
 
     # ~2 seconds is often enough for most folks to parse HTML/CSS and
     # retrieve needed images/icons/frames, connections are cheap in
