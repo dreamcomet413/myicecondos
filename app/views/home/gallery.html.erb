@@ -15,7 +15,7 @@
           <div class="carousel-inner">
             <% imgs.each_with_index do |img, i| %>
               <div class="item <%= i == 0 ? 'active' : '' %>" data-slide-number="<%= i %>">
-                <center><%= image_tag img %></center>
+                <center><%= image_tag img, height: "500px" %></center>
               </div>
             <% end %>
           </div>

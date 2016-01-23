@@ -269,7 +269,7 @@ $ ->
     'css3': true
     scrollOverflow: true
     paddingTop: '80px'
-    paddingBottom: '42px'
+    paddingBottom: '0px'
     'navigation': true
     'navigationPosition': 'left'
     'navigationTooltips': [

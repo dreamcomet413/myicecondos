@@ -2532,6 +2532,9 @@ table th[class*="col-"] {
   min-height: 0.01%;
 }
 @media screen and (max-width: 767px) {
+  section#header {
+    background: none !important;
+  }
   .navbar-header {
     background-color: black;
   }
@@ -2539,7 +2542,7 @@ table th[class*="col-"] {
     display: none;
   }
   .fullpage-wrapper {
-    padding: 0px 20px 0px 20px;
+    padding: 0px;
   }
   .scroll-page-buttons {
     top: auto !important;
@@ -4894,7 +4897,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-color: #e7e7e7;
 }
 .navbar-default .navbar-header {
-  padding: 15px 0;
+  padding: 3px 0;
 }
 .navbar-default .navbar-nav {
   padding: 15px 0;
@@ -7522,7 +7525,7 @@ section#header .button-bar {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 170px;
+  height: 200px;
   color: #fff;
 }
 section#header .button-bar a {
@@ -7533,8 +7536,12 @@ section#header .button-bar a {
 }
 
 @media (max-width: 915px) {
+  .nav-menu {
+    right: -116%;
+  }
   section#header .button-bar a {
-    margin: 5px 0;
+    margin: 2px 0;
+    width: 98%;
   }
 }
 
@@ -7809,6 +7816,16 @@ hr.gold {
   text-align: center;
   margin-bottom: 20px;
 }
+
+.subheading {
+  font-size: 32px;
+  margin-top: 30px;
+  letter-spacing: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #999;
+}
+
 .listing-details {
   .top {
     font-size: 16px;
@@ -8373,6 +8390,9 @@ section.sellers .heading p {
 .objective .objective-row {
   border-bottom: 2px solid #fff;
   padding: 50px 0;
+  h3 {
+    text-transform: uppercase;
+  }
 }
 .objective .objective-row h3:after {
   content: '';
@@ -8388,7 +8408,6 @@ section.sellers .heading p {
   margin: 25px 0;
 }
 .objective .objective-row-icons h3 {
-  color: #fff;
   min-height: 100px;
 }
 @media (max-width: 768px) {
@@ -8413,4 +8432,7 @@ section.sellers .heading p {
   &:hover {
     color: #333;
   }
+}
+#element::-webkit-scrollbar {
+    display: none !important;
 }

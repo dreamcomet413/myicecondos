@@ -91,11 +91,33 @@
     </div>
     <hr class="gold vspace">
     <h2 class="page_title">95 WALKSCORE</h2>
-    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <center><h2>100 TRANSIT SCORE</h2></center>
+      </div>
+      <div class="col-md-6">
+        <center><h2>83 BIKE SCORE</h2></center>
+      </div>
+    </div>
+<br><br>
     <div class="about">
       <div class="col-md-5">
-        <%= image_tag "walkscore-map.png", class: "img-responsive" %><br><br>
-        <%= image_tag "location_img.png", class: "img-responsive" %>
+        <script type='text/javascript'>
+var ws_wsid = 'a7a1448f92dfeef1926e20d173da4326';
+var ws_address = '14 YORK ST, Toronto, ON';
+var ws_width = '450';
+var ws_height = '664';
+var ws_layout = 'vertical';
+var ws_hide_footer = 'true';
+var ws_commute = 'true';
+var ws_transit_score = 'true';
+var ws_map_modules = 'default';
+var ws_no_link_info_bubbles = 'true';
+var ws_no_link_score_description = 'true';
+</script>
+<style type='text/css'>#ws-walkscore-tile{position:relative;text-align:left}#ws-walkscore-tile *{float:none;}#ws-foottext, #ws-footer a,#ws-footer a:link{font:11px/14px Verdana,Arial,Helvetica,sans-serif;margin-right:6px;white-space:nowrap;padding:0;color:#000;font-weight:bold;text-decoration:none}#ws-footer a:hover{color:#000;text-decoration:none}#ws-footer a:active{color:#b14900}</style>
+<div id='ws-walkscore-tile'></div><script type='text/javascript' src='http://www.walkscore.com/tile/show-walkscore-tile.php'></script>
+<br><br>
       </div>
       <div class="col-md-6 col-md-offset-1">
         <div class="row">
@@ -109,16 +131,6 @@
               <li><span class="gold">WATERFRONT:</span> 4 min</li>
               <hr class="gold">
             </ul>
-          </div>
-          <div class="col-md-4">
-            TRANSIT SCORE<br><br>
-            <span class="gold">100</span><br><br>
-            Direct access to PATH system.<br><br>
-            Instant access to subway, bus, and streetcar
-          </div>
-          <div class="col-md-4">
-            BIKE SCORE<br><br>
-            <span class="gold">83</span><br><br>
           </div>
         </div><br>
         <div class="row">
