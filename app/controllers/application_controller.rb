@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if request.referer.include?("/listings")
+    if request.referer && request.referer.include?("/listings")
       request.referer.include?("?") ? "#{request.referer}&map=true" : "#{request.referer}?map=true"
     else
       root_path

@@ -17,7 +17,7 @@ staging:
   facebook_app_secret: 7eddc4cff94645438cef0da604d8c52f
   google_app_id: 551744300503-ivgml300qa557ptghs7ddutk9h9q3h5u.apps.googleusercontent.com
   google_app_secret: 8lghZVyl99k2KInhzKkIW-wR
-  crm_api_url: http://45.58.37.92/crm
+  crm_api_url: http://crm.myicecondos.com
   crm_api_token: ZuB2nB24GTyWsyuPVRwMaZmi
   mapbox_token: pk.eyJ1IjoidHp1YnlhayIsImEiOiIxNmI5OTMzYzM0NTdhZjc3MDJiNGQ5YjI0NWQ2MTg0YSJ9.xA_OjQLoZREbHhOX-XW0jQ
   mapbox_map: tzubyak.m8nb9c8d
