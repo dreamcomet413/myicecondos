@@ -13,6 +13,12 @@ server {
 }
 
 server {
+   listen       80;
+   server_name  www.myicecondos.com;
+   rewrite ^(.*) http://myicecondos.com$1 permanent;
+}
+
+server {
     listen       80;
 
     client_max_body_size 4G;
