@@ -1,4 +1,4 @@
-server "45.58.37.102", :web, :app, :db, primary: true
+server "69.28.82.102", :web, :app, :db, primary: true
 
 set :rails_env, "production"
 set :unicorn_user, "#{user}"
