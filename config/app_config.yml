@@ -27,8 +27,8 @@ staging:
   twitter_url: http://twitter.com
 
 production:
-  facebook_app_id: 996769883683642
-  facebook_app_secret: 59c6656bb3342509e53f08285b7dc2ed
+  facebook_app_id: 1600428676944018
+  facebook_app_secret: 4a76269688e4d45cb020d70f7dff507b
   google_app_id: 551744300503-ivgml300qa557ptghs7ddutk9h9q3h5u.apps.googleusercontent.com
   google_app_secret: 8lghZVyl99k2KInhzKkIW-wR
   crm_api_url: http://crm.myicecondos.com
