@@ -182,9 +182,9 @@ class AdminController < Comfy::Admin::Cms::BaseController
 
   def process_images(listing)
     bucket_name = if Rails.env.production? || Rails.env.staging?
-                    'icecondos'
+                    'icecondos2'
                   else
-                    'icecondos-dev'
+                    'icecondos2-dev'
                   end
     s3 = AWS::S3.new
     params[:listing][:listing_images_attributes].each do |k, v|
