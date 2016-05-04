@@ -82,18 +82,18 @@ Rails.application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => 'icecondos-dev'
+      :bucket => 'icecondos2-dev'
     }
   }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      :address   => "smtp.mandrillapp.com",
-      :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
-      :enable_starttls_auto => true, # detects and uses STARTTLS
-      :user_name => "webmaster@kitchenandbath.ca",
-      :password  => "Cjsy9CNAhEspT8OnlAjexA", # SMTP password is any valid API key
-      :authentication => 'login', # Mandrill supports 'plain' or 'login'
-      :domain => '45.58.37.92', # your domain to identify your server when connecting
-    }
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
 end

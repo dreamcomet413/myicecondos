@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :prospect_matches
   has_many :ahoy_events, :foreign_key => 'user_id', :class_name => "Ahoy::Event"
 
-  has_attached_file :avatar, :default_url => "http://icecondos.s3.amazonaws.com/default_avatar.png"
+  has_attached_file :avatar, :default_url => "http://icecondos2.s3.amazonaws.com/default_avatar.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def name

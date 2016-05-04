@@ -6,7 +6,7 @@ class Sync
     update_geocode
     load_location_file
     try_loading_photos
-    #ProspectMatch.process_house_alerts
+    # ProspectMatch.process_house_alerts
     # Tire.index("listings").delete
     # Listing.import
   end
@@ -192,9 +192,9 @@ class Sync
        photos.each_with_index do |data, index|
          begin
            s3 = AWS::S3.new
-           object = s3.buckets['icecondos'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
+           object = s3.buckets['icecondos2'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
            response = object.write(data.body, acl: :public_read)
-           listing.listing_images.create(image_src: "http://icecondos.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
+           listing.listing_images.create(image_src: "http://icecondos2.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
            puts "#{response}"
          rescue
            puts "File upload failed. #{listing.id}"
@@ -227,9 +227,9 @@ class Sync
          photos.each_with_index do |data, index|
            begin
              s3 = AWS::S3.new
-             object = s3.buckets['icecondos'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
+             object = s3.buckets['icecondos2'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
              response = object.write(data.body, acl: :public_read)
-             listing.listing_images.create(image_src: "http://icecondos.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
+             listing.listing_images.create(image_src: "http://icecondos2.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
              i += 1
              puts "#{response}"
              puts "count: #{i}"
@@ -265,9 +265,9 @@ class Sync
          photos.each_with_index do |data, index|
            begin
              s3 = AWS::S3.new
-             object = s3.buckets['icecondos'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
+             object = s3.buckets['icecondos2'].objects["listing_photos/listing_#{listing.id}_#{index}.jpg"]
              response = object.write(data.body, acl: :public_read)
-             listing.listing_images.create(image_src: "http://icecondos.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
+             listing.listing_images.create(image_src: "http://icecondos2.s3.amazonaws.com/listing_photos/listing_#{listing.id}_#{index}.jpg")
              i += 1
              puts "#{response}"
              puts "count: #{i}"
