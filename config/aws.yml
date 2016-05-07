@@ -1,11 +1,11 @@
 development:
-  access_key_id: AKIAIC7OHVPYHAR37ZVA
-  secret_access_key: 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
+  access_key_id: AKIAJZYBQM3U6TJIVWVA
+  secret_access_key: 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
 
 staging:
-  access_key_id: AKIAIC7OHVPYHAR37ZVA
-  secret_access_key: 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
+  access_key_id: AKIAJZYBQM3U6TJIVWVA
+  secret_access_key: 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
 
 production:
-  access_key_id: AKIAIC7OHVPYHAR37ZVA
-  secret_access_key: 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
+  access_key_id: AKIAJZYBQM3U6TJIVWVA
+  secret_access_key: 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
