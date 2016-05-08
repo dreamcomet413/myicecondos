@@ -165,9 +165,14 @@ class Sync
                h[f] = v
              end
            end
-           puts new_hash["addr"].inspect
+           if new_hash["addr"].include?("14 York")
+            puts new_hash.inspect
+           end
            if new_hash["municipality"] == "Toronto" && (new_hash["addr"].include?("14 York") || new_hash["addr"].include?("12 York"))
              existing = Listing.where(ml_num: new_hash["ml_num"]).first
+             if existing.present?
+              existing.update_attribute(:deleted_at, nil)
+             end
              if existing.present? && existing.visibility == "vow" && visibility == "idx"
                existing.update_attributes(visibility: "idx")
              elsif existing.nil?
