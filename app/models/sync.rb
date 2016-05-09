@@ -187,7 +187,7 @@ class Sync
                store_photo(visibility, r, client)
              end
            end
-         puts "\nFinish Listing: #{i+1}"
+         puts "\nFinish Listing: #{i+1} - #{new_hash["ml_num"]}"
        rescue Exception => e
          puts "\nstore_residential_data failed for record #{row}\n"
          puts e.inspect
