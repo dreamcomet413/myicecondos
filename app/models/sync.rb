@@ -168,7 +168,7 @@ class Sync
            add_listing_check = new_hash["municipality"] == "Toronto" && (new_hash["addr"].include?("14 York") || new_hash["addr"].include?("12 York"))
 
            if add_listing_check == false
-            check = ['C3476313', 'C3447592', 'C3410481', 'C3472512', 'C3460441', 'C3417745', 'C3417382', 'C3476748', 'C3467175', 'C3476321', 'C3476322', 'C3465892', 'C3460989'].new_hash("ml_num")
+            check = ['C3476313', 'C3447592', 'C3410481', 'C3472512', 'C3460441', 'C3417745', 'C3417382', 'C3476748', 'C3467175', 'C3476321', 'C3476322', 'C3465892', 'C3460989'].include?(new_hash("ml_num"))
            end 
 
            if add_listing_check
