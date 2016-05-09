@@ -94,9 +94,9 @@ class Sync
       })
     end
     client.login
-    res = client.find(:all, search_type: 'Property', class: 'ResidentialProperty', :query => "(timestamp_sql=#{1.day.ago.beginning_of_day.strftime('%FT%T')}+)")
+    res = client.find(:all, search_type: 'Property', class: 'ResidentialProperty', :query => "(status=A)")
     Sync.store_listing_data(res, "Residential", type, client)
-    res = client.find(:all, search_type: 'Property', class: 'CondoProperty', :query => "(timestamp_sql=#{1.day.ago.beginning_of_day.strftime('%FT%T')}+)")
+    res = client.find(:all, search_type: 'Property', class: 'CondoProperty', :query => "(status=A)")
     Sync.store_listing_data(res, "Condo", type, client)
   end
 
