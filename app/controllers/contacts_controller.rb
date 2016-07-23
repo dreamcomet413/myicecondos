@@ -34,6 +34,7 @@ class ContactsController < ApplicationController
     @content = SiteConfiguration.first.try(:contact_content)
     @contact = Contact.new(params[:contact])
     @contact.request = request
+
     if @contact.deliver
       flash[:notice] = 'Thank you for your message. We will contact you soon!'
       redirect_to contact_path

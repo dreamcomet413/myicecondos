@@ -86,7 +86,14 @@ class ListingsController < ApplicationController
       listing_info_lead_is: params[:request][:lead_is],
       title: "Home Buyer"
     }
-    Crm::Lead.delay.send_to_crm lead_params
+
+    # Disable sending to CRM for now.
+    # Crm::Lead.delay.send_to_crm lead_params
+
+    contact = LeadContact.new(lead_params)
+    contact.request = request
+    contact.deliver
+
     render nothing: true
   end
 
@@ -108,7 +115,12 @@ class ListingsController < ApplicationController
       listing_info_lead_is: params[:lead][:lead_is],
       title: params[:lead][:lead_is] == "Both" ? "Buyer and Seller" : params[:lead][:lead_is]
     }
-    Crm::Lead.delay.send_to_crm lead_params
+    # Crm::Lead.delay.send_to_crm lead_params
+
+    contact = LeadContact.new(lead_params)
+    contact.request = request
+    contact.deliver
+    
     render nothing: true
   end
 

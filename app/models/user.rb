@@ -99,15 +99,17 @@ class User < ActiveRecord::Base
       source: "Registration",
       lat: user_location.try(:latitude),
       long: user_location.try(:longitude),
-      address: {
-        street1: address,
-        city: city,
-        state: province,
-        country: country,
-        zipcode: postal_code,
-        address_type: "Business"
-      }
+      address_street1: address,
+      address_city: city,
+      address_state: state,
+      address_country: country,
+      address_type: "Business"
     }
-    Crm::Lead.delay(priority: 10).send_to_crm lead_params
+    
+    # Crm::Lead.delay(priority: 10).send_to_crm lead_params
+
+    contact = LeadContact.new(lead_params)
+    contact.request = request
+    contact.deliver    
   end
 end

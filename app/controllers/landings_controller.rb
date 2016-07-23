@@ -22,7 +22,11 @@ class LandingsController < ApplicationController
       listing_info_postal_code: params[:postal_code],
       title: "Seller"
     }
-    Crm::Lead.delay.send_to_crm lead_params
+    # Crm::Lead.delay.send_to_crm lead_params
+
+    contact = LeadContact.new(lead_params)
+    contact.request = request
+    contact.deliver
   end
 
   def street_watch
@@ -51,6 +55,10 @@ class LandingsController < ApplicationController
       end
     end
 
-    Crm::Lead.delay(priority: 20).send_to_crm lead_params
+    # Crm::Lead.delay(priority: 20).send_to_crm lead_params
+
+    contact = LeadContact.new(lead_params)
+    contact.request = request
+    contact.deliver
   end
 end
