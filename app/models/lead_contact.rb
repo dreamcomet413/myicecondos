@@ -4,6 +4,7 @@ class LeadContact < MailForm::Base
   attribute :email,     :validate => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
 
   attribute :phone
+  attribute :requested_info
   attribute :email
   attribute :source
   attribute :lat
