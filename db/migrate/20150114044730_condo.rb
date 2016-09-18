@@ -70,7 +70,7 @@ class Condo < ActiveRecord::Migration
       t.string :level9, :limit => 100
       t.string :locker, :limit => 100
       t.string :locker_num, :limit => 100
-      t.integer :lp_dol, :limit => 11
+      t.integer :lp_dol, :precision => 0
       t.integer :maint, :limit => 7
       t.string :ml_num, :limit => 100
       t.integer :mmap_col, :limit => 2

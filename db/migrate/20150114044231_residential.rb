@@ -67,7 +67,7 @@ class Residential < ActiveRecord::Migration
       t.string :level8, :limit => 100
       t.string :level9, :limit => 100
       t.string :lotsz_code, :limit => 100
-      t.integer :lp_dol, :limit => 11
+      t.integer :lp_dol, :precision => 0
       t.string :ml_num, :limit => 100
       t.integer :mmap_col, :limit => 2
       t.integer :mmap_page, :limit => 3
