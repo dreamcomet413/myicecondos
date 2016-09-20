@@ -61,6 +61,7 @@ gem 'meta-tags'
 gem 'comfortable_mexican_sofa', '~> 1.12.0'
 gem "font-awesome-rails"
 # gem 'bcrypt', '~> 3.1.7'
+gem 'dotenv-rails', :groups => [:development, :test]
 
 group :development, :test do
   gem 'byebug'
@@ -69,6 +70,8 @@ group :development, :test do
   gem 'spring'
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'byebug'
+  gem 'pry-rails'
 end
 
 group :production do

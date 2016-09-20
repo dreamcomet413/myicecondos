@@ -21,3 +21,4 @@ public/uploads/*
 config/database.yml
 public/map_data/full_data.json
 .idea/
+.env

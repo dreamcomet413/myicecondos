@@ -11,3 +11,9 @@ m1.menu_items.create(title: "Condo Evaluation", url: "/evaluation", sort_order: 
 m1.menu_items.create(title: "Location", url: "/location", sort_order: 7)
 m1.menu_items.create(title: "Gallery", url: "/gallery", sort_order: 8)
 m1.menu_items.create(title: "Fast response", url: "/contact", sort_order: 9)
+
+user = User.new
+user.email = 'testuser@example.com'
+user.password = 'password'
+user.password_confirmation = 'password'
+user.save!

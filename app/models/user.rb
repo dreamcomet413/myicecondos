@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   before_create :set_faye_token
 
-  after_save :send_to_crm
+  # after_save :send_to_crm
 
   has_many :favourites
   has_many :prospect_matches
